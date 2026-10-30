@@ -1,0 +1,924 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head><body>
+<title>Second law, exercise 18: the route</title>
+<meta name="description" content="Exercise 18 of topic 6, a variant with equal amounts: the entropy change computed the way it is calculated, a double free expansion, thermal contact and then superposition, with the gases as material points that do not see each other.">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* Family kit tokens with this project's blue and heat red; two species colours for this page. */
+:root {
+  --paper: #ffffff; --tint: #f6f5f2; --ink: #22262b; --ink-soft: #565c64; --ink-faint: #7f858d;
+  --line: #dbd8d2; --line-soft: #eae7e1;
+  --blue: #2c5aa0; --blue-soft: #4772b8; --blue-tint: #eef3fa;
+  --heat: #a8432a; --heat-tint: #fbf1ee; --work: #2e6b5e; --work-tint: #e3efeb;
+  --o2: #b06b1c; --o2-fill: #f0d9a8; --n2: #2c5aa0; --n2-fill: #bfd0ea; --dot: #565c64;
+  --metal: #8d939b; --metal-dark: #5d636b; --vac: #f6f5f2;
+  --serif: "Source Serif 4", Georgia, serif;
+  --sans: "Source Sans 3", -apple-system, "Segoe UI", sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --paper: #15171a; --tint: #1c1f23; --ink: #e8e6e1; --ink-soft: #b6b3ad; --ink-faint: #8b8983;
+    --line: #33373d; --line-soft: #272b30;
+    --blue: #8fb3e8; --blue-soft: #a9c5ee; --blue-tint: #18202c;
+    --heat: #e79a84; --heat-tint: #2a1c18; --work: #7fc4b3; --work-tint: #17262a;
+    --o2: #e2b45e; --o2-fill: #5a4a22; --n2: #8fb3e8; --n2-fill: #2b4466; --dot: #b6b3ad;
+    --metal: #6c727a; --metal-dark: #a4aab2; --vac: #1c1f23;
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --paper: #15171a; --tint: #1c1f23; --ink: #e8e6e1; --ink-soft: #b6b3ad; --ink-faint: #8b8983;
+  --line: #33373d; --line-soft: #272b30;
+  --blue: #8fb3e8; --blue-soft: #a9c5ee; --blue-tint: #18202c;
+  --heat: #e79a84; --heat-tint: #2a1c18; --work: #7fc4b3; --work-tint: #17262a;
+  --o2: #e2b45e; --o2-fill: #5a4a22; --n2: #8fb3e8; --n2-fill: #2b4466; --dot: #b6b3ad;
+  --metal: #6c727a; --metal-dark: #a4aab2; --vac: #1c1f23;
+}
+
+body { background: var(--paper); color: var(--ink); font-family: var(--sans); font-size: 16px; line-height: 1.55; }
+.wrap { max-width: 1180px; margin: 0 auto; padding-inline: clamp(16px, 4vw, 40px); padding-block: 28px 48px; }
+h1 { font-family: var(--serif); font-weight: 600; font-size: clamp(26px, 3.6vw, 34px); line-height: 1.2; margin: 0; text-wrap: balance; }
+.sub { color: var(--ink-soft); font-size: 17px; margin: 6px 0 0; max-width: 70ch; }
+.lbl { display: block; font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-faint); margin: 0 0 4px; }
+.box { padding: 12px 18px 6px; border-left: 3px solid var(--blue); background: var(--blue-tint); margin: 20px 0 8px; max-width: 78ch; }
+.box p { margin: 0 0 8px; }
+.box ol { margin: 0 0 8px; padding-left: 22px; }
+.lede { max-width: 78ch; margin: 18px 0 22px; }
+.lede b { font-weight: 600; }
+a { color: var(--blue); }
+
+.panels { display: grid; grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr); gap: 20px; align-items: start; }
+@media (max-width: 880px) { .panels { grid-template-columns: minmax(0, 1fr); } }
+.panel { border: 1px solid var(--line); background: var(--paper); padding: 14px 14px 10px; min-width: 0; }
+.panel h2 { font-family: var(--serif); font-weight: 600; font-size: 19px; margin: 0 0 2px; }
+.panel .cap { font-size: 14px; color: var(--ink-soft); margin: 0 0 8px; }
+.panel canvas { display: block; width: 100%; height: auto; }
+.panel svg { display: block; width: 100%; height: auto; }
+svg text { font-family: var(--sans); fill: var(--ink-soft); }
+svg .mono { font-family: var(--mono); }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 13.5px; color: var(--ink-soft); margin: 6px 0 2px; }
+.legend > span { display: inline-flex; align-items: center; gap: 7px; }
+.sw { display: inline-block; width: 12px; height: 12px; border-radius: 50%; }
+.sw.o2 { background: var(--o2); } .sw.n2 { background: var(--n2); } .sw.dot { background: var(--dot); }
+.sw.vac { width: 18px; height: 12px; border-radius: 0; border: 1px solid var(--line); background: var(--vac); }
+.now { margin: 8px 0 0; display: grid; grid-template-columns: 1fr 1fr; gap: 2px 18px; font-family: var(--mono); font-size: 13.5px; }
+@media (max-width: 560px) { .now { grid-template-columns: 1fr; } }
+.now .k { color: var(--ink-faint); font-family: var(--sans); font-size: 11.5px; letter-spacing: .08em; text-transform: uppercase; grid-column: 1 / -1; margin-top: 4px; }
+.now .a { color: var(--o2); } .now .b { color: var(--n2); } .now .s { color: var(--heat); }
+.now .note { grid-column: 1 / -1; font-family: var(--sans); font-style: italic; color: var(--ink-faint); font-size: 13.5px; }
+.steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.steps li { border: 1px solid var(--line-soft); padding: 8px 12px; border-left: 3px solid var(--line); }
+.steps li.on { border-left-color: var(--heat); background: var(--heat-tint); }
+.steps li.done { border-left-color: var(--work); }
+.steps .t { font-weight: 600; }
+.steps .f { display: block; font-size: 14px; color: var(--ink-soft); margin-top: 2px; }
+.steps .v { display: block; font-family: var(--mono); font-size: 14px; margin-top: 4px; }
+
+.controls { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 14px 24px; align-items: end; margin: 22px 0 10px; padding: 14px 16px; background: var(--tint); border: 1px solid var(--line-soft); }
+@media (max-width: 700px) { .controls { grid-template-columns: minmax(0, 1fr); } }
+.presets { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+button { font-family: var(--sans); font-size: 14.5px; font-weight: 600; border: 1px solid var(--line); background: var(--paper); color: var(--ink); padding: 6px 12px; border-radius: 3px; cursor: pointer; }
+button:hover:not(:disabled) { border-color: var(--blue); }
+button:focus-visible, input:focus-visible, summary:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
+button:disabled { opacity: 0.45; cursor: default; }
+button.go1 { color: var(--heat); border-color: color-mix(in srgb, var(--heat) 50%, var(--line)); }
+button.go2 { color: var(--blue); border-color: color-mix(in srgb, var(--blue) 50%, var(--line)); }
+button.go3 { color: var(--work); border-color: color-mix(in srgb, var(--work) 50%, var(--line)); }
+button.small { font-size: 13px; font-weight: 400; padding: 3px 9px; }
+button.small[aria-pressed="true"] { border-color: var(--work); color: var(--work); font-weight: 600; }
+.actions { display: flex; flex-direction: column; gap: 8px; align-items: flex-end; }
+.actions .row { display: flex; flex-wrap: wrap; gap: 8px; justify-content: flex-end; }
+@media (max-width: 700px) { .actions { align-items: stretch; } .actions .row { justify-content: flex-start; } }
+
+.ledger-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin: 18px 0 0; }
+.ledger-head h2 { font-family: var(--serif); font-weight: 600; font-size: 19px; margin: 0; }
+.ledger-wrap { overflow-x: auto; margin: 6px 0 0; }
+table { border-collapse: collapse; font-variant-numeric: tabular-nums; min-width: 560px; width: 100%; }
+th { text-align: right; font-size: 12px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--ink-faint); padding: 8px 0 8px 18px; border-bottom: 1px solid var(--ink); font-weight: 600; }
+th:first-child, td:first-child { text-align: left; padding-left: 0; }
+td { text-align: right; padding: 7px 0 7px 18px; border-bottom: 1px solid var(--line-soft); font-family: var(--mono); font-size: 14px; }
+td:first-child { font-family: var(--sans); font-size: 15px; }
+th.p1 { color: var(--heat); } th.p2 { color: var(--blue); }
+tr.gas td:first-child { padding-left: 18px; }
+tr.univ td { font-weight: 500; border-bottom: 1px solid var(--ink-faint); }
+tr.univ td:first-child { font-weight: 600; }
+.verdict { margin: 14px 0 0; padding: 10px 16px; border-left: 3px solid var(--heat); background: var(--heat-tint); max-width: 90ch; }
+.hidden-note { margin: 8px 0 0; font-size: 14px; color: var(--ink-faint); font-style: italic; }
+.notes { margin-top: 26px; font-size: 14.5px; color: var(--ink-soft); max-width: 90ch; }
+.notes h3 { font-family: var(--serif); font-size: 17px; color: var(--ink); margin: 0 0 6px; }
+.notes ul { padding-left: 20px; margin: 0; display: grid; gap: 4px; }
+sub, sup { line-height: 0; }
+
+.langbar { max-width: 1180px; margin: 0 auto; padding-inline: clamp(16px, 4vw, 40px); padding-block: 14px 0; display: flex; justify-content: flex-end; gap: 6px; }
+.langbar button { font-size: 13px; font-weight: 600; padding: 3px 10px; letter-spacing: 0.04em; }
+.langbar button[aria-pressed="true"] { border-color: var(--blue); color: var(--blue); }
+.wrap { padding-block: 8px 48px; }
+.katex { font-size: 1.08em; white-space: nowrap; }
+td .katex, .load-val .katex { font-size: 1.04em; }
+foreignObject .katex { font-size: 1.06em; }
+</style>
+
+<div class="langbar" role="group" aria-label="Language / Hizkuntza">
+  <button id="langEN" aria-pressed="true" lang="en">EN</button>
+  <button id="langEU" aria-pressed="false" lang="eu">EU</button>
+</div>
+<div id="root"></div>
+<template id="tpl-en"><div class="wrap">
+  <span class="lbl">Thermodynamics · topic 6, the second law · exercise 18, the route of the calculation</span>
+  <h1>Two gases that do not see each other</h1>
+  <p class="sub">The entropy change computed the way it is calculated: each gas expands freely on its own, the two are put in thermal contact, and then they are superposed in one vessel. The gases are material points, drawn with a little size so they can be seen.</p>
+
+  <div class="box">
+    <span class="lbl" style="color:var(--blue)">A variant of the statement, with equal amounts</span>
+    <p>Two compartments of <b>$10\ \mathrm{L}$ and $15\ \mathrm{L}$</b> are separated by a fixed, adiabatic and impermeable wall. In the first, <b>O₂</b> at <b>$288\ \mathrm{K}$ and $2\ \mathrm{atm}$</b>, that is $n = 0.846\ \mathrm{mol}$; in the second, <b>the same amount of N₂</b> at <b>$300\ \mathrm{K}$</b>, which puts it at <b>$1.39\ \mathrm{atm}$</b>. Both diatomic ideal gases, $c_v = 5R/2$. The wall is removed; obtain the entropy change. Then the same with one gas on both sides.</p>
+    <p>The statement proper has $1\ \mathrm{atm}$ of N₂, $0.609\ \mathrm{mol}$; equal amounts make the second step end with equal pressures, so the third step is a pure superposition. The <a href="../">page of the statement</a> runs the wall itself.</p>
+  </div>
+
+  <p class="lede">The final state is fixed by the closure: $T_\mathrm{f} = 294\ \mathrm{K}$ and $p_\mathrm{f} = 1.63\ \mathrm{atm}$ in $25\ \mathrm{L}$. The route to its entropy is three steps, each one a change of state whose $\Delta S$ is known: a <b>double free expansion</b>, each gas alone into its $25\ \mathrm{L}$ at its own temperature; <b>thermal contact</b>, each gas at its $25\ \mathrm{L}$, to $294\ \mathrm{K}$; and <b>superposition</b>, the two vessels made one. For two different ideal gases the last step changes nothing, and the mixing entropy was all in the first.</p>
+
+  <div class="panels">
+    <section class="panel" aria-labelledby="h-app">
+      <h2 id="h-app">The gases, as material points</h2>
+      <p class="cap">Two vessels of $25\ \mathrm{L}$, one for each gas; the shaded part is vacuum. The points fly in straight lines and bounce off the walls; they pass through each other.</p>
+      <canvas id="cv" width="900" height="560" role="img" aria-label="Two stacked vessels with moving points for the molecules of oxygen and nitrogen"></canvas>
+      <div class="legend">
+        <span><i class="sw o2"></i>O₂, $0.846\ \mathrm{mol}$</span>
+        <span><i class="sw n2"></i>N₂, $0.846\ \mathrm{mol}$</span>
+        <span><i class="sw vac"></i>vacuum</span>
+        <span id="legSame" hidden><i class="sw dot"></i>one colour; the labels say which is which</span>
+      </div>
+      <div class="now">
+        <span class="k">Now</span>
+        <span id="r1" style="grid-column:1 / -1"></span>
+        <span class="a" id="r2"></span><span class="b" id="r3"></span>
+        <span class="a" id="r4"></span><span class="b" id="r5"></span>
+        <span class="s" id="r6" style="grid-column:1 / -1"></span>
+        <span class="note" id="r7"></span>
+      </div>
+    </section>
+
+    <section class="panel" aria-labelledby="h-route">
+      <h2 id="h-route">The route, step by step</h2>
+      <p class="cap">Each step is a change of state; its entropy change is a state-function formula, not a path integral.</p>
+      <ol class="steps" id="steps">
+        <li id="st1"><span class="t">1 · Double free expansion</span><span class="f">Each gas alone, into vacuum, to $25\ \mathrm{L}$. Ideal, so $T$ does not change: $\Delta S = nR\ln(V/V_\mathrm{i})$ for each.</span><span class="v" id="sv1"></span></li>
+        <li id="st2"><span class="t">2 · Thermal contact</span><span class="f">Each gas at its $25\ \mathrm{L}$; heat crosses the shared wall until both are at $T_\mathrm{f}$: $\Delta S = n c_v \ln(T_\mathrm{f}/T_\mathrm{i})$ for each.</span><span class="v" id="sv2"></span></li>
+        <li id="st3"><span class="t">3 · Superposition</span><span class="f">The two vessels become one. Each gas still fills $25\ \mathrm{L}$ at $T_\mathrm{f}$; nothing it owns changes.</span><span class="v" id="sv3"></span></li>
+      </ol>
+      <svg id="chart" viewBox="0 0 520 170" role="img" aria-label="Entropy change accumulated along the three steps">
+        <text x="0" y="14" style="font-size:11.5px;fill:var(--ink-faint);letter-spacing:.06em">ENTROPY, ACCUMULATED · J/K</text>
+        <g id="bars"></g>
+        <line x1="40" y1="140" x2="500" y2="140" stroke="var(--ink-soft)"/>
+        <line id="zero" x1="40" y1="140" x2="500" y2="140" stroke="var(--ink-soft)"/>
+        <text id="cx1" x="130" y="158" text-anchor="middle" style="font-size:12px">1</text>
+        <text id="cx2" x="270" y="158" text-anchor="middle" style="font-size:12px">2</text>
+        <text id="cx3" x="410" y="158" text-anchor="middle" style="font-size:12px">3</text>
+        <text id="cTot" x="500" y="30" text-anchor="end" style="font-size:13px;fill:var(--heat);font-weight:600"></text>
+      </svg>
+    </section>
+  </div>
+
+  <div class="controls">
+    <div>
+      <span class="lbl">The gases, and how to see them</span>
+      <div class="presets">
+        <button class="small" id="gDiff" aria-pressed="true">O₂ and N₂</button>
+        <button class="small" id="gSame" aria-pressed="false">The same gas on both sides</button>
+      </div>
+      <div class="presets">
+        <button class="small" id="vCol" aria-pressed="true">Colours</button>
+        <button class="small" id="vLbl" aria-pressed="false">One colour, a label on each point</button>
+      </div>
+    </div>
+    <div class="actions">
+      <div class="row">
+        <button class="go1" id="b1">1 · Expand freely</button>
+        <button class="go2" id="b2" disabled>2 · Thermal contact</button>
+        <button class="go3" id="b3" disabled>3 · Superpose</button>
+        <button id="b0">Reset</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="ledger-head">
+    <h2>Entropy balance</h2>
+    <button class="small" id="ledgerBtn" aria-expanded="true" aria-controls="ledgerBody">Hide</button>
+  </div>
+  <p class="hidden-note" id="ledgerNote" hidden>Hidden. Show it when the class is ready for the balance.</p>
+  <div id="ledgerBody">
+    <div class="ledger-wrap">
+      <table aria-label="Entropy change of each step for two different gases and for one gas">
+        <thead><tr><th></th><th class="p1">O₂ and N₂</th><th class="p2">one gas</th></tr></thead>
+        <tbody>
+          <tr><td>1 · O₂ free expansion, $10\ \mathrm{L}$ to $25\ \mathrm{L}$</td><td id="l1a"></td><td id="l1as"></td></tr>
+          <tr><td>1 · N₂ free expansion, $15\ \mathrm{L}$ to $25\ \mathrm{L}$</td><td id="l1b"></td><td id="l1bs"></td></tr>
+          <tr><td>2 · O₂ from $288\ \mathrm{K}$ to $294\ \mathrm{K}$</td><td id="l2a"></td><td id="l2as"></td></tr>
+          <tr><td>2 · N₂ from $300\ \mathrm{K}$ to $294\ \mathrm{K}$</td><td id="l2b"></td><td id="l2bs"></td></tr>
+          <tr><td>3 · Superposition</td><td id="l3"></td><td id="l3s"></td></tr>
+          <tr class="univ"><td>$\Delta S$ of the system, which is isolated</td><td id="lt"></td><td id="lts"></td></tr>
+          <tr><td>The wall freed instead of removed, for comparison</td><td id="lw"></td><td id="lws"></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="verdict" id="verdict"></p>
+  </div>
+
+  <div class="notes">
+    <h3>The model behind the drawing</h3>
+    <ul>
+      <li>The variant keeps the statement's volumes and temperatures and gives the nitrogen the oxygen's amount, $n = 0.846\ \mathrm{mol}$, so its pressure is $1.39\ \mathrm{atm}$ instead of $1\ \mathrm{atm}$. Then $T_\mathrm{f} = 294\ \mathrm{K}$, the plain mean, and after step 2 both gases are at $25\ \mathrm{L}$, $294\ \mathrm{K}$ and $0.816\ \mathrm{atm}$: equal states, so step 3 is a superposition and nothing else. With the statement's amounts the pressures after step 2 differ (0.81 and $0.59\ \mathrm{atm}$); the route is the same, and this page's model takes those amounts too.</li>
+      <li>The points are an ideal gas's molecules as material points: they move in straight lines, bounce off the walls elastically and never collide with each other. Each gas starts with speeds drawn from the Maxwell distribution at its temperature (in two dimensions), with the molar masses 32 and 28; 120 points stand for each $0.846\ \mathrm{mol}$. The temperature read out is the kinetic one, from the mean of $v^2$ over the points, so it fluctuates a little.</li>
+      <li>Step 1: the partition of each vessel is lifted and the points stream into the vacuum. No collisions, no walls that move: no speed changes, so $T$ stays, exactly as the first law says for a free expansion of an ideal gas.</li>
+      <li>Step 2: the vessels are brought together and the wall between them is made diathermal. A point that hits it leaves it with a speed drawn at the wall's temperature, which is kept at $T_\mathrm{f}$, the temperature the two gases must share; the oxygen warms and the nitrogen cools until both read $294\ \mathrm{K}$. The energy the wall hands to one gas it takes from the other on average. With 600 points the mean of $v^2$ would wander by a few per cent from one sample to the next, so each gas's speeds are rescaled to the expectation of the process, $T_\mathrm{i} + (T_\mathrm{f} - T_\mathrm{i})\times$ the fraction of its points the wall has re-emitted; the shape of the distribution is the wall's.</li>
+      <li>Step 3: the wall is removed and the lower vessel slides up until the two coincide. The points do not react: an ideal gas does not see the other. For two different gases $\Delta S_3 = 0$, and the mixing entropy is the first step's $\sum nR\ln(V/V_\mathrm{i})$.</li>
+      <li>One gas on both sides: the picture with one colour is the same, but the count is not. Two portions of one gas that "each fill $25\ \mathrm{L}$" are, once superposed, one gas of $2n$ moles in $25\ \mathrm{L}$, and the entropy of that state is less than the sum of the two portions' by $-\sum n_i R\ln x_i = 2nR\ln 2 = 9.75\ \mathrm{J\,K^{-1}}$ (Gibbs). Step 3 then carries that correction, and the total is the freed-wall value, $0.29\ \mathrm{J\,K^{-1}}$. Equivalently, for one gas the honest step 1 expands each portion only to its share, $12.5\ \mathrm{L}$, and step 3 is the removal of a wall between equal states, with $\Delta S = 0$.</li>
+    </ul>
+  </div>
+</div>
+
+</template>
+<template id="tpl-eu"><div class="wrap">
+  <span class="lbl">Termodinamika · 6. gaia, bigarren printzipioa · 18. ariketa, kalkuluaren bidea</span>
+  <h1>Elkar ikusten ez duten bi gas</h1>
+  <p class="sub">Entropia-aldaketa kalkulatzen den moduan kalkulatuta: gas bakoitza bere kabuz hedatzen da askeki, biak kontaktu termikoan jartzen dira, eta gero ontzi batean gainjartzen dira. Gasak puntu materialak dira, tamaina pixka batekin marraztuak, ikus daitezen.</p>
+
+  <div class="box">
+    <span class="lbl" style="color:var(--blue)">Enuntziatuaren aldaera bat, kantitate berdinekin</span>
+    <p><b>$10\ \mathrm{L}$ eta $15\ \mathrm{L}$</b>-ko bi gune finkoa, adiabatikoa eta iragaztezina den horma batek banandu ditu. Lehenengoan, <b>O₂</b> <b>$288\ \mathrm{K}$-ean eta $2\ \mathrm{atm}$-n</b>, hau da, $n = 0.846\ \mathrm{mol}$; bigarrenean, <b>N₂-kantitate bera</b> <b>$300\ \mathrm{K}$-ean</b>, eta horrek <b>$1.39\ \mathrm{atm}$</b>-n jartzen du. Biak gas ideal diatomikoak, $c_v = 5R/2$. Horma kendu egiten da; lortu entropia-aldaketa. Gero gauza bera, gas bera bi aldeetan dagoela.</p>
+    <p>Enuntziatuak berak N₂ $1\ \mathrm{atm}$-n du, $0.609\ \mathrm{mol}$; kantitate berdinekin, bigarren urratsa presio berdinekin amaitzen da, eta, beraz, hirugarren urratsa gainjartze hutsa da. <a href="../">Enuntziatuaren orriak</a> horma bera abiarazten du.</p>
+  </div>
+
+  <p class="lede">Azken egoera finkatuta dago, ontzia isolatua baita: $T_\mathrm{f} = 294\ \mathrm{K}$ eta $p_\mathrm{f} = 1.63\ \mathrm{atm}$, $25\ \mathrm{L}$-tan. Haren entropiarako bidea hiru urrats da, bakoitza egoera-aldaketa bat, $\Delta S$ ezaguna duena: <b>hedapen aske bikoitza</b>, gas bakoitza bakarrik bere $25\ \mathrm{L}$-etara, bere tenperaturan; <b>kontaktu termikoa</b>, gas bakoitza bere $25\ \mathrm{L}$-etan, $294\ \mathrm{K}$-era; eta <b>gainjartzea</b>, bi ontziak bat eginda. Bi gas ideal desberdinentzat azken urratsak ez du ezer aldatzen, eta nahaste-entropia osoa lehenengoan zegoen.</p>
+
+  <div class="panels">
+    <section class="panel" aria-labelledby="h-app">
+      <h2 id="h-app">Gasak, puntu material gisa</h2>
+      <p class="cap">$25\ \mathrm{L}$-ko bi ontzi, bat gas bakoitzeko; itzaldutako zatia hutsa da. Puntuak lerro zuzenean doaz eta hormetan errebotatzen dute; elkar zeharkatzen dute.</p>
+      <canvas id="cv" width="900" height="560" role="img" aria-label="Bata bestearen gainean pilatutako bi ontzi, oxigenoaren eta nitrogenoaren molekulen puntu higikorrekin"></canvas>
+      <div class="legend">
+        <span><i class="sw o2"></i>O₂, $0.846\ \mathrm{mol}$</span>
+        <span><i class="sw n2"></i>N₂, $0.846\ \mathrm{mol}$</span>
+        <span><i class="sw vac"></i>hutsa</span>
+        <span id="legSame" hidden><i class="sw dot"></i>kolore bakarra; etiketek esaten dute zein den zein</span>
+      </div>
+      <div class="now">
+        <span class="k">Orain</span>
+        <span id="r1" style="grid-column:1 / -1"></span>
+        <span class="a" id="r2"></span><span class="b" id="r3"></span>
+        <span class="a" id="r4"></span><span class="b" id="r5"></span>
+        <span class="s" id="r6" style="grid-column:1 / -1"></span>
+        <span class="note" id="r7"></span>
+      </div>
+    </section>
+
+    <section class="panel" aria-labelledby="h-route">
+      <h2 id="h-route">Bidea, urratsez urrats</h2>
+      <p class="cap">Urrats bakoitza egoera-aldaketa bat da; haren entropia-aldaketa egoera-funtzio baten formula da, ez bide-integral bat.</p>
+      <ol class="steps" id="steps">
+        <li id="st1"><span class="t">1 · Hedapen aske bikoitza</span><span class="f">Gas bakoitza bakarrik, hutsera, $25\ \mathrm{L}$-etara. Ideala denez, $T$ ez da aldatzen: $\Delta S = nR\ln(V/V_\mathrm{i})$ bakoitzarentzat.</span><span class="v" id="sv1"></span></li>
+        <li id="st2"><span class="t">2 · Kontaktu termikoa</span><span class="f">Gas bakoitza bere $25\ \mathrm{L}$-etan; beroa horma komunetik igarotzen da biak $T_\mathrm{f}$-n egon arte: $\Delta S = n c_v \ln(T_\mathrm{f}/T_\mathrm{i})$ bakoitzarentzat.</span><span class="v" id="sv2"></span></li>
+        <li id="st3"><span class="t">3 · Gainjartzea</span><span class="f">Bi ontziak bat bihurtzen dira. Gas bakoitzak $25\ \mathrm{L}$ betetzen ditu oraindik, $T_\mathrm{f}$-n; berea duen ezer ez da aldatzen.</span><span class="v" id="sv3"></span></li>
+      </ol>
+      <svg id="chart" viewBox="0 0 520 170" role="img" aria-label="Hiru urratsetan metatutako entropia-aldaketa">
+        <text x="0" y="14" style="font-size:11.5px;fill:var(--ink-faint);letter-spacing:.06em">ENTROPIA, METATUA · J/K</text>
+        <g id="bars"></g>
+        <line x1="40" y1="140" x2="500" y2="140" stroke="var(--ink-soft)"/>
+        <line id="zero" x1="40" y1="140" x2="500" y2="140" stroke="var(--ink-soft)"/>
+        <text id="cx1" x="130" y="158" text-anchor="middle" style="font-size:12px">1</text>
+        <text id="cx2" x="270" y="158" text-anchor="middle" style="font-size:12px">2</text>
+        <text id="cx3" x="410" y="158" text-anchor="middle" style="font-size:12px">3</text>
+        <text id="cTot" x="500" y="30" text-anchor="end" style="font-size:13px;fill:var(--heat);font-weight:600"></text>
+      </svg>
+    </section>
+  </div>
+
+  <div class="controls">
+    <div>
+      <span class="lbl">Gasak, eta nola ikusi</span>
+      <div class="presets">
+        <button class="small" id="gDiff" aria-pressed="true">O₂ eta N₂</button>
+        <button class="small" id="gSame" aria-pressed="false">Gas bera bi aldeetan</button>
+      </div>
+      <div class="presets">
+        <button class="small" id="vCol" aria-pressed="true">Koloreak</button>
+        <button class="small" id="vLbl" aria-pressed="false">Kolore bakarra, etiketa bat puntu bakoitzean</button>
+      </div>
+    </div>
+    <div class="actions">
+      <div class="row">
+        <button class="go1" id="b1">1 · Hedatu askeki</button>
+        <button class="go2" id="b2" disabled>2 · Kontaktu termikoa</button>
+        <button class="go3" id="b3" disabled>3 · Gainjarri</button>
+        <button id="b0">Berrabiarazi</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="ledger-head">
+    <h2>Entropia-balantzea</h2>
+    <button class="small" id="ledgerBtn" aria-expanded="true" aria-controls="ledgerBody">Ezkutatu</button>
+  </div>
+  <p class="hidden-note" id="ledgerNote" hidden>Ezkutatuta. Erakutsi ezazu klasea balantzerako prest dagoenean.</p>
+  <div id="ledgerBody">
+    <div class="ledger-wrap">
+      <table aria-label="Urrats bakoitzaren entropia-aldaketa bi gas desberdinentzat eta gas bakarrarentzat">
+        <thead><tr><th></th><th class="p1">O₂ eta N₂</th><th class="p2">gas bat</th></tr></thead>
+        <tbody>
+          <tr><td>1 · O₂-aren hedapen askea, $10\ \mathrm{L}$-etik $25\ \mathrm{L}$-era</td><td id="l1a"></td><td id="l1as"></td></tr>
+          <tr><td>1 · N₂-aren hedapen askea, $15\ \mathrm{L}$-etik $25\ \mathrm{L}$-era</td><td id="l1b"></td><td id="l1bs"></td></tr>
+          <tr><td>2 · O₂, $288\ \mathrm{K}$-etik $294\ \mathrm{K}$-era</td><td id="l2a"></td><td id="l2as"></td></tr>
+          <tr><td>2 · N₂, $300\ \mathrm{K}$-etik $294\ \mathrm{K}$-era</td><td id="l2b"></td><td id="l2bs"></td></tr>
+          <tr><td>3 · Gainjartzea</td><td id="l3"></td><td id="l3s"></td></tr>
+          <tr class="univ"><td>Sistemaren $\Delta S$, isolatua baita</td><td id="lt"></td><td id="lts"></td></tr>
+          <tr><td>Horma kendu beharrean askatuta, konparatzeko</td><td id="lw"></td><td id="lws"></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="verdict" id="verdict"></p>
+  </div>
+
+  <div class="notes">
+    <h3>Marrazkiaren atzeko eredua</h3>
+    <ul>
+      <li>Aldaerak enuntziatuaren bolumenak eta tenperaturak gordetzen ditu, eta nitrogenoari oxigenoaren kantitatea ematen dio, $n = 0.846\ \mathrm{mol}$; beraz, haren presioa $1.39\ \mathrm{atm}$ da, $1\ \mathrm{atm}$ izan beharrean. Orduan $T_\mathrm{f} = 294\ \mathrm{K}$, batezbesteko arrunta, eta 2. urratsaren ondoren bi gasak $25\ \mathrm{L}$, $294\ \mathrm{K}$ eta $0.816\ \mathrm{atm}$-n daude: egoera berdinak; beraz, 3. urratsa gainjartze bat da, eta besterik ez. Enuntziatuaren kantitateekin, 2. urratsaren ondorengo presioak desberdinak dira (0.81 eta $0.59\ \mathrm{atm}$); bidea bera da, eta orri honetako ereduak kantitate horiek ere onartzen ditu.</li>
+      <li>Puntuak gas ideal baten molekulak dira, puntu material gisa: lerro zuzenean higitzen dira, hormetan elastikoki errebotatzen dute eta ez dute inoiz elkar jotzen. Gas bakoitza bere tenperaturako Maxwellen banaketatik (bi dimentsiotan) ateratako abiadurekin hasten da, 32 eta 28 masa molarrekin; 120 puntuk ordezkatzen dute $0.846\ \mathrm{mol}$ bakoitza. Irakurtzen den tenperatura zinetikoa da, puntuen $v^2$-ren batezbestekotik; beraz, pixka bat fluktuatzen du.</li>
+      <li>1. urratsa: ontzi bakoitzaren trenkada altxatzen da eta puntuak hutsera isurtzen dira. Talkarik ez, higitzen den hormarik ez: abiadurak ez dira aldatzen; beraz, $T$ mantendu egiten da, lehen printzipioak gas ideal baten hedapen askerako dioen bezalaxe.</li>
+      <li>2. urratsa: ontziak elkarrengana hurbiltzen dira eta bien arteko horma diatermano bihurtzen da. Horma jotzen duen puntu batek hormaren tenperaturan ateratako abiadura batekin uzten du hura; tenperatura hori $T_\mathrm{f}$-n mantentzen da, bi gasek partekatu behar duten tenperaturan; oxigenoa berotu eta nitrogenoa hoztu egiten da, biek $294\ \mathrm{K}$ irakurri arte. Hormak gas bati ematen dion energia besteari kentzen dio, batez beste. 600 punturekin $v^2$-ren batezbestekoa ehuneko batzuk aldatuko litzateke lagin batetik hurrengora; beraz, gas bakoitzaren abiadurak prozesuaren itxaropenera birreskalatzen dira, $T_\mathrm{i} + (T_\mathrm{f} - T_\mathrm{i})\times$ hormak berriro igorri dituen puntuen frakzioa; banaketaren forma hormarena da.</li>
+      <li>3. urratsa: horma kendu egiten da eta beheko ontzia gora irristatzen da, biak bat etorri arte. Puntuek ez dute erreakzionatzen: gas ideal batek ez du bestea ikusten. Bi gas desberdinentzat $\Delta S_3 = 0$, eta nahaste-entropia lehen urratseko $\sum nR\ln(V/V_\mathrm{i})$ da.</li>
+      <li>Gas bera bi aldeetan: kolore bakarreko irudia bera da, baina kontua ez. "Bakoitzak $25\ \mathrm{L}$ betetzen dituen" gas baten bi zati, behin gainjarrita, $2n$ moleko gas bakarra dira $25\ \mathrm{L}$-etan, eta egoera horren entropia bi zatien baturarena baino txikiagoa da, $-\sum n_i R\ln x_i = 2nR\ln 2 = 9.75\ \mathrm{J\,K^{-1}}$ gutxiago (Gibbs). 3. urratsak zuzenketa hori dakar orduan, eta totala horma askatuaren balioa da, $0.29\ \mathrm{J\,K^{-1}}$. Baliokideki, gas bakarrarentzat 1. urrats zintzoak zati bakoitza dagokion zatira baino ez du hedatzen, $12.5\ \mathrm{L}$-etara, eta 3. urratsa egoera berdinen arteko horma kentzea da, $\Delta S = 0$ duela.</li>
+    </ul>
+  </div>
+</div>
+
+</template>
+<script>
+
+var XH = "http://www.w3.org/1999/xhtml", SVGNS = "http://www.w3.org/2000/svg";
+var UNIT = { "J/K": "\\mathrm{J\\,K^{-1}}", "W/K": "\\mathrm{W\\,K^{-1}}", "N s/m": "\\mathrm{N\\,s\\,m^{-1}}", "kN/m": "\\mathrm{kN\\,m^{-1}}", "m²/s": "\\mathrm{m^2\\,s^{-1}}", "cm³": "\\mathrm{cm^3}", "cm²": "\\mathrm{cm^2}", "m²": "\\mathrm{m^2}", "cm": "\\mathrm{cm}", "atm": "\\mathrm{atm}", "min": "\\mathrm{min}", "mol": "\\mathrm{mol}", "ms": "\\mathrm{ms}", "bar": "\\mathrm{bar}", "kg": "\\mathrm{kg}", "J": "\\mathrm{J}", "K": "\\mathrm{K}", "L": "\\mathrm{L}", "s": "\\mathrm{s}", "h": "\\mathrm{h}", "m": "\\mathrm{m}" };
+var NUM = "([+−-]?\\d+(?:\\.\\d+)?)", UN = "(J/K|W/K|N\\ s/m|kN/m|m²/s|cm³|cm²|m²|cm|atm|min|mol|ms|bar|kg|J|K|L|s|h|m)(?![\\w³²/])";
+var SVG_NUM = new RegExp("\\d ?(" + "J/K|W/K|N\\ s/m|kN/m|m²/s|cm³|cm²|m²|cm|atm|min|mol|ms|bar|kg|J|K|L|s|h|m" + ")(?![a-z])|=| \\/ ");
+function texHTML(t) { return window.katex ? katex.renderToString(t, { throwOnError: false }) : t; }
+/* Plain run-time string -> HTML with every quantity, symbol and equation typeset. */
+function mathify(str) {
+  var store = [];
+  function tok(t) { store.push(t); return "\u0001" + (store.length - 1) + "\u0002"; }
+  function sym(v) { return v.replace("Δ", "\\Delta "); }
+  function num(n) { return n.replace("−", "-"); }
+  str = String(str)
+    .replace(new RegExp("(^|[^\\w])([pVTS]) \\/ " + UN, "g"), function (m, a, v, u) { return a + tok(v + "\\,/\\," + UNIT[u]); })
+    .replace(new RegExp("(^|[^\\w])(Δ?[A-Za-z](?:_[A-Za-z0-9]{1,3})?) = " + NUM + " " + UN, "g"), function (m, a, v, n, u) { return a + tok(sym(v) + " = " + num(n) + "\\ " + UNIT[u]); })
+    .replace(/(^|[^\w])(Δ?[A-Za-z](?:_[A-Za-z0-9]{1,3})?) = /g, function (m, a, v) { return a + tok(sym(v) + " =") + " "; })
+    .replace(new RegExp("(^|[^\\w.])" + NUM + " " + UN, "g"), function (m, a, n, u) { return a + tok(num(n) + "\\ " + UNIT[u]); })
+    .replace(/(^|[\s,(])([pV])(?=[\s,])/g, function (m, a, v) { return a + tok(v); });
+  return str.replace(/\u0001(\d+)\u0002([,.;:)]?)/g, function (m, k, p) {
+    return p ? '<span style="white-space:nowrap">' + texHTML(store[+k]) + p + "</span>" : texHTML(store[+k]);
+  });
+}
+/* Keep a formula and the punctuation after it on one line. */
+function glue(root) {
+  root.querySelectorAll(".katex").forEach(function (k) {
+    var n = k.nextSibling;
+    if (!n || n.nodeType !== 3 || !/^[,.;:)]/.test(n.data)) return;
+    var w = document.createElement("span"); w.style.whiteSpace = "nowrap";
+    k.parentNode.insertBefore(w, k); w.appendChild(k); w.appendChild(document.createTextNode(n.data[0]));
+    n.data = n.data.slice(1);
+  });
+}
+/* SVG labels with mathematics become foreignObjects that hold KaTeX; put() and attr() keep them addressable. */
+var DYN = ["cTot"];
+function layoutFO(fo) {
+  var w = +fo.getAttribute("width"), h = +fo.getAttribute("height"), fs = +fo.getAttribute("data-fs");
+  var x = +fo.getAttribute("data-x"), y = +fo.getAttribute("data-y"), an = fo.getAttribute("data-anchor") || "start";
+  fo.setAttribute("x", an === "middle" ? x - w / 2 : an === "end" ? x - w : x);
+  fo.setAttribute("y", y - (h / 2 + 0.36 * fs));
+  fo.firstChild.style.textAlign = an === "middle" ? "center" : an === "end" ? "right" : "left";
+}
+function svgMath() {
+  document.querySelectorAll("#root svg text").forEach(function (t) {
+    var s = t.textContent, dyn = t.id && DYN.indexOf(t.id) >= 0;
+    if (!dyn && !SVG_NUM.test(s)) return;
+    var fs = parseFloat(t.style.fontSize) || 13, w = /^r\d$/.test(t.id) ? 640 : 300, h = Math.round(fs * 2.2);
+    var fo = document.createElementNS(SVGNS, "foreignObject"), d = document.createElementNS(XH, "div");
+    fo.setAttribute("width", w); fo.setAttribute("height", h); fo.setAttribute("data-fs", fs);
+    fo.setAttribute("data-x", t.getAttribute("x")); fo.setAttribute("data-y", t.getAttribute("y"));
+    fo.setAttribute("data-anchor", t.getAttribute("text-anchor") || "start");
+    if (t.id) fo.id = t.id;
+    if (t.getAttribute("opacity") != null) fo.setAttribute("opacity", t.getAttribute("opacity"));
+    var mono = (t.getAttribute("class") || "").indexOf("mono") >= 0 || (t.parentNode.getAttribute("class") || "").indexOf("mono") >= 0;
+    d.style.cssText = "font-size:" + fs + "px;line-height:" + h + "px;white-space:nowrap;pointer-events:none;" +
+      "color:" + (t.style.fill || "var(--ink-soft)") + ";font-family:" + (t.style.fontFamily || (mono ? "var(--mono)" : "var(--sans)")) +
+      ";font-weight:" + (t.style.fontWeight || "400") + ";font-style:" + (t.style.fontStyle || "normal");
+    d.innerHTML = mathify(s);
+    fo.appendChild(d); t.parentNode.replaceChild(fo, t); layoutFO(fo);
+  });
+}
+function put(id, str) {
+  var e = document.getElementById(id);
+  if (e && e.tagName === "foreignObject") e.firstChild.innerHTML = mathify(str); else if (e) e.textContent = str;
+}
+function attr(id, k, v) {
+  var e = document.getElementById(id);
+  if (!e) return;
+  if (e.tagName !== "foreignObject") { e.setAttribute(k, v); return; }
+  if (k === "x" || k === "y") { e.setAttribute("data-" + k, v); layoutFO(e); }
+  else if (k === "text-anchor") { e.setAttribute("data-anchor", v); layoutFO(e); }
+  else e.setAttribute(k, v);
+}
+
+function runEN() {
+(function () {
+  "use strict";
+  // ---- the variant (checked in tools/verify.py) ----
+  var R = 8.314462618, ATM = 101325, cv = 2.5 * R;
+  var VA0 = 0.010, VB0 = 0.015, TA0 = 288, TB0 = 300, V = VA0 + VB0;
+  var nA = 2 * ATM * VA0 / (R * TA0), nB = nA;                           // equal amounts: the variant
+  var pB0 = nB * R * TB0 / VB0;
+  var Tf = (nA * TA0 + nB * TB0) / (nA + nB), pf = (nA + nB) * R * Tf / V;
+  var s1a = nA * R * Math.log(V / VA0), s1b = nB * R * Math.log(V / VB0);
+  var s2a = nA * cv * Math.log(Tf / TA0), s2b = nB * cv * Math.log(Tf / TB0);
+  var xA = nA / (nA + nB), xB = nB / (nA + nB);
+  var s3same = R * (nA * Math.log(xA) + nB * Math.log(xB));             // Gibbs: two portions of one gas are one gas
+  var tot = s1a + s1b + s2a + s2b, totSame = tot + s3same;
+  var wall = nA * R * Math.log(xA * V / VA0) + nB * R * Math.log(xB * V / VB0) + s2a + s2b;   // the wall freed
+
+  var $ = function (id) { return document.getElementById(id); };
+  var put = window.put || function (id, s) { $(id).textContent = s; };
+  var tex = function (s) { return window.mathify ? window.mathify(s) : s; };
+  var html = function (id, s) { $(id).innerHTML = tex(s); };
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  function sgn(x, d) { var s = Math.abs(x) < 0.5 * Math.pow(10, -d) ? 0 : x; return (s > 0 ? "+" : s < 0 ? "−" : "") + Math.abs(s).toFixed(d); }
+  function f1(x) { return x.toFixed(1); }
+  function store(k, v) { try { if (v === undefined) return localStorage.getItem(k); localStorage.setItem(k, v); } catch (e) { return null; } }
+  function css(name) { return getComputedStyle(document.documentElement).getPropertyValue(name).trim(); }
+
+  // ---- the points ----
+  var NP = 600, RAD = 2.6, MA = 32, MB = 28;
+  var VS = 120;                              // px/s for v_rms of O₂ at 288 K
+  var W = 600, H = 150, X0 = 150, YA = 60, YB = 330, GAP = YB - (YA + H);   // vessels: A on top, B below
+  var pts = [], same = false, labels = false;
+  function vrms(T, m) { return VS * Math.sqrt((T / TA0) * (MA / m)); }
+  function maxwell(T, m) {                   // 2-D Maxwell: v = v_rms * sqrt(-ln u)
+    var v = vrms(T, m) * Math.sqrt(-Math.log(1 - Math.random())), a = Math.random() * 2 * Math.PI;
+    return [v * Math.cos(a), v * Math.sin(a)];
+  }
+  function massOf(g) { return g === 0 ? MA : (same ? MA : MB); }
+  function meanV2(g) { var s = 0, k = 0; pts.forEach(function (p) { if (p.g === g) { s += p.vx * p.vx + p.vy * p.vy; k++; } }); return s / k; }
+  function scaleTo(g, T) {                   // rescale a gas's speeds so that its mean of v² is exactly that of T
+    var f = Math.sqrt(vrms(T, massOf(g)) * vrms(T, massOf(g)) / meanV2(g));
+    pts.forEach(function (p) { if (p.g === g) { p.vx *= f; p.vy *= f; } });
+  }
+  function seed() {
+    pts = [];
+    for (var i = 0; i < NP; i++) {
+      var u = maxwell(TA0, MA); pts.push({ g: 0, x: RAD + Math.random() * (W * VA0 / V - 2 * RAD), y: RAD + Math.random() * (H - 2 * RAD), vx: u[0], vy: u[1], hit: 0 });
+      var w = maxwell(TB0, massOf(1)); pts.push({ g: 1, x: RAD + Math.random() * (W * VB0 / V - 2 * RAD), y: RAD + Math.random() * (H - 2 * RAD), vx: w[0], vy: w[1], hit: 0 });
+    }
+    scaleTo(0, TA0); scaleTo(1, TB0);        // the sample's own mean is the temperature, exactly
+  }
+  function kineticT(g) {                     // from the mean of v² (two dimensions): T = m <v²> / (2k), in the page's units
+    return TA0 * meanV2(g) / (VS * VS) * (massOf(g) / MA);
+  }
+  function fracHit(g) { var k = 0, h = 0; pts.forEach(function (p) { if (p.g === g) { k++; if (p.hit) h++; } }); return h / k; }
+  // state of the apparatus: partition positions (px), the diathermal wall, the offset of vessel B
+  var part = [W * VA0 / V, W * VB0 / V], diath = false, offB = 0, stage = 0, raf = 0, last = null;
+  function step(dt) {
+    var hot = diath && stage === 2;
+    pts.forEach(function (p) {
+      var g = p.g, m = massOf(g), u;
+      p.x += p.vx * dt; p.y += p.vy * dt;
+      var xmax = part[g] - RAD;
+      if (p.x < RAD) { p.x = 2 * RAD - p.x; p.vx = -p.vx; }
+      if (p.x > xmax) { p.x = 2 * xmax - p.x; p.vx = -p.vx; }
+      if (p.y < RAD) {                       // B's ceiling is the shared wall
+        p.y = 2 * RAD - p.y; p.vy = -p.vy;
+        if (hot && g === 1) { u = maxwell(Tf, m); p.vx = u[0]; p.vy = Math.abs(u[1]); p.hit = 1; }
+      }
+      if (p.y > H - RAD) {                   // A's floor is the shared wall
+        p.y = 2 * (H - RAD) - p.y; p.vy = -p.vy;
+        if (hot && g === 0) { u = maxwell(Tf, m); p.vx = u[0]; p.vy = -Math.abs(u[1]); p.hit = 1; }
+      }
+    });
+    if (hot) {                               // the mean energy follows the expectation of the wall's re-emissions: no sampling noise
+      scaleTo(0, TA0 + (Tf - TA0) * fracHit(0)); scaleTo(1, TB0 + (Tf - TB0) * fracHit(1));
+    }
+  }
+  function draw() {
+    var c = $("cv"), ctx = c.getContext("2d");
+    ctx.clearRect(0, 0, c.width, c.height);
+    var colA = css("--o2"), colB = css("--n2"), dot = css("--dot"), ink = css("--ink-soft");
+    var yB = YB - offB;
+    function vessel(y, p, label, col) {
+      ctx.fillStyle = css("--vac"); ctx.fillRect(X0, y, W, H);
+      ctx.fillStyle = css("--paper"); ctx.fillRect(X0, y, Math.min(W, p), H);
+      ctx.strokeStyle = css("--metal"); ctx.lineWidth = 3; ctx.strokeRect(X0, y, W, H);
+      if (p < W) { ctx.strokeStyle = css("--metal-dark"); ctx.lineWidth = 4; ctx.beginPath(); ctx.moveTo(X0 + p, y); ctx.lineTo(X0 + p, y + H); ctx.stroke();
+        ctx.fillStyle = css("--ink-faint"); ctx.font = "italic 12px " + css("--sans"); ctx.textAlign = "center"; ctx.fillText("vacuum", X0 + (p + W) / 2, y + H / 2 + 4); }
+      ctx.fillStyle = col; ctx.font = "600 13px " + css("--sans"); ctx.textAlign = "left"; ctx.fillText(label, X0 - 140, y + 16);
+    }
+    if (offB < GAP + H - 1) {
+      vessel(YA, part[0], same ? "gas, portion 1" : "O₂", colA);
+      vessel(yB, part[1], same ? "gas, portion 2" : "N₂", same ? colA : colB);
+      if (diath) { ctx.strokeStyle = css("--heat"); ctx.lineWidth = 5; ctx.beginPath(); ctx.moveTo(X0, YA + H); ctx.lineTo(X0 + W, YA + H); ctx.stroke();
+        ctx.fillStyle = css("--heat"); ctx.font = "12px " + css("--sans"); ctx.textAlign = "left"; ctx.fillText("diathermal wall", X0 + W + 8, YA + H + 4); }
+    } else {
+      vessel(YA, W, same ? "one gas, 2n" : "O₂ and N₂", same ? colA : ink);
+    }
+    ctx.font = "9px " + css("--sans"); ctx.textAlign = "left";
+    pts.forEach(function (p) {
+      var y = (p.g === 0 ? YA : yB) + p.y, x = X0 + p.x;
+      ctx.fillStyle = labels ? dot : (p.g === 0 || same ? colA : colB);
+      ctx.beginPath(); ctx.arc(x, y, RAD, 0, 2 * Math.PI); ctx.fill();
+      if (labels) { ctx.fillStyle = ink; ctx.fillText(p.g === 0 ? (same ? "1" : "O₂") : (same ? "2" : "N₂"), x + RAD + 1, y + 3); }
+    });
+  }
+  function readT() {
+    var TA = kineticT(0), TB = kineticT(1);
+    html("r4", (same ? "portion 1" : "O₂") + ": kinetic T = " + f1(TA) + " K");
+    html("r5", (same ? "portion 2" : "N₂") + ": kinetic T = " + f1(TB) + " K");
+  }
+  function states(VA, VB, TA, TB) {
+    html("r2", (same ? "portion 1" : "O₂") + ": V = " + f1(VA * 1e3) + " L · T = " + f1(TA) + " K · p = " + (nA * R * TA / VA / ATM).toFixed(2) + " atm");
+    html("r3", (same ? "portion 2" : "N₂") + ": V = " + f1(VB * 1e3) + " L · T = " + f1(TB) + " K · p = " + (nB * R * TB / VB / ATM).toFixed(2) + " atm");
+  }
+
+  // ---- the route panel and the chart ----
+  var done = [0, 0, 0];     // 0 pending, 1 running, 2 done
+  function routePanel() {
+    var v1 = s1a + s1b, v2 = s2a + s2b, v3 = same ? s3same : 0;
+    html("sv1", "ΔS = " + sgn(s1a, 3) + " + " + sgn(s1b, 3) + " = " + sgn(v1, 3) + " J/K");
+    html("sv2", "ΔS = " + sgn(s2a, 3) + " + " + sgn(s2b, 3) + " = " + sgn(v2, 3) + " J/K");
+    html("sv3", same ? "ΔS = " + sgn(v3, 3) + " J/K, the Gibbs correction: one gas of 2n moles" : "ΔS = 0 J/K: each gas still alone in 25 L");
+    [1, 2, 3].forEach(function (k) { $("st" + k).className = done[k - 1] === 1 ? "on" : done[k - 1] === 2 ? "done" : ""; });
+    chart();
+  }
+  function chart() {
+    var g = $("bars"); while (g.firstChild) g.removeChild(g.firstChild);
+    var vals = [s1a + s1b, s2a + s2b, same ? s3same : 0], acc = 0, top = 11, bot = -11, y0 = 140, sc = 100 / top;
+    var NS = "http://www.w3.org/2000/svg";
+    for (var k = 0; k < 3; k++) {
+      var frac = done[k] === 2 ? 1 : done[k] === 1 ? prog : 0, v = vals[k] * frac, x = 90 + k * 140;
+      var y1 = y0 - acc * sc, y2 = y0 - (acc + v) * sc;
+      var r = document.createElementNS(NS, "rect");
+      r.setAttribute("x", x); r.setAttribute("width", 80); r.setAttribute("y", Math.min(y1, y2)); r.setAttribute("height", Math.abs(y2 - y1));
+      r.setAttribute("fill", v >= 0 ? "var(--heat)" : "var(--blue)"); r.setAttribute("fill-opacity", "0.85"); g.appendChild(r);
+      if (k < 2) { var l = document.createElementNS(NS, "line"); l.setAttribute("x1", x + 80); l.setAttribute("x2", x + 140); l.setAttribute("y1", y2); l.setAttribute("y2", y2); l.setAttribute("stroke", "var(--ink-faint)"); l.setAttribute("stroke-dasharray", "3 3"); g.appendChild(l); }
+      acc += v;
+    }
+    put("cTot", "ΔS = " + sgn(acc, 2) + " J/K");
+  }
+  var prog = 0;
+
+  // ---- ledger ----
+  function ledger() {
+    html("l1a", sgn(s1a, 3) + " J/K"); html("l1as", sgn(s1a, 3) + " J/K");
+    html("l1b", sgn(s1b, 3) + " J/K"); html("l1bs", sgn(s1b, 3) + " J/K");
+    html("l2a", sgn(s2a, 3) + " J/K"); html("l2as", sgn(s2a, 3) + " J/K");
+    html("l2b", sgn(s2b, 3) + " J/K"); html("l2bs", sgn(s2b, 3) + " J/K");
+    html("l3", "0 J/K"); html("l3s", sgn(s3same, 3) + " J/K");
+    html("lt", sgn(tot, 3) + " J/K"); html("lts", sgn(totSame, 3) + " J/K");
+    html("lw", sgn(wall, 3) + " J/K"); html("lws", sgn(wall, 3) + " J/K");
+    html("verdict", same
+      ? "With one gas the three steps add up to <b>" + totSame.toFixed(2) + " J/K</b>, the value of the freed wall: the double free expansion counts " + (s1a + s1b).toFixed(2) + " J/K as if two gases had each spread over 25 L, and the superposition takes " + Math.abs(s3same).toFixed(2) + " J/K back, because two portions of one gas in one vessel are one gas of 2n moles (Gibbs). The points do not show the correction; the count does."
+      : "For O₂ and N₂ the route gives <b>" + tot.toFixed(2) + " J/K</b>: " + (s1a + s1b).toFixed(2) + " J/K from the two free expansions, " + (s2a + s2b).toFixed(2) + " J/K from the thermal contact and nothing from the superposition. The whole entropy of mixing is in step 1, where each gas spreads over the volume the other left it. Freed instead of removed, the wall would give " + wall.toFixed(2) + " J/K.");
+    $("gDiff").setAttribute("aria-pressed", same ? "false" : "true"); $("gSame").setAttribute("aria-pressed", same ? "true" : "false");
+    $("vCol").setAttribute("aria-pressed", labels ? "false" : "true"); $("vLbl").setAttribute("aria-pressed", labels ? "true" : "false");
+    $("legSame").hidden = !labels;
+  }
+
+  // ---- the stages ----
+  function atI() {
+    cancelAnimationFrame(raf); raf = 0; last = null;
+    part = [W * VA0 / V, W * VB0 / V]; diath = false; offB = 0; stage = 0; done = [0, 0, 0]; prog = 0;
+    seed(); draw(); routePanel();
+    html("r1", "state i · each gas in its compartment, the rest of its vessel empty");
+    states(VA0, VB0, TA0, TB0); readT();
+    html("r6", "ΔS = 0 J/K"); put("r7", "Press 1: the partitions are lifted.");
+    $("b1").disabled = false; $("b2").disabled = true; $("b3").disabled = true;
+    $("gDiff").disabled = false; $("gSame").disabled = false;
+    run();
+  }
+  function run() {                           // the points always move; the stages change the walls
+    function frame(ts) {
+      if (last == null) last = ts;
+      var dt = Math.min(0.05, (ts - last) / 1000); last = ts;
+      if (!reduce) step(dt);
+      if (stage === 1) { prog = Math.min(1, prog + dt / 2.5); if (prog >= 1) { done[0] = 2; stage = 0; $("b2").disabled = false; put("r7", "Press 2: the vessels are brought together and the wall between them conducts."); routePanel(); } chart(); }
+      if (stage === 2) {
+        if (offB < GAP) offB = Math.min(GAP, offB + dt * 80); else diath = true;
+        prog = Math.min(1, 0.5 * (fracHit(0) + fracHit(1)) / 0.95);
+        if (diath && prog >= 1) {
+          scaleTo(0, Tf); scaleTo(1, Tf); readT(); done[1] = 2; stage = 0; diath = false; $("b3").disabled = false;
+          put("r7", "Both read 294 K. Press 3: the wall goes and the vessels become one."); html("r6", "ΔS = " + sgn(s1a + s1b + s2a + s2b, 3) + " J/K"); states(V, V, Tf, Tf); routePanel();
+        } else html("r6", "ΔS = " + sgn(s1a + s1b + (s2a + s2b) * prog, 3) + " J/K");
+        chart();
+      }
+      if (stage === 3) {
+        if (offB < GAP + H) { offB = Math.min(GAP + H, offB + dt * 80); prog = (offB - GAP) / H; }
+        else { prog = 1; done[2] = 2; stage = 4; html("r6", "ΔS = " + sgn(same ? totSame : tot, 3) + " J/K"); put("r7", same ? "One vessel, one gas: nothing to see, and the count is corrected. Reset to run again." : "One vessel, two gases that ignore each other: nothing changed for either. Reset to run again."); routePanel(); }
+        chart();
+      }
+      if (stage === 2) readT();
+      draw();
+      raf = requestAnimationFrame(frame);
+    }
+    raf = requestAnimationFrame(frame);
+  }
+  $("b1").addEventListener("click", function () {
+    if (done[0]) return; stage = 1; done[0] = 1; prog = 0; part = [W, W]; $("b1").disabled = true; $("gDiff").disabled = true; $("gSame").disabled = true;
+    html("r1", "step 1 · double free expansion, each gas alone"); states(V, V, TA0, TB0); readT(); routePanel();
+    html("r6", "ΔS = " + sgn(s1a + s1b, 3) + " J/K"); put("r7", "Into vacuum: no speed changes, the temperatures stay.");
+  });
+  $("b2").addEventListener("click", function () {
+    if (done[1] || !done[0]) return; stage = 2; done[1] = 1; prog = 0; $("b2").disabled = true;
+    html("r1", "step 2 · thermal contact through the shared wall"); put("r7", "A point that hits the shared wall leaves it at the wall's temperature, 294 K."); routePanel();
+  });
+  $("b3").addEventListener("click", function () {
+    if (done[2] || !done[1]) return; stage = 3; done[2] = 1; prog = 0; $("b3").disabled = true;
+    html("r1", "step 3 · superposition: the vessels made one"); put("r7", "The points pass through each other: an ideal gas does not see the other."); routePanel();
+  });
+  $("b0").addEventListener("click", atI);
+  $("gDiff").addEventListener("click", function () { same = false; ledger(); atI(); });
+  $("gSame").addEventListener("click", function () { same = true; ledger(); atI(); });
+  $("vCol").addEventListener("click", function () { labels = false; ledger(); });
+  $("vLbl").addEventListener("click", function () { labels = true; ledger(); });
+
+  // ---- the ledger can be hidden ----
+  function showLedger(on) {
+    $("ledgerBody").hidden = !on; $("ledgerNote").hidden = on;
+    put("ledgerBtn", on ? "Hide" : "Show");
+    $("ledgerBtn").setAttribute("aria-expanded", on ? "true" : "false");
+    store("ex18r-ledger", on ? "1" : "0");
+  }
+  $("ledgerBtn").addEventListener("click", function () { showLedger($("ledgerBody").hidden); });
+  showLedger(store("ex18r-ledger") !== "0");
+
+  svgMath();
+  ledger(); atI();
+  window.ex18r = { nA: nA, nB: nB, pB0: pB0, Tf: Tf, pf: pf, s1a: s1a, s1b: s1b, s2a: s2a, s2b: s2b, s3same: s3same, tot: tot, totSame: totSame, wall: wall };
+})();
+}
+function runEU() {
+(function () {
+  "use strict";
+  // ---- the variant (checked in tools/verify.py) ----
+  var R = 8.314462618, ATM = 101325, cv = 2.5 * R;
+  var VA0 = 0.010, VB0 = 0.015, TA0 = 288, TB0 = 300, V = VA0 + VB0;
+  var nA = 2 * ATM * VA0 / (R * TA0), nB = nA;                           // equal amounts: the variant
+  var pB0 = nB * R * TB0 / VB0;
+  var Tf = (nA * TA0 + nB * TB0) / (nA + nB), pf = (nA + nB) * R * Tf / V;
+  var s1a = nA * R * Math.log(V / VA0), s1b = nB * R * Math.log(V / VB0);
+  var s2a = nA * cv * Math.log(Tf / TA0), s2b = nB * cv * Math.log(Tf / TB0);
+  var xA = nA / (nA + nB), xB = nB / (nA + nB);
+  var s3same = R * (nA * Math.log(xA) + nB * Math.log(xB));             // Gibbs: two portions of one gas are one gas
+  var tot = s1a + s1b + s2a + s2b, totSame = tot + s3same;
+  var wall = nA * R * Math.log(xA * V / VA0) + nB * R * Math.log(xB * V / VB0) + s2a + s2b;   // the wall freed
+
+  var $ = function (id) { return document.getElementById(id); };
+  var put = window.put || function (id, s) { $(id).textContent = s; };
+  var tex = function (s) { return window.mathify ? window.mathify(s) : s; };
+  var html = function (id, s) { $(id).innerHTML = tex(s); };
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  function sgn(x, d) { var s = Math.abs(x) < 0.5 * Math.pow(10, -d) ? 0 : x; return (s > 0 ? "+" : s < 0 ? "−" : "") + Math.abs(s).toFixed(d); }
+  function f1(x) { return x.toFixed(1); }
+  function store(k, v) { try { if (v === undefined) return localStorage.getItem(k); localStorage.setItem(k, v); } catch (e) { return null; } }
+  function css(name) { return getComputedStyle(document.documentElement).getPropertyValue(name).trim(); }
+
+  // ---- the points ----
+  var NP = 600, RAD = 2.6, MA = 32, MB = 28;
+  var VS = 120;                              // px/s for v_rms of O₂ at 288 K
+  var W = 600, H = 150, X0 = 150, YA = 60, YB = 330, GAP = YB - (YA + H);   // vessels: A on top, B below
+  var pts = [], same = false, labels = false;
+  function vrms(T, m) { return VS * Math.sqrt((T / TA0) * (MA / m)); }
+  function maxwell(T, m) {                   // 2-D Maxwell: v = v_rms * sqrt(-ln u)
+    var v = vrms(T, m) * Math.sqrt(-Math.log(1 - Math.random())), a = Math.random() * 2 * Math.PI;
+    return [v * Math.cos(a), v * Math.sin(a)];
+  }
+  function massOf(g) { return g === 0 ? MA : (same ? MA : MB); }
+  function meanV2(g) { var s = 0, k = 0; pts.forEach(function (p) { if (p.g === g) { s += p.vx * p.vx + p.vy * p.vy; k++; } }); return s / k; }
+  function scaleTo(g, T) {                   // rescale a gas's speeds so that its mean of v² is exactly that of T
+    var f = Math.sqrt(vrms(T, massOf(g)) * vrms(T, massOf(g)) / meanV2(g));
+    pts.forEach(function (p) { if (p.g === g) { p.vx *= f; p.vy *= f; } });
+  }
+  function seed() {
+    pts = [];
+    for (var i = 0; i < NP; i++) {
+      var u = maxwell(TA0, MA); pts.push({ g: 0, x: RAD + Math.random() * (W * VA0 / V - 2 * RAD), y: RAD + Math.random() * (H - 2 * RAD), vx: u[0], vy: u[1], hit: 0 });
+      var w = maxwell(TB0, massOf(1)); pts.push({ g: 1, x: RAD + Math.random() * (W * VB0 / V - 2 * RAD), y: RAD + Math.random() * (H - 2 * RAD), vx: w[0], vy: w[1], hit: 0 });
+    }
+    scaleTo(0, TA0); scaleTo(1, TB0);        // the sample's own mean is the temperature, exactly
+  }
+  function kineticT(g) {                     // from the mean of v² (two dimensions): T = m <v²> / (2k), in the page's units
+    return TA0 * meanV2(g) / (VS * VS) * (massOf(g) / MA);
+  }
+  function fracHit(g) { var k = 0, h = 0; pts.forEach(function (p) { if (p.g === g) { k++; if (p.hit) h++; } }); return h / k; }
+  // state of the apparatus: partition positions (px), the diathermal wall, the offset of vessel B
+  var part = [W * VA0 / V, W * VB0 / V], diath = false, offB = 0, stage = 0, raf = 0, last = null;
+  function step(dt) {
+    var hot = diath && stage === 2;
+    pts.forEach(function (p) {
+      var g = p.g, m = massOf(g), u;
+      p.x += p.vx * dt; p.y += p.vy * dt;
+      var xmax = part[g] - RAD;
+      if (p.x < RAD) { p.x = 2 * RAD - p.x; p.vx = -p.vx; }
+      if (p.x > xmax) { p.x = 2 * xmax - p.x; p.vx = -p.vx; }
+      if (p.y < RAD) {                       // B's ceiling is the shared wall
+        p.y = 2 * RAD - p.y; p.vy = -p.vy;
+        if (hot && g === 1) { u = maxwell(Tf, m); p.vx = u[0]; p.vy = Math.abs(u[1]); p.hit = 1; }
+      }
+      if (p.y > H - RAD) {                   // A's floor is the shared wall
+        p.y = 2 * (H - RAD) - p.y; p.vy = -p.vy;
+        if (hot && g === 0) { u = maxwell(Tf, m); p.vx = u[0]; p.vy = -Math.abs(u[1]); p.hit = 1; }
+      }
+    });
+    if (hot) {                               // the mean energy follows the expectation of the wall's re-emissions: no sampling noise
+      scaleTo(0, TA0 + (Tf - TA0) * fracHit(0)); scaleTo(1, TB0 + (Tf - TB0) * fracHit(1));
+    }
+  }
+  function draw() {
+    var c = $("cv"), ctx = c.getContext("2d");
+    ctx.clearRect(0, 0, c.width, c.height);
+    var colA = css("--o2"), colB = css("--n2"), dot = css("--dot"), ink = css("--ink-soft");
+    var yB = YB - offB;
+    function vessel(y, p, label, col) {
+      ctx.fillStyle = css("--vac"); ctx.fillRect(X0, y, W, H);
+      ctx.fillStyle = css("--paper"); ctx.fillRect(X0, y, Math.min(W, p), H);
+      ctx.strokeStyle = css("--metal"); ctx.lineWidth = 3; ctx.strokeRect(X0, y, W, H);
+      if (p < W) { ctx.strokeStyle = css("--metal-dark"); ctx.lineWidth = 4; ctx.beginPath(); ctx.moveTo(X0 + p, y); ctx.lineTo(X0 + p, y + H); ctx.stroke();
+        ctx.fillStyle = css("--ink-faint"); ctx.font = "italic 12px " + css("--sans"); ctx.textAlign = "center"; ctx.fillText("hutsa", X0 + (p + W) / 2, y + H / 2 + 4); }
+      ctx.fillStyle = col; ctx.font = "600 13px " + css("--sans"); ctx.textAlign = "left"; ctx.fillText(label, X0 - 140, y + 16);
+    }
+    if (offB < GAP + H - 1) {
+      vessel(YA, part[0], same ? "gasa, 1. zatia" : "O₂", colA);
+      vessel(yB, part[1], same ? "gasa, 2. zatia" : "N₂", same ? colA : colB);
+      if (diath) { ctx.strokeStyle = css("--heat"); ctx.lineWidth = 5; ctx.beginPath(); ctx.moveTo(X0, YA + H); ctx.lineTo(X0 + W, YA + H); ctx.stroke();
+        ctx.fillStyle = css("--heat"); ctx.font = "12px " + css("--sans"); ctx.textAlign = "left"; ctx.fillText("horma diatermanoa", X0 + W + 8, YA + H + 4); }
+    } else {
+      vessel(YA, W, same ? "gas bat, 2n" : "O₂ eta N₂", same ? colA : ink);
+    }
+    ctx.font = "9px " + css("--sans"); ctx.textAlign = "left";
+    pts.forEach(function (p) {
+      var y = (p.g === 0 ? YA : yB) + p.y, x = X0 + p.x;
+      ctx.fillStyle = labels ? dot : (p.g === 0 || same ? colA : colB);
+      ctx.beginPath(); ctx.arc(x, y, RAD, 0, 2 * Math.PI); ctx.fill();
+      if (labels) { ctx.fillStyle = ink; ctx.fillText(p.g === 0 ? (same ? "1" : "O₂") : (same ? "2" : "N₂"), x + RAD + 1, y + 3); }
+    });
+  }
+  function readT() {
+    var TA = kineticT(0), TB = kineticT(1);
+    html("r4", (same ? "1. zatia" : "O₂") + ": T = " + f1(TA) + " K (zinetikoa)");
+    html("r5", (same ? "2. zatia" : "N₂") + ": T = " + f1(TB) + " K (zinetikoa)");
+  }
+  function states(VA, VB, TA, TB) {
+    html("r2", (same ? "1. zatia" : "O₂") + ": V = " + f1(VA * 1e3) + " L · T = " + f1(TA) + " K · p = " + (nA * R * TA / VA / ATM).toFixed(2) + " atm");
+    html("r3", (same ? "2. zatia" : "N₂") + ": V = " + f1(VB * 1e3) + " L · T = " + f1(TB) + " K · p = " + (nB * R * TB / VB / ATM).toFixed(2) + " atm");
+  }
+
+  // ---- the route panel and the chart ----
+  var done = [0, 0, 0];     // 0 pending, 1 running, 2 done
+  function routePanel() {
+    var v1 = s1a + s1b, v2 = s2a + s2b, v3 = same ? s3same : 0;
+    html("sv1", "ΔS = " + sgn(s1a, 3) + " + " + sgn(s1b, 3) + " = " + sgn(v1, 3) + " J/K");
+    html("sv2", "ΔS = " + sgn(s2a, 3) + " + " + sgn(s2b, 3) + " = " + sgn(v2, 3) + " J/K");
+    html("sv3", same ? "ΔS = " + sgn(v3, 3) + " J/K, Gibbsen zuzenketa: 2n moleko gas bat" : "ΔS = 0 J/K: gas bakoitza bakarrik oraindik 25 L-etan");
+    [1, 2, 3].forEach(function (k) { $("st" + k).className = done[k - 1] === 1 ? "on" : done[k - 1] === 2 ? "done" : ""; });
+    chart();
+  }
+  function chart() {
+    var g = $("bars"); while (g.firstChild) g.removeChild(g.firstChild);
+    var vals = [s1a + s1b, s2a + s2b, same ? s3same : 0], acc = 0, top = 11, bot = -11, y0 = 140, sc = 100 / top;
+    var NS = "http://www.w3.org/2000/svg";
+    for (var k = 0; k < 3; k++) {
+      var frac = done[k] === 2 ? 1 : done[k] === 1 ? prog : 0, v = vals[k] * frac, x = 90 + k * 140;
+      var y1 = y0 - acc * sc, y2 = y0 - (acc + v) * sc;
+      var r = document.createElementNS(NS, "rect");
+      r.setAttribute("x", x); r.setAttribute("width", 80); r.setAttribute("y", Math.min(y1, y2)); r.setAttribute("height", Math.abs(y2 - y1));
+      r.setAttribute("fill", v >= 0 ? "var(--heat)" : "var(--blue)"); r.setAttribute("fill-opacity", "0.85"); g.appendChild(r);
+      if (k < 2) { var l = document.createElementNS(NS, "line"); l.setAttribute("x1", x + 80); l.setAttribute("x2", x + 140); l.setAttribute("y1", y2); l.setAttribute("y2", y2); l.setAttribute("stroke", "var(--ink-faint)"); l.setAttribute("stroke-dasharray", "3 3"); g.appendChild(l); }
+      acc += v;
+    }
+    put("cTot", "ΔS = " + sgn(acc, 2) + " J/K");
+  }
+  var prog = 0;
+
+  // ---- ledger ----
+  function ledger() {
+    html("l1a", sgn(s1a, 3) + " J/K"); html("l1as", sgn(s1a, 3) + " J/K");
+    html("l1b", sgn(s1b, 3) + " J/K"); html("l1bs", sgn(s1b, 3) + " J/K");
+    html("l2a", sgn(s2a, 3) + " J/K"); html("l2as", sgn(s2a, 3) + " J/K");
+    html("l2b", sgn(s2b, 3) + " J/K"); html("l2bs", sgn(s2b, 3) + " J/K");
+    html("l3", "0 J/K"); html("l3s", sgn(s3same, 3) + " J/K");
+    html("lt", sgn(tot, 3) + " J/K"); html("lts", sgn(totSame, 3) + " J/K");
+    html("lw", sgn(wall, 3) + " J/K"); html("lws", sgn(wall, 3) + " J/K");
+    html("verdict", same
+      ? "Gas bakarrarekin, hiru urratsek <b>" + totSame.toFixed(2) + " J/K</b> ematen dute batuta, horma askatuaren balioa: hedapen aske bikoitzak " + (s1a + s1b).toFixed(2) + " J/K zenbatzen ditu, bi gas 25 L-etan zabaldu balira bezala, eta gainjartzeak " + Math.abs(s3same).toFixed(2) + " J/K kentzen ditu, gas baten bi zati ontzi batean 2n moleko gas bakarra direlako (Gibbs). Puntuek ez dute zuzenketa erakusten; kontuak bai."
+      : "O₂-arentzat eta N₂-arentzat bideak <b>" + tot.toFixed(2) + " J/K</b> ematen ditu: " + (s1a + s1b).toFixed(2) + " J/K bi hedapen askeetatik, " + (s2a + s2b).toFixed(2) + " J/K kontaktu termikotik, eta ezer ez gainjartzetik. Nahaste-entropia osoa 1. urratsean dago, gas bakoitza besteak utzitako bolumenean zabaltzen den lekuan. Kendu beharrean askatuta, hormak " + wall.toFixed(2) + " J/K emango lituzke.");
+    $("gDiff").setAttribute("aria-pressed", same ? "false" : "true"); $("gSame").setAttribute("aria-pressed", same ? "true" : "false");
+    $("vCol").setAttribute("aria-pressed", labels ? "false" : "true"); $("vLbl").setAttribute("aria-pressed", labels ? "true" : "false");
+    $("legSame").hidden = !labels;
+  }
+
+  // ---- the stages ----
+  function atI() {
+    cancelAnimationFrame(raf); raf = 0; last = null;
+    part = [W * VA0 / V, W * VB0 / V]; diath = false; offB = 0; stage = 0; done = [0, 0, 0]; prog = 0;
+    seed(); draw(); routePanel();
+    html("r1", "i egoera · gas bakoitza bere gunean, bere ontziaren gainerakoa hutsik");
+    states(VA0, VB0, TA0, TB0); readT();
+    html("r6", "ΔS = 0 J/K"); put("r7", "Sakatu 1: trenkadak altxatzen dira.");
+    $("b1").disabled = false; $("b2").disabled = true; $("b3").disabled = true;
+    $("gDiff").disabled = false; $("gSame").disabled = false;
+    run();
+  }
+  function run() {                           // the points always move; the stages change the walls
+    function frame(ts) {
+      if (last == null) last = ts;
+      var dt = Math.min(0.05, (ts - last) / 1000); last = ts;
+      if (!reduce) step(dt);
+      if (stage === 1) { prog = Math.min(1, prog + dt / 2.5); if (prog >= 1) { done[0] = 2; stage = 0; $("b2").disabled = false; put("r7", "Sakatu 2: ontziak elkarrengana hurbiltzen dira eta bien arteko hormak beroa eroaten du."); routePanel(); } chart(); }
+      if (stage === 2) {
+        if (offB < GAP) offB = Math.min(GAP, offB + dt * 80); else diath = true;
+        prog = Math.min(1, 0.5 * (fracHit(0) + fracHit(1)) / 0.95);
+        if (diath && prog >= 1) {
+          scaleTo(0, Tf); scaleTo(1, Tf); readT(); done[1] = 2; stage = 0; diath = false; $("b3").disabled = false;
+          put("r7", "Biek 294 K irakurtzen dute. Sakatu 3: horma kendu eta ontziak bat bihurtzen dira."); html("r6", "ΔS = " + sgn(s1a + s1b + s2a + s2b, 3) + " J/K"); states(V, V, Tf, Tf); routePanel();
+        } else html("r6", "ΔS = " + sgn(s1a + s1b + (s2a + s2b) * prog, 3) + " J/K");
+        chart();
+      }
+      if (stage === 3) {
+        if (offB < GAP + H) { offB = Math.min(GAP + H, offB + dt * 80); prog = (offB - GAP) / H; }
+        else { prog = 1; done[2] = 2; stage = 4; html("r6", "ΔS = " + sgn(same ? totSame : tot, 3) + " J/K"); put("r7", same ? "Ontzi bat, gas bat: ez dago ezer ikusteko, eta kontua zuzenduta dago. Berrabiarazi berriro egiteko." : "Ontzi bat, elkarri jaramonik egiten ez dioten bi gas: ez da ezer aldatu bientzat. Berrabiarazi berriro egiteko."); routePanel(); }
+        chart();
+      }
+      if (stage === 2) readT();
+      draw();
+      raf = requestAnimationFrame(frame);
+    }
+    raf = requestAnimationFrame(frame);
+  }
+  $("b1").addEventListener("click", function () {
+    if (done[0]) return; stage = 1; done[0] = 1; prog = 0; part = [W, W]; $("b1").disabled = true; $("gDiff").disabled = true; $("gSame").disabled = true;
+    html("r1", "1. urratsa · hedapen aske bikoitza, gas bakoitza bakarrik"); states(V, V, TA0, TB0); readT(); routePanel();
+    html("r6", "ΔS = " + sgn(s1a + s1b, 3) + " J/K"); put("r7", "Hutsera: abiadurak ez dira aldatzen, tenperaturek irauten dute.");
+  });
+  $("b2").addEventListener("click", function () {
+    if (done[1] || !done[0]) return; stage = 2; done[1] = 1; prog = 0; $("b2").disabled = true;
+    html("r1", "2. urratsa · kontaktu termikoa horma komunetik"); put("r7", "Horma komuna jotzen duen puntu batek hormaren tenperaturan uzten du hura, 294 K-ean."); routePanel();
+  });
+  $("b3").addEventListener("click", function () {
+    if (done[2] || !done[1]) return; stage = 3; done[2] = 1; prog = 0; $("b3").disabled = true;
+    html("r1", "3. urratsa · gainjartzea: ontziak bat eginda"); put("r7", "Puntuek elkar zeharkatzen dute: gas ideal batek ez du bestea ikusten."); routePanel();
+  });
+  $("b0").addEventListener("click", atI);
+  $("gDiff").addEventListener("click", function () { same = false; ledger(); atI(); });
+  $("gSame").addEventListener("click", function () { same = true; ledger(); atI(); });
+  $("vCol").addEventListener("click", function () { labels = false; ledger(); });
+  $("vLbl").addEventListener("click", function () { labels = true; ledger(); });
+
+  // ---- the ledger can be hidden ----
+  function showLedger(on) {
+    $("ledgerBody").hidden = !on; $("ledgerNote").hidden = on;
+    put("ledgerBtn", on ? "Ezkutatu" : "Erakutsi");
+    $("ledgerBtn").setAttribute("aria-expanded", on ? "true" : "false");
+    store("ex18r-eu-ledger", on ? "1" : "0");
+  }
+  $("ledgerBtn").addEventListener("click", function () { showLedger($("ledgerBody").hidden); });
+  showLedger(store("ex18r-eu-ledger") !== "0");
+
+  svgMath();
+  ledger(); atI();
+  window.ex18r = { nA: nA, nB: nB, pB0: pB0, Tf: Tf, pf: pf, s1a: s1a, s1b: s1b, s2a: s2a, s2b: s2b, s3same: s3same, tot: tot, totSame: totSame, wall: wall };
+})();
+}
+(function () {
+  "use strict";
+  function setLang(l) {
+    var root = document.getElementById("root");
+    root.innerHTML = "";
+    root.appendChild(document.getElementById("tpl-" + l).content.cloneNode(true));
+    if (window.renderMathInElement) renderMathInElement(root, { delimiters: [{ left: "$", right: "$", display: false }], throwOnError: false });
+    glue(root);
+    document.documentElement.lang = l;
+    document.getElementById("langEN").setAttribute("aria-pressed", l === "en" ? "true" : "false");
+    document.getElementById("langEU").setAttribute("aria-pressed", l === "eu" ? "true" : "false");
+    try { localStorage.setItem("ex18r-lang", l); } catch (e) {}
+    (l === "eu" ? runEU : runEN)();
+  }
+  document.getElementById("langEN").addEventListener("click", function () { setLang("en"); });
+  document.getElementById("langEU").addEventListener("click", function () { setLang("eu"); });
+  var start = "en";
+  try { start = localStorage.getItem("ex18r-lang") || "en"; } catch (e) {}
+  if (location.hash === "#eu") start = "eu"; else if (location.hash === "#en") start = "en";
+  setLang(start === "eu" ? "eu" : "en");
+})();
+</script>
+</body></html>
