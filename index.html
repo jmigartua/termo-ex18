@@ -1,0 +1,1417 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head><body>
+<title>Second law, exercise 18</title>
+<meta name="description" content="Exercise 18 of topic 6: oxygen and nitrogen in a rigid adiabatic vessel; the wall between them is freed (diathermal, movable) or removed, and the entropy change is computed and watched as it happens.">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* Family kit tokens with this project's blue and heat red; two species colours for this page. */
+:root {
+  --paper: #ffffff; --tint: #f6f5f2; --ink: #22262b; --ink-soft: #565c64; --ink-faint: #7f858d;
+  --line: #dbd8d2; --line-soft: #eae7e1;
+  --blue: #2c5aa0; --blue-soft: #4772b8; --blue-tint: #eef3fa;
+  --heat: #a8432a; --heat-tint: #fbf1ee; --work: #2e6b5e; --work-tint: #e3efeb;
+  --o2: #b06b1c; --o2-fill: #f0d9a8; --n2: #2c5aa0; --n2-fill: #bfd0ea;
+  --cold: #6f9ad8; --hot: #d2664a;
+  --metal: #8d939b; --metal-dark: #5d636b;
+  --serif: "Source Serif 4", Georgia, serif;
+  --sans: "Source Sans 3", -apple-system, "Segoe UI", sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --paper: #15171a; --tint: #1c1f23; --ink: #e8e6e1; --ink-soft: #b6b3ad; --ink-faint: #8b8983;
+    --line: #33373d; --line-soft: #272b30;
+    --blue: #8fb3e8; --blue-soft: #a9c5ee; --blue-tint: #18202c;
+    --heat: #e79a84; --heat-tint: #2a1c18; --work: #7fc4b3; --work-tint: #17262a;
+    --o2: #e2b45e; --o2-fill: #5a4a22; --n2: #8fb3e8; --n2-fill: #2b4466;
+    --cold: #5b86c8; --hot: #d9775c;
+    --metal: #6c727a; --metal-dark: #a4aab2;
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --paper: #15171a; --tint: #1c1f23; --ink: #e8e6e1; --ink-soft: #b6b3ad; --ink-faint: #8b8983;
+  --line: #33373d; --line-soft: #272b30;
+  --blue: #8fb3e8; --blue-soft: #a9c5ee; --blue-tint: #18202c;
+  --heat: #e79a84; --heat-tint: #2a1c18; --work: #7fc4b3; --work-tint: #17262a;
+  --o2: #e2b45e; --o2-fill: #5a4a22; --n2: #8fb3e8; --n2-fill: #2b4466;
+  --cold: #5b86c8; --hot: #d9775c;
+  --metal: #6c727a; --metal-dark: #a4aab2;
+}
+
+body { background: var(--paper); color: var(--ink); font-family: var(--sans); font-size: 16px; line-height: 1.55; }
+.wrap { max-width: 1180px; margin: 0 auto; padding-inline: clamp(16px, 4vw, 40px); padding-block: 28px 48px; }
+h1 { font-family: var(--serif); font-weight: 600; font-size: clamp(26px, 3.6vw, 34px); line-height: 1.2; margin: 0; text-wrap: balance; }
+.sub { color: var(--ink-soft); font-size: 17px; margin: 6px 0 0; max-width: 70ch; }
+.lbl { display: block; font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-faint); margin: 0 0 4px; }
+.box { padding: 12px 18px 6px; border-left: 3px solid var(--blue); background: var(--blue-tint); margin: 20px 0 8px; max-width: 78ch; }
+.box p { margin: 0 0 8px; }
+.box ol { margin: 0 0 8px; padding-left: 22px; }
+details.orig { margin: 0 0 20px; max-width: 78ch; }
+details.orig summary { cursor: pointer; color: var(--ink-faint); font-size: 14px; }
+details.orig p { font-family: var(--serif); font-size: 15px; color: var(--ink-soft); border-left: 2px solid var(--line); padding-left: 16px; }
+.lede { max-width: 78ch; margin: 18px 0 22px; }
+.lede b { font-weight: 600; }
+
+.panels { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 20px; align-items: start; }
+@media (max-width: 880px) { .panels { grid-template-columns: minmax(0, 1fr); } }
+.panel { border: 1px solid var(--line); background: var(--paper); padding: 14px 14px 10px; min-width: 0; }
+.panel h2 { font-family: var(--serif); font-weight: 600; font-size: 19px; margin: 0 0 2px; }
+.panel .cap { font-size: 14px; color: var(--ink-soft); margin: 0 0 8px; }
+.panel svg { display: block; width: 100%; height: auto; }
+svg text { font-family: var(--sans); fill: var(--ink-soft); }
+svg .mono { font-family: var(--mono); }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 13.5px; color: var(--ink-soft); margin: 6px 0 2px; }
+.legend > span { display: inline-flex; align-items: center; gap: 7px; }
+.sw { display: inline-block; width: 26px; height: 0; border-top: 2.5px solid var(--ink-soft); }
+.sw.dot { border-top-style: dotted; }
+.sw.o2 { border-color: var(--o2); } .sw.n2 { border-color: var(--n2); }
+.sw.box-o2 { height: 12px; width: 18px; border: 1px solid var(--o2); background: var(--o2-fill); }
+.sw.box-n2 { height: 12px; width: 18px; border: 1px solid var(--n2); background: var(--n2-fill); }
+.sw.tgrad { height: 12px; width: 26px; border: 1px solid var(--line); background: linear-gradient(90deg, var(--cold), var(--hot)); }
+
+.controls { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 14px 24px; align-items: end; margin: 22px 0 10px; padding: 14px 16px; background: var(--tint); border: 1px solid var(--line-soft); }
+@media (max-width: 700px) { .controls { grid-template-columns: minmax(0, 1fr); } }
+.presets { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+button { font-family: var(--sans); font-size: 14.5px; font-weight: 600; border: 1px solid var(--line); background: var(--paper); color: var(--ink); padding: 6px 12px; border-radius: 3px; cursor: pointer; }
+button:hover:not(:disabled) { border-color: var(--blue); }
+button:focus-visible, input:focus-visible, summary:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
+button:disabled { opacity: 0.45; cursor: default; }
+button.go1 { color: var(--heat); border-color: color-mix(in srgb, var(--heat) 50%, var(--line)); }
+button.go2 { color: var(--blue); border-color: color-mix(in srgb, var(--blue) 50%, var(--line)); }
+button.small { font-size: 13px; font-weight: 400; padding: 3px 9px; }
+button.small[aria-pressed="true"] { border-color: var(--work); color: var(--work); font-weight: 600; }
+.actions { display: flex; flex-direction: column; gap: 8px; align-items: flex-end; }
+.actions .row { display: flex; flex-wrap: wrap; gap: 8px; justify-content: flex-end; }
+@media (max-width: 700px) { .actions { align-items: stretch; } .actions .row { justify-content: flex-start; } }
+
+.ledger-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin: 18px 0 0; }
+.ledger-head h2 { font-family: var(--serif); font-weight: 600; font-size: 19px; margin: 0; }
+.ledger-wrap { overflow-x: auto; margin: 6px 0 0; }
+table { border-collapse: collapse; font-variant-numeric: tabular-nums; min-width: 560px; width: 100%; }
+th { text-align: right; font-size: 12px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--ink-faint); padding: 8px 0 8px 18px; border-bottom: 1px solid var(--ink); font-weight: 600; }
+th:first-child, td:first-child { text-align: left; padding-left: 0; }
+td { text-align: right; padding: 7px 0 7px 18px; border-bottom: 1px solid var(--line-soft); font-family: var(--mono); font-size: 14px; }
+td:first-child { font-family: var(--sans); font-size: 15px; }
+th.p1 { color: var(--heat); } th.p2 { color: var(--blue); }
+tr.gas td:first-child { padding-left: 18px; }
+tr.univ td { font-weight: 500; border-bottom: 1px solid var(--ink-faint); }
+tr.univ td:first-child { font-weight: 600; }
+.verdict { margin: 14px 0 0; padding: 10px 16px; border-left: 3px solid var(--heat); background: var(--heat-tint); max-width: 90ch; }
+.hidden-note { margin: 8px 0 0; font-size: 14px; color: var(--ink-faint); font-style: italic; }
+.notes { margin-top: 26px; font-size: 14.5px; color: var(--ink-soft); max-width: 90ch; }
+.notes h3 { font-family: var(--serif); font-size: 17px; color: var(--ink); margin: 0 0 6px; }
+.notes ul { padding-left: 20px; margin: 0; display: grid; gap: 4px; }
+sub, sup { line-height: 0; }
+
+.langbar { max-width: 1180px; margin: 0 auto; padding-inline: clamp(16px, 4vw, 40px); padding-block: 14px 0; display: flex; justify-content: flex-end; gap: 6px; }
+.langbar button { font-size: 13px; font-weight: 600; padding: 3px 10px; letter-spacing: 0.04em; }
+.langbar button[aria-pressed="true"] { border-color: var(--blue); color: var(--blue); }
+.wrap { padding-block: 8px 48px; }
+.katex { font-size: 1.08em; white-space: nowrap; }
+td .katex, .load-val .katex { font-size: 1.04em; }
+foreignObject .katex { font-size: 1.06em; }
+</style>
+
+<div class="langbar" role="group" aria-label="Language / Hizkuntza">
+  <button id="langEN" aria-pressed="true" lang="en">EN</button>
+  <button id="langEU" aria-pressed="false" lang="eu">EU</button>
+</div>
+<div id="root"></div>
+<template id="tpl-en"><div class="wrap">
+  <span class="lbl">Thermodynamics · topic 6, the second law · exercise 18</span>
+  <h1>Two gases, and a wall that is freed or removed</h1>
+  <p class="sub">The statement's two processes, computed: the wall slides and conducts until the pressures and temperatures agree, or it is drawn out and the gases spread into each other. With the same gas on both sides, the second has nothing to show.</p>
+
+  <div class="box">
+    <span class="lbl" style="color:var(--blue)">Statement</span>
+    <p>Two compartments of <b>$10\ \mathrm{L}$ and $15\ \mathrm{L}$</b> are separated by a <b>fixed, adiabatic and impermeable</b> wall. In the first we put <b>O₂</b> at <b>$288\ \mathrm{K}$ and $2\ \mathrm{atm}$</b>; in the second, <b>N₂</b> at <b>$300\ \mathrm{K}$ and $1\ \mathrm{atm}$</b>. Both are taken as diatomic ideal gases ($c_v = 5R/2$).</p>
+    <ol>
+      <li>The separating wall is made <b>diathermal and movable</b>. Obtain the entropy change of the whole system.</li>
+      <li>Starting from the initial conditions, the separating wall is <b>suddenly removed</b>. Obtain the entropy change of the whole system.</li>
+      <li>If the gases in the two compartments were the same, how would the previous results change?</li>
+    </ol>
+  </div>
+  <details class="orig"><summary>Original (Basque)</summary>
+    <p>10 eta 15 l-ko gordailuak finkoa, adiabatikoa eta iragaztezina den hormak banandu ditu. Lehenengo gunean O₂ gasa sartu dugu: $288\ \mathrm{K}$-ean eta $2\ \mathrm{atm}$-n. Bigarrenean, N₂ gasa; kasu honetan, $300\ \mathrm{K}$-ean eta $1\ \mathrm{atm}$-n. Biak gas ideal diatomikotzat hartuko ditugu ($c_v = 5R/2$). 1. Diatermano eta higikor bihurtu dugu bereizte-horma. Lortu sistema osoari dagokion entropia-aldaketa. 2. Hasierako baldintzetatik abiatuz, bereizte-horma bat-batean kendu dugu. Lortu sistema osoari dagokion entropia-aldaketa. 3. Gordailuetako gasak berdinak izanik, nola aldatuko lirateke aurreko emaitzak?</p>
+  </details>
+
+  <p class="lede">The vessel is rigid and adiabatic, so whatever happens inside, the two gases keep their energy: both processes end at $T_\mathrm{f} = 293.0\ \mathrm{K}$ and $p_\mathrm{f} = 1.40\ \mathrm{atm}$. What differs is where each gas ends up. Freed, the wall gives O₂ <b>$14.53\ \mathrm{L}$</b> and N₂ <b>$10.47\ \mathrm{L}$</b>, and the entropy rises by <b>$0.81\ \mathrm{J\,K^{-1}}$</b>. Removed, it lets each gas have all <b>$25\ \mathrm{L}$</b>: <b>$9.04\ \mathrm{J\,K^{-1}}$</b>, of which <b>$8.23\ \mathrm{J\,K^{-1}}$</b> is the entropy of mixing. Nothing outside changes, so these are entropy changes of the universe, generated entirely inside the vessel.</p>
+
+  <div class="panels">
+    <section class="panel" aria-labelledby="h-app">
+      <h2 id="h-app">The apparatus</h2>
+      <p class="cap">A rigid, insulated vessel, $0.5\ \mathrm{m}$ long, with the wall between the two gases. Below it, the temperature along the vessel and the entropy as it is generated.</p>
+      <svg id="app" viewBox="0 0 680 500" role="img" aria-label="A horizontal insulated vessel divided by a wall: oxygen on the left, nitrogen on the right; a temperature strip and an entropy chart below">
+        <defs>
+          <pattern id="ins" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+            <rect width="7" height="7" fill="var(--tint)"/>
+            <line x1="0" y1="0" x2="0" y2="7" stroke="var(--ink-faint)" stroke-opacity="0.45" stroke-width="1.4"/>
+          </pattern>
+          <marker id="ah" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M0,0 L10,5 L0,10 z" fill="var(--heat)"/>
+          </marker>
+          <clipPath id="inside"><rect x="40" y="96" width="600" height="140"/></clipPath>
+        </defs>
+        <!-- insulation and the slot the wall leaves through -->
+        <rect x="28" y="84" width="624" height="164" fill="url(#ins)" stroke="var(--ink-faint)" stroke-opacity="0.6" stroke-width="1"/>
+        <rect x="40" y="96" width="600" height="140" fill="var(--paper)"/>
+        <text x="30" y="76" style="font-size:11.5px;fill:var(--ink-faint)">rigid, adiabatic · 25 L</text>
+        <!-- the gases -->
+        <g clip-path="url(#inside)">
+          <rect id="gasA" x="40" y="96" width="240" height="140" fill="var(--o2-fill)"/>
+          <rect id="gasB" x="280" y="96" width="360" height="140" fill="var(--n2-fill)"/>
+          <g id="cells" style="display:none"></g>
+        </g>
+        <!-- the wall and its lock -->
+        <g id="wall">
+          <rect id="wallRect" x="-7" y="96" width="14" height="140" fill="var(--metal)"/>
+          <rect id="lockT" x="-4" y="84" width="8" height="10" fill="var(--heat)"/>
+          <rect id="lockB" x="-4" y="238" width="8" height="10" fill="var(--heat)"/>
+          <g id="cond" opacity="0">
+            <path d="M-18,150 L18,150" fill="none" stroke="var(--heat)" stroke-width="2" marker-end="url(#ah)"/>
+            <path d="M-18,182 L18,182" fill="none" stroke="var(--heat)" stroke-width="2" marker-end="url(#ah)"/>
+          </g>
+        </g>
+        <rect id="slot" x="268" y="80" width="24" height="6" fill="var(--paper)" stroke="var(--ink-faint)" stroke-opacity="0.6" stroke-width="1" style="display:none"/>
+        <!-- labels inside -->
+        <text id="lblA" x="52" y="118" style="font-size:13px;font-weight:600;fill:var(--o2)">O₂</text>
+        <text id="lblB" x="628" y="118" text-anchor="end" style="font-size:13px;font-weight:600;fill:var(--n2)">N₂</text>
+        <text id="stA" x="52" y="222" class="mono" style="font-size:11.5px;fill:var(--ink)">10.0 L · 288 K · 2.00 atm</text>
+        <text id="stB" x="628" y="222" text-anchor="end" class="mono" style="font-size:11.5px;fill:var(--ink)">15.0 L · 300 K · 1.00 atm</text>
+        <text id="lockLbl" x="280" y="266" text-anchor="middle" style="font-size:11.5px;fill:var(--heat)">locked, adiabatic</text>
+        <!-- temperature strip -->
+        <g id="tstrip">
+          <text x="40" y="288" style="font-size:11.5px;fill:var(--ink-faint);letter-spacing:.06em">T ALONG THE VESSEL</text>
+          <rect x="40" y="293" width="600" height="10" fill="none" stroke="var(--line)"/>
+          <g id="tcells"></g>
+          <text x="40" y="316" class="mono" style="font-size:11px;fill:var(--ink-faint)">260 K</text>
+          <text x="640" y="316" text-anchor="end" class="mono" style="font-size:11px;fill:var(--ink-faint)">340 K</text>
+        </g>
+        <!-- readouts -->
+        <g class="mono" style="font-size:13px">
+          <text x="40" y="344" style="fill:var(--ink-faint);font-family:var(--sans);font-size:11.5px;letter-spacing:.08em">NOW</text>
+          <text id="r1" x="40" y="366" style="fill:var(--ink)"></text>
+          <text id="r2" x="40" y="388" style="fill:var(--o2)"></text>
+          <text id="r3" x="40" y="410" style="fill:var(--n2)"></text>
+          <text id="r4" x="40" y="432" style="fill:var(--heat)"></text>
+          <text id="r5" x="40" y="456" style="fill:var(--ink-faint);font-family:var(--sans);font-size:13px;font-style:italic"></text>
+          <text id="r6" x="40" y="474" style="fill:var(--ink-faint);font-family:var(--sans);font-size:13px;font-style:italic"></text>
+        </g>
+        <!-- entropy chart -->
+        <g id="schart" transform="translate(430,330)">
+          <text x="0" y="-6" style="font-size:11.5px;fill:var(--ink-faint);letter-spacing:.06em">ENTROPY GENERATED · J/K</text>
+          <line x1="0" y1="110" x2="210" y2="110" stroke="var(--ink-soft)"/>
+          <line x1="0" y1="0" x2="0" y2="110" stroke="var(--ink-soft)"/>
+          <line id="sTarget" x1="0" y1="20" x2="210" y2="20" stroke="var(--heat)" stroke-dasharray="4 4" opacity="0"/>
+          <text id="sTargetLbl" x="210" y="16" text-anchor="end" style="font-size:11px;fill:var(--heat)" opacity="0"></text>
+          <path id="sPath" fill="none" stroke="var(--heat)" stroke-width="2"/>
+          <circle id="sDot" r="3.5" fill="var(--heat)" opacity="0"/>
+          <text id="sY" x="-4" y="4" text-anchor="end" class="mono" style="font-size:10.5px;fill:var(--ink-faint)"></text>
+          <text x="-4" y="113" text-anchor="end" class="mono" style="font-size:10.5px;fill:var(--ink-faint)">0</text>
+          <text id="sX0" x="0" y="124" class="mono" style="font-size:10.5px;fill:var(--ink-faint)"></text>
+          <text id="sX1" x="210" y="124" text-anchor="end" class="mono" style="font-size:10.5px;fill:var(--ink-faint)"></text>
+        </g>
+      </svg>
+    </section>
+
+    <section class="panel" aria-labelledby="h-pv">
+      <h2 id="h-pv">The states: p–V plane, one point per gas</h2>
+      <p class="cap">Equilibrium states only. Neither process has any between i and f; a reversible route is drawn for each gas, an isochore and then the final isotherm.</p>
+      <svg id="pv" viewBox="0 0 520 440" role="img" aria-label="Pressure against volume for each gas: initial states, final states of the two cases, dotted irreversible processes and continuous reversible routes">
+        <g id="pvAxes"></g>
+        <g id="pvIso"></g>
+        <g id="pvRev"></g>
+        <g id="pvDot"></g>
+        <g id="pvPts"></g>
+        <circle id="mA" r="5.5" fill="var(--o2)" stroke="var(--paper)" stroke-width="2" opacity="0"/>
+        <circle id="mB" r="5.5" fill="var(--n2)" stroke="var(--paper)" stroke-width="2" opacity="0"/>
+        <text id="pvNote" x="500" y="30" text-anchor="end" style="font-size:12px;fill:var(--ink-faint);font-style:italic"></text>
+      </svg>
+      <div class="legend">
+        <span><i class="sw box-o2"></i>O₂, $0.846\ \mathrm{mol}$</span>
+        <span><i class="sw box-n2"></i>N₂, $0.609\ \mathrm{mol}$</span>
+        <span><i class="sw dot"></i>irreversible, i → f</span>
+        <span><i class="sw"></i>a reversible route: isochore, then the $293\ \mathrm{K}$ isotherm</span>
+        <span><i class="sw tgrad"></i>temperature, $260\ \mathrm{K}$ to $340\ \mathrm{K}$</span>
+        <span><i class="sw" style="opacity:.35"></i>faint: the isotherms (initial temperature continuous, final dashed)</span>
+      </div>
+    </section>
+  </div>
+
+  <div class="controls">
+    <div>
+      <span class="lbl">The gases</span>
+      <div class="presets">
+        <button class="small" id="gDiff" aria-pressed="true">O₂ and N₂ (the statement)</button>
+        <button class="small" id="gSame" aria-pressed="false">The same gas on both sides (part 3)</button>
+      </div>
+    </div>
+    <div class="actions">
+      <div class="row">
+        <button class="go1" id="b1">1 · Free the wall</button>
+        <button class="go2" id="b2">2 · Remove the wall</button>
+        <button id="b0">Reset</button>
+      </div>
+      <div class="row">
+        <button class="small" id="sReal" aria-pressed="true">Real time</button>
+        <button class="small" id="sSlow" aria-pressed="false">Slow motion, ×1/10 while the wall swings</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="ledger-head">
+    <h2>Entropy balance</h2>
+    <button class="small" id="ledgerBtn" aria-expanded="true" aria-controls="ledgerBody">Hide</button>
+  </div>
+  <p class="hidden-note" id="ledgerNote" hidden>Hidden. Show it when the class is ready for the balance.</p>
+  <div id="ledgerBody">
+    <div class="ledger-wrap">
+      <table aria-label="Entropy change of each gas and of the whole system in the two cases">
+        <thead><tr><th></th><th class="p1">1 · wall freed</th><th class="p2">2 · wall removed</th></tr></thead>
+        <tbody>
+          <tr><td>Final temperature and pressure</td><td>$293.0\ \mathrm{K}$ · $1.40\ \mathrm{atm}$</td><td>$293.0\ \mathrm{K}$ · $1.40\ \mathrm{atm}$</td></tr>
+          <tr><td id="hA">O₂, $0.846\ \mathrm{mol}$: final volume</td><td id="vA1"></td><td id="vA2"></td></tr>
+          <tr class="gas"><td>thermal part, $n c_v \ln(T_\mathrm{f}/T_\mathrm{i})$</td><td id="tA1"></td><td id="tA2"></td></tr>
+          <tr class="gas"><td>volume part, $n R \ln(V_\mathrm{f}/V_\mathrm{i})$</td><td id="wA1"></td><td id="wA2"></td></tr>
+          <tr><td id="hB">N₂, $0.609\ \mathrm{mol}$: final volume</td><td id="vB1"></td><td id="vB2"></td></tr>
+          <tr class="gas"><td>thermal part</td><td id="tB1"></td><td id="tB2"></td></tr>
+          <tr class="gas"><td>volume part</td><td id="wB1"></td><td id="wB2"></td></tr>
+          <tr class="univ"><td>$\Delta S$ of the system, which is isolated: $\Delta S$ of the universe</td><td id="u1"></td><td id="u2"></td></tr>
+          <tr><td>of which, entropy of mixing</td><td>$0\ \mathrm{J\,K^{-1}}$</td><td id="x2"></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="verdict" id="verdict"></p>
+  </div>
+
+  <div class="notes">
+    <h3>The model behind the drawing</h3>
+    <ul>
+      <li>The amounts follow from the statement: $n_{\mathrm{O_2}} = 0.846\ \mathrm{mol}$ and $n_{\mathrm{N_2}} = 0.609\ \mathrm{mol}$, both ideal with $c_v = 5R/2$. The vessel is drawn $0.5\ \mathrm{m}$ long with a cross-section of $0.05\ \mathrm{m^2}$, so the wall starts $0.2\ \mathrm{m}$ from the left and, freed, settles at $0.291\ \mathrm{m}$.</li>
+      <li>Process 1 is computed, not drawn by hand. The wall ($40\ \mathrm{kg}$, a $10\ \mathrm{cm}$ steel plate of that section) slides without friction against the vessel; each gas is treated as having one pressure and one temperature at a time. The gas drags the wall with $500\ \mathrm{N\,s\,m^{-1}}$, and that drag's heat goes to the two gases, half each: this is where the mechanical irreversibility lives. Heat crosses the wall at $12\ \mathrm{W\,K^{-1}}$: heat across a finite temperature difference, the thermal irreversibility. Energy is conserved exactly by construction. The wall swings about six times in the first $0.6\ \mathrm{s}$, then drifts for a few seconds as heat flows from the nitrogen to the oxygen.</li>
+      <li>Process 2 is in two stages. The wall is drawn out, and in the first $10\ \mathrm{ms}$ the pressures equalise: this rush is modelled as an interface of the gases' own mass (40 g) with a drag of $90\ \mathrm{N\,s\,m^{-1}}$, a stand-in for the shocks and eddies of the real one. It ends with the oxygen expanded and cooled to $263\ \mathrm{K}$, the nitrogen compressed and heated to $335\ \mathrm{K}$, the pressures equal, and $0.51\ \mathrm{J\,K^{-1}}$ already generated. Then the gases interdiffuse: 100 cells along the vessel, diffusivity $D = 1.5 \times 10^{-5}\ \mathrm{m^2\,s^{-1}}$ for the species and the same for heat, the values for these gases at $1.4\ \mathrm{atm}$. That takes a couple of hours, shown at ×900. The real rush would also stir the gases and mix them sooner; the final state and the entropy do not care.</li>
+      <li>The entropy on the chart is computed at every instant from the model's states: for each gas, in each cell, $n\,(c_v\ln T + R\ln(V/n))$. It never decreases, and because the end state is uniform it ends at the thermodynamic value whatever the parameters: $0.81\ \mathrm{J\,K^{-1}}$ for the freed wall, $9.04\ \mathrm{J\,K^{-1}}$ for the removed one, and $0.81\ \mathrm{J\,K^{-1}}$ for a single gas, however the wall is dealt with.</li>
+      <li>The p–V plane holds equilibrium states. During process 1 the model's lumped states are shown as moving dots, an approximation; during the diffusion no gas has a volume of its own, so the dots are hidden until the end. Each reversible route, isochore first and then the $293\ \mathrm{K}$ isotherm, splits a gas's entropy change into the thermal and the volume parts of the balance.</li>
+      <li>After process 1 has run, button 2 removes the wall from the equalised state: with two gases that is the mixing alone, $8.23\ \mathrm{J\,K^{-1}}$; with one gas, nothing happens, which is the point of part 3.</li>
+    </ul>
+  </div>
+</div>
+
+</template>
+<template id="tpl-eu"><div class="wrap">
+  <span class="lbl">Termodinamika · 6. gaia, bigarren printzipioa · 18. ariketa</span>
+  <h1>Bi gas, eta askatu edo kendu egiten den horma bat</h1>
+  <p class="sub">Enuntziatuko bi prozesuak, kalkulatuta: hormak irristatu eta beroa eroaten du presioak eta tenperaturak berdindu arte, edo atera egiten da eta gasak batak bestearengan hedatzen dira. Gas bera bi aldeetan dagoela, bigarrenak ez du ezer erakusteko.</p>
+
+  <div class="box">
+    <span class="lbl" style="color:var(--blue)">Enuntziatua</span>
+    <p>10 eta 15 l-ko gordailuak finkoa, adiabatikoa eta iragaztezina den hormak banandu ditu. Lehenengo gunean O₂ gasa sartu dugu: $288\ \mathrm{K}$-ean eta $2\ \mathrm{atm}$-n. Bigarrenean, N₂ gasa; kasu honetan, $300\ \mathrm{K}$-ean eta $1\ \mathrm{atm}$-n. Biak gas ideal diatomikotzat hartuko ditugu ($c_v = 5R/2$).</p>
+    <ol>
+      <li>Diatermano eta higikor bihurtu dugu bereizte-horma. Lortu sistema osoari dagokion entropia-aldaketa.</li>
+      <li>Hasierako baldintzetatik abiatuz, bereizte-horma bat-batean kendu dugu. Lortu sistema osoari dagokion entropia-aldaketa.</li>
+      <li>Gordailuetako gasak berdinak izanik, nola aldatuko lirateke aurreko emaitzak?</li>
+    </ol>
+  </div>
+
+  <p class="lede">Ontzia zurruna eta adiabatikoa da; beraz, barruan gertatzen dena gertatzen dela, bi gasek beren energiari eusten diote: bi prozesuak $T_\mathrm{f} = 293.0\ \mathrm{K}$ eta $p_\mathrm{f} = 1.40\ \mathrm{atm}$ balioetan amaitzen dira. Gas bakoitza non amaitzen den, hori da aldatzen dena. Askatuta, hormak <b>$14.53\ \mathrm{L}$</b> ematen dizkio O₂-ari eta <b>$10.47\ \mathrm{L}$</b> N₂-ari, eta entropia <b>$0.81\ \mathrm{J\,K^{-1}}$</b> handitzen da. Kenduta, gas bakoitzari <b>$25\ \mathrm{L}$</b> osoak uzten dizkio: <b>$9.04\ \mathrm{J\,K^{-1}}$</b>, horietatik <b>$8.23\ \mathrm{J\,K^{-1}}$</b> nahaste-entropia. Kanpoan ez da ezer aldatzen; beraz, unibertsoaren entropia-aldaketak dira horiek, osorik ontzi barruan sortuak.</p>
+
+  <div class="panels">
+    <section class="panel" aria-labelledby="h-app">
+      <h2 id="h-app">Aparatua</h2>
+      <p class="cap">Ontzi zurrun eta isolatu bat, $0.5\ \mathrm{m}$ luze, bi gasen arteko hormarekin. Azpian, tenperatura ontzian zehar eta entropia, sortu ahala.</p>
+      <svg id="app" viewBox="0 0 680 500" role="img" aria-label="Ontzi isolatu horizontal bat, horma batek banatua: oxigenoa ezkerrean, nitrogenoa eskuinean; tenperatura-zerrenda bat eta entropia-grafiko bat azpian">
+        <defs>
+          <pattern id="ins" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+            <rect width="7" height="7" fill="var(--tint)"/>
+            <line x1="0" y1="0" x2="0" y2="7" stroke="var(--ink-faint)" stroke-opacity="0.45" stroke-width="1.4"/>
+          </pattern>
+          <marker id="ah" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M0,0 L10,5 L0,10 z" fill="var(--heat)"/>
+          </marker>
+          <clipPath id="inside"><rect x="40" y="96" width="600" height="140"/></clipPath>
+        </defs>
+        <!-- insulation and the slot the wall leaves through -->
+        <rect x="28" y="84" width="624" height="164" fill="url(#ins)" stroke="var(--ink-faint)" stroke-opacity="0.6" stroke-width="1"/>
+        <rect x="40" y="96" width="600" height="140" fill="var(--paper)"/>
+        <text x="30" y="76" style="font-size:11.5px;fill:var(--ink-faint)">zurruna, adiabatikoa · 25 L</text>
+        <!-- the gases -->
+        <g clip-path="url(#inside)">
+          <rect id="gasA" x="40" y="96" width="240" height="140" fill="var(--o2-fill)"/>
+          <rect id="gasB" x="280" y="96" width="360" height="140" fill="var(--n2-fill)"/>
+          <g id="cells" style="display:none"></g>
+        </g>
+        <!-- the wall and its lock -->
+        <g id="wall">
+          <rect id="wallRect" x="-7" y="96" width="14" height="140" fill="var(--metal)"/>
+          <rect id="lockT" x="-4" y="84" width="8" height="10" fill="var(--heat)"/>
+          <rect id="lockB" x="-4" y="238" width="8" height="10" fill="var(--heat)"/>
+          <g id="cond" opacity="0">
+            <path d="M-18,150 L18,150" fill="none" stroke="var(--heat)" stroke-width="2" marker-end="url(#ah)"/>
+            <path d="M-18,182 L18,182" fill="none" stroke="var(--heat)" stroke-width="2" marker-end="url(#ah)"/>
+          </g>
+        </g>
+        <rect id="slot" x="268" y="80" width="24" height="6" fill="var(--paper)" stroke="var(--ink-faint)" stroke-opacity="0.6" stroke-width="1" style="display:none"/>
+        <!-- labels inside -->
+        <text id="lblA" x="52" y="118" style="font-size:13px;font-weight:600;fill:var(--o2)">O₂</text>
+        <text id="lblB" x="628" y="118" text-anchor="end" style="font-size:13px;font-weight:600;fill:var(--n2)">N₂</text>
+        <text id="stA" x="52" y="222" class="mono" style="font-size:11.5px;fill:var(--ink)">10.0 L · 288 K · 2.00 atm</text>
+        <text id="stB" x="628" y="222" text-anchor="end" class="mono" style="font-size:11.5px;fill:var(--ink)">15.0 L · 300 K · 1.00 atm</text>
+        <text id="lockLbl" x="280" y="266" text-anchor="middle" style="font-size:11.5px;fill:var(--heat)">finkatuta, adiabatikoa</text>
+        <!-- temperature strip -->
+        <g id="tstrip">
+          <text x="40" y="288" style="font-size:11.5px;fill:var(--ink-faint);letter-spacing:.06em">T ONTZIAN ZEHAR</text>
+          <rect x="40" y="293" width="600" height="10" fill="none" stroke="var(--line)"/>
+          <g id="tcells"></g>
+          <text x="40" y="316" class="mono" style="font-size:11px;fill:var(--ink-faint)">260 K</text>
+          <text x="640" y="316" text-anchor="end" class="mono" style="font-size:11px;fill:var(--ink-faint)">340 K</text>
+        </g>
+        <!-- readouts -->
+        <g class="mono" style="font-size:13px">
+          <text x="40" y="344" style="fill:var(--ink-faint);font-family:var(--sans);font-size:11.5px;letter-spacing:.08em">ORAIN</text>
+          <text id="r1" x="40" y="366" style="fill:var(--ink)"></text>
+          <text id="r2" x="40" y="388" style="fill:var(--o2)"></text>
+          <text id="r3" x="40" y="410" style="fill:var(--n2)"></text>
+          <text id="r4" x="40" y="432" style="fill:var(--heat)"></text>
+          <text id="r5" x="40" y="456" style="fill:var(--ink-faint);font-family:var(--sans);font-size:13px;font-style:italic"></text>
+          <text id="r6" x="40" y="474" style="fill:var(--ink-faint);font-family:var(--sans);font-size:13px;font-style:italic"></text>
+        </g>
+        <!-- entropy chart -->
+        <g id="schart" transform="translate(430,330)">
+          <text x="0" y="-6" style="font-size:11.5px;fill:var(--ink-faint);letter-spacing:.06em">SORTUTAKO ENTROPIA · J/K</text>
+          <line x1="0" y1="110" x2="210" y2="110" stroke="var(--ink-soft)"/>
+          <line x1="0" y1="0" x2="0" y2="110" stroke="var(--ink-soft)"/>
+          <line id="sTarget" x1="0" y1="20" x2="210" y2="20" stroke="var(--heat)" stroke-dasharray="4 4" opacity="0"/>
+          <text id="sTargetLbl" x="210" y="16" text-anchor="end" style="font-size:11px;fill:var(--heat)" opacity="0"></text>
+          <path id="sPath" fill="none" stroke="var(--heat)" stroke-width="2"/>
+          <circle id="sDot" r="3.5" fill="var(--heat)" opacity="0"/>
+          <text id="sY" x="-4" y="4" text-anchor="end" class="mono" style="font-size:10.5px;fill:var(--ink-faint)"></text>
+          <text x="-4" y="113" text-anchor="end" class="mono" style="font-size:10.5px;fill:var(--ink-faint)">0</text>
+          <text id="sX0" x="0" y="124" class="mono" style="font-size:10.5px;fill:var(--ink-faint)"></text>
+          <text id="sX1" x="210" y="124" text-anchor="end" class="mono" style="font-size:10.5px;fill:var(--ink-faint)"></text>
+        </g>
+      </svg>
+    </section>
+
+    <section class="panel" aria-labelledby="h-pv">
+      <h2 id="h-pv">Egoerak: p–V planoa, puntu bat gas bakoitzeko</h2>
+      <p class="cap">Oreka-egoerak baino ez. Bi prozesuetako batek ere ez du halakorik i-ren eta f-ren artean; gas bakoitzarentzat bide itzulgarri bat marraztu da: isokora bat, eta gero azken isoterma.</p>
+      <svg id="pv" viewBox="0 0 520 440" role="img" aria-label="Presioa bolumenaren aurrean gas bakoitzarentzat: hasierako egoerak, bi kasuen azken egoerak, prozesu itzulezinak puntuz eta bide itzulgarriak marra jarraituz">
+        <g id="pvAxes"></g>
+        <g id="pvIso"></g>
+        <g id="pvRev"></g>
+        <g id="pvDot"></g>
+        <g id="pvPts"></g>
+        <circle id="mA" r="5.5" fill="var(--o2)" stroke="var(--paper)" stroke-width="2" opacity="0"/>
+        <circle id="mB" r="5.5" fill="var(--n2)" stroke="var(--paper)" stroke-width="2" opacity="0"/>
+        <text id="pvNote" x="500" y="30" text-anchor="end" style="font-size:12px;fill:var(--ink-faint);font-style:italic"></text>
+      </svg>
+      <div class="legend">
+        <span><i class="sw box-o2"></i>O₂, $0.846\ \mathrm{mol}$</span>
+        <span><i class="sw box-n2"></i>N₂, $0.609\ \mathrm{mol}$</span>
+        <span><i class="sw dot"></i>itzulezina, i → f</span>
+        <span><i class="sw"></i>bide itzulgarri bat: isokora, eta gero $293\ \mathrm{K}$-eko isoterma</span>
+        <span><i class="sw tgrad"></i>tenperatura, $260\ \mathrm{K}$-etik $340\ \mathrm{K}$-era</span>
+        <span><i class="sw" style="opacity:.35"></i>ahulak: isotermak (hasierako tenperatura etengabea, bukaerakoa etena)</span>
+      </div>
+    </section>
+  </div>
+
+  <div class="controls">
+    <div>
+      <span class="lbl">Gasak</span>
+      <div class="presets">
+        <button class="small" id="gDiff" aria-pressed="true">O₂ eta N₂ (enuntziatua)</button>
+        <button class="small" id="gSame" aria-pressed="false">Gas bera bi aldeetan (3. atala)</button>
+      </div>
+    </div>
+    <div class="actions">
+      <div class="row">
+        <button class="go1" id="b1">1 · Askatu horma</button>
+        <button class="go2" id="b2">2 · Kendu horma</button>
+        <button id="b0">Berrabiarazi</button>
+      </div>
+      <div class="row">
+        <button class="small" id="sReal" aria-pressed="true">Denbora errealean</button>
+        <button class="small" id="sSlow" aria-pressed="false">Kamera geldoan, ×1/10 horma kulunkatzen den bitartean</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="ledger-head">
+    <h2>Entropia-balantzea</h2>
+    <button class="small" id="ledgerBtn" aria-expanded="true" aria-controls="ledgerBody">Ezkutatu</button>
+  </div>
+  <p class="hidden-note" id="ledgerNote" hidden>Ezkutatuta. Erakutsi ezazu klasea balantzerako prest dagoenean.</p>
+  <div id="ledgerBody">
+    <div class="ledger-wrap">
+      <table aria-label="Gas bakoitzaren eta sistema osoaren entropia-aldaketa bi kasuetan">
+        <thead><tr><th></th><th class="p1">1 · horma askatuta</th><th class="p2">2 · horma kenduta</th></tr></thead>
+        <tbody>
+          <tr><td>Azken tenperatura eta presioa</td><td>$293.0\ \mathrm{K}$ · $1.40\ \mathrm{atm}$</td><td>$293.0\ \mathrm{K}$ · $1.40\ \mathrm{atm}$</td></tr>
+          <tr><td id="hA">O₂, $0.846\ \mathrm{mol}$: azken bolumena</td><td id="vA1"></td><td id="vA2"></td></tr>
+          <tr class="gas"><td>zati termikoa, $n c_v \ln(T_\mathrm{f}/T_\mathrm{i})$</td><td id="tA1"></td><td id="tA2"></td></tr>
+          <tr class="gas"><td>bolumen-zatia, $n R \ln(V_\mathrm{f}/V_\mathrm{i})$</td><td id="wA1"></td><td id="wA2"></td></tr>
+          <tr><td id="hB">N₂, $0.609\ \mathrm{mol}$: azken bolumena</td><td id="vB1"></td><td id="vB2"></td></tr>
+          <tr class="gas"><td>zati termikoa</td><td id="tB1"></td><td id="tB2"></td></tr>
+          <tr class="gas"><td>bolumen-zatia</td><td id="wB1"></td><td id="wB2"></td></tr>
+          <tr class="univ"><td>Sistemaren $\Delta S$, isolatua baita: unibertsoaren $\Delta S$</td><td id="u1"></td><td id="u2"></td></tr>
+          <tr><td>horietatik, nahaste-entropia</td><td>$0\ \mathrm{J\,K^{-1}}$</td><td id="x2"></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="verdict" id="verdict"></p>
+  </div>
+
+  <div class="notes">
+    <h3>Marrazkiaren atzeko eredua</h3>
+    <ul>
+      <li>Kantitateak enuntziatutik datoz: $n_{\mathrm{O_2}} = 0.846\ \mathrm{mol}$ eta $n_{\mathrm{N_2}} = 0.609\ \mathrm{mol}$, biak idealak eta $c_v = 5R/2$ dutela. Ontzia $0.5\ \mathrm{m}$ luze marraztu da, $0.05\ \mathrm{m^2}$-ko sekzioarekin; beraz, horma ezkerretik $0.2\ \mathrm{m}$-ra hasten da eta, askatuta, $0.291\ \mathrm{m}$-an gelditzen da.</li>
+      <li>1. prozesua kalkulatu egiten da, ez da eskuz marrazten. Horma ($40\ \mathrm{kg}$, sekzio horretako $10\ \mathrm{cm}$-ko altzairuzko xafla bat) marruskadurarik gabe irristatzen da ontziaren kontra; gas bakoitzak, une bakoitzean, presio bakar bat eta tenperatura bakar bat dituela hartzen da. Gasak $500\ \mathrm{N\,s\,m^{-1}}$-ko erresistentziaz balaztatzen du horma, eta erresistentzia horren beroa bi gasetara doa, erdi bana: hor dago itzulezintasun mekanikoa. Beroa $12\ \mathrm{W\,K^{-1}}$-ko eroankortasunez igarotzen da hormatik: beroa tenperatura-diferentzia finitu baten bitartez igarotzea, itzulezintasun termikoa. Energia zehazki kontserbatzen da, eraikuntzaz. Horma sei bat aldiz kulunkatzen da lehen $0.6\ \mathrm{s}$-etan, eta gero segundo batzuez lerratzen da, beroa nitrogenotik oxigenora doan bitartean.</li>
+      <li>2. prozesuak bi etapa ditu. Horma atera egiten da, eta lehen $10\ \mathrm{ms}$-etan presioak berdindu egiten dira: oldarraldi hori interfaze batez modelatzen da, gasen beren masa (40 g) eta $90\ \mathrm{N\,s\,m^{-1}}$-ko erresistentzia dituena, benetako oldarraldiaren talka-uhinen eta zurrunbiloen ordezko. Amaieran, oxigenoa hedatuta eta $263\ \mathrm{K}$-era hoztuta dago, nitrogenoa konprimituta eta $335\ \mathrm{K}$-era berotuta, presioak berdinak dira, eta $0.51\ \mathrm{J\,K^{-1}}$ sortu dira dagoeneko. Gero, gasak elkarrengan difunditzen dira: 100 gelaxka ontzian zehar, $D = 1.5 \times 10^{-5}\ \mathrm{m^2\,s^{-1}}$ difusibitatea espezieentzat eta berbera beroarentzat, gas hauen balioak $1.4\ \mathrm{atm}$-n. Horrek pare bat ordu behar ditu, eta ×900 abiaduran erakusten da. Benetako oldarraldiak gasak irabiatu ere egingo lituzke, eta lehenago nahastuko lirateke; azken egoerari eta entropiari ez die axola.</li>
+      <li>Grafikoko entropia une bakoitzean kalkulatzen da ereduaren egoeretatik: gas bakoitzarentzat, gelaxka bakoitzean, $n\,(c_v\ln T + R\ln(V/n))$. Ez da inoiz txikitzen, eta, azken egoera uniformea denez, balio termodinamikoan amaitzen da, parametroak edozein direla ere: $0.81\ \mathrm{J\,K^{-1}}$ horma askatuta, $9.04\ \mathrm{J\,K^{-1}}$ horma kenduta, eta $0.81\ \mathrm{J\,K^{-1}}$ gas bakar batekin, hormarekin edozer eginda ere.</li>
+      <li>p–V planoak oreka-egoerak dauzka. 1. prozesuan, ereduaren egoera bateratuak puntu higikor gisa erakusten dira, hurbilketa bat; difusioan ez du gasik bere bolumenik, eta puntuak ezkutatuta daude amaiera arte. Bide itzulgarri bakoitzak, lehenik isokora eta gero $293\ \mathrm{K}$-eko isoterma, gas baten entropia-aldaketa balantzeko zati termikoan eta bolumen-zatian banatzen du.</li>
+      <li>1. prozesua egin ondoren, 2. botoiak berdindutako egoeratik kentzen du horma: bi gasekin, nahastea baino ez da hori, $8.23\ \mathrm{J\,K^{-1}}$; gas batekin, ez da ezer gertatzen, eta horixe da 3. atalaren muina.</li>
+    </ul>
+  </div>
+</div>
+
+</template>
+<script>
+
+var XH = "http://www.w3.org/1999/xhtml", SVGNS = "http://www.w3.org/2000/svg";
+var UNIT = { "J/K": "\\mathrm{J\\,K^{-1}}", "W/K": "\\mathrm{W\\,K^{-1}}", "N s/m": "\\mathrm{N\\,s\\,m^{-1}}", "kN/m": "\\mathrm{kN\\,m^{-1}}", "m²/s": "\\mathrm{m^2\\,s^{-1}}", "cm³": "\\mathrm{cm^3}", "cm²": "\\mathrm{cm^2}", "m²": "\\mathrm{m^2}", "cm": "\\mathrm{cm}", "atm": "\\mathrm{atm}", "min": "\\mathrm{min}", "mol": "\\mathrm{mol}", "ms": "\\mathrm{ms}", "bar": "\\mathrm{bar}", "kg": "\\mathrm{kg}", "J": "\\mathrm{J}", "K": "\\mathrm{K}", "L": "\\mathrm{L}", "s": "\\mathrm{s}", "h": "\\mathrm{h}", "m": "\\mathrm{m}" };
+var NUM = "([+−-]?\\d+(?:\\.\\d+)?)", UN = "(J/K|W/K|N\\ s/m|kN/m|m²/s|cm³|cm²|m²|cm|atm|min|mol|ms|bar|kg|J|K|L|s|h|m)(?![\\w³²/])";
+var SVG_NUM = new RegExp("\\d ?(" + "J/K|W/K|N\\ s/m|kN/m|m²/s|cm³|cm²|m²|cm|atm|min|mol|ms|bar|kg|J|K|L|s|h|m" + ")(?![a-z])|=| \\/ ");
+function texHTML(t) { return window.katex ? katex.renderToString(t, { throwOnError: false }) : t; }
+/* Plain run-time string -> HTML with every quantity, symbol and equation typeset. */
+function mathify(str) {
+  var store = [];
+  function tok(t) { store.push(t); return "\u0001" + (store.length - 1) + "\u0002"; }
+  function sym(v) { return v.replace("Δ", "\\Delta "); }
+  function num(n) { return n.replace("−", "-"); }
+  str = String(str)
+    .replace(new RegExp("(^|[^\\w])([pVTS]) \\/ " + UN, "g"), function (m, a, v, u) { return a + tok(v + "\\,/\\," + UNIT[u]); })
+    .replace(new RegExp("(^|[^\\w])(Δ?[A-Za-z](?:_[A-Za-z0-9]{1,3})?) = " + NUM + " " + UN, "g"), function (m, a, v, n, u) { return a + tok(sym(v) + " = " + num(n) + "\\ " + UNIT[u]); })
+    .replace(/(^|[^\w])(Δ?[A-Za-z](?:_[A-Za-z0-9]{1,3})?) = /g, function (m, a, v) { return a + tok(sym(v) + " =") + " "; })
+    .replace(new RegExp("(^|[^\\w.])" + NUM + " " + UN, "g"), function (m, a, n, u) { return a + tok(num(n) + "\\ " + UNIT[u]); })
+    .replace(/(^|[\s,(])([pV])(?=[\s,])/g, function (m, a, v) { return a + tok(v); });
+  return str.replace(/\u0001(\d+)\u0002([,.;:)]?)/g, function (m, k, p) {
+    return p ? '<span style="white-space:nowrap">' + texHTML(store[+k]) + p + "</span>" : texHTML(store[+k]);
+  });
+}
+/* Keep a formula and the punctuation after it on one line. */
+function glue(root) {
+  root.querySelectorAll(".katex").forEach(function (k) {
+    var n = k.nextSibling;
+    if (!n || n.nodeType !== 3 || !/^[,.;:)]/.test(n.data)) return;
+    var w = document.createElement("span"); w.style.whiteSpace = "nowrap";
+    k.parentNode.insertBefore(w, k); w.appendChild(k); w.appendChild(document.createTextNode(n.data[0]));
+    n.data = n.data.slice(1);
+  });
+}
+/* SVG labels with mathematics become foreignObjects that hold KaTeX; put() and attr() keep them addressable. */
+var DYN = ["r1", "r2", "r3", "r4", "r5", "r6", "stA", "stB", "sTargetLbl", "sY", "sX0", "sX1"];
+function layoutFO(fo) {
+  var w = +fo.getAttribute("width"), h = +fo.getAttribute("height"), fs = +fo.getAttribute("data-fs");
+  var x = +fo.getAttribute("data-x"), y = +fo.getAttribute("data-y"), an = fo.getAttribute("data-anchor") || "start";
+  fo.setAttribute("x", an === "middle" ? x - w / 2 : an === "end" ? x - w : x);
+  fo.setAttribute("y", y - (h / 2 + 0.36 * fs));
+  fo.firstChild.style.textAlign = an === "middle" ? "center" : an === "end" ? "right" : "left";
+}
+function svgMath() {
+  document.querySelectorAll("#root svg text").forEach(function (t) {
+    var s = t.textContent, dyn = t.id && DYN.indexOf(t.id) >= 0;
+    if (!dyn && !SVG_NUM.test(s)) return;
+    var fs = parseFloat(t.style.fontSize) || 13, w = /^r\d$/.test(t.id) ? 640 : 300, h = Math.round(fs * 2.2);
+    var fo = document.createElementNS(SVGNS, "foreignObject"), d = document.createElementNS(XH, "div");
+    fo.setAttribute("width", w); fo.setAttribute("height", h); fo.setAttribute("data-fs", fs);
+    fo.setAttribute("data-x", t.getAttribute("x")); fo.setAttribute("data-y", t.getAttribute("y"));
+    fo.setAttribute("data-anchor", t.getAttribute("text-anchor") || "start");
+    if (t.id) fo.id = t.id;
+    if (t.getAttribute("opacity") != null) fo.setAttribute("opacity", t.getAttribute("opacity"));
+    var mono = (t.getAttribute("class") || "").indexOf("mono") >= 0 || (t.parentNode.getAttribute("class") || "").indexOf("mono") >= 0;
+    d.style.cssText = "font-size:" + fs + "px;line-height:" + h + "px;white-space:nowrap;pointer-events:none;" +
+      "color:" + (t.style.fill || "var(--ink-soft)") + ";font-family:" + (t.style.fontFamily || (mono ? "var(--mono)" : "var(--sans)")) +
+      ";font-weight:" + (t.style.fontWeight || "400") + ";font-style:" + (t.style.fontStyle || "normal");
+    d.innerHTML = mathify(s);
+    fo.appendChild(d); t.parentNode.replaceChild(fo, t); layoutFO(fo);
+  });
+}
+function put(id, str) {
+  var e = document.getElementById(id);
+  if (e && e.tagName === "foreignObject") e.firstChild.innerHTML = mathify(str); else if (e) e.textContent = str;
+}
+function attr(id, k, v) {
+  var e = document.getElementById(id);
+  if (!e) return;
+  if (e.tagName !== "foreignObject") { e.setAttribute(k, v); return; }
+  if (k === "x" || k === "y") { e.setAttribute("data-" + k, v); layoutFO(e); }
+  else if (k === "text-anchor") { e.setAttribute("data-anchor", v); layoutFO(e); }
+  else e.setAttribute(k, v);
+}
+
+function runEN() {
+(function () {
+  "use strict";
+  // ---- the statement (checked in tools/verify.py) ----
+  var R = 8.314462618, ATM = 101325, cv = 2.5 * R;
+  var VA0 = 0.010, VB0 = 0.015, TA0 = 288, TB0 = 300, pA0 = 2 * ATM, pB0 = ATM;
+  var nA = pA0 * VA0 / (R * TA0), nB = pB0 * VB0 / (R * TB0), V = VA0 + VB0;
+  var Tf = (nA * TA0 + nB * TB0) / (nA + nB), pf = (nA + nB) * R * Tf / V, VAf = nA / (nA + nB) * V, VBf = V - VAf;
+  var AS = 0.05, L = V / AS, x0 = VA0 / AS, xf = VAf / AS;
+  // ---- the models ----
+  var MW = 40, C1 = 500, K1 = 12;          // the freed wall: mass, drag, conductance
+  var MI = 0.04, C2 = 90;                  // the rush after removal: interface mass and drag
+  var DIFF = 1.5e-5, ALPHA = 1.5e-5, N = 100, DT2 = 0.25, T2MAX = 7200;
+  var dxc = L / N, Vc = AS * dxc;
+  // ---- the results ----
+  var tA = nA * cv * Math.log(Tf / TA0), tB = nB * cv * Math.log(Tf / TB0);
+  var wA1 = nA * R * Math.log(VAf / VA0), wB1 = nB * R * Math.log(VBf / VB0);
+  var wA2 = nA * R * Math.log(V / VA0), wB2 = nB * R * Math.log(V / VB0);
+  var dS1 = tA + tB + wA1 + wB1, dS2 = tA + tB + wA2 + wB2, dSmix = dS2 - dS1;
+
+  var $ = function (id) { return document.getElementById(id); };
+  var put = window.put || function (id, s) { $(id).textContent = s; };
+  var attr = window.attr || function (id, k, v) { $(id).setAttribute(k, v); };
+  var tex = function (s) { return window.mathify ? window.mathify(s) : s; };
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var NS = "http://www.w3.org/2000/svg";
+  function el(tag, attrs, parent, text) {
+    var e = document.createElementNS(NS, tag);
+    for (var k in attrs) e.setAttribute(k, attrs[k]);
+    if (text != null) e.textContent = text;
+    parent.appendChild(e); return e;
+  }
+  function f1(x) { return x.toFixed(1); }
+  function f2(x) { return x.toFixed(2); }
+  function sgn(x, d) { var s = Math.abs(x) < 0.5 * Math.pow(10, -d) ? 0 : x; return (s > 0 ? "+" : s < 0 ? "−" : "") + Math.abs(s).toFixed(d); }
+  function store(k, v) { try { if (v === undefined) return localStorage.getItem(k); localStorage.setItem(k, v); } catch (e) { return null; } }
+  function sepS(VA, TA, VB, TB, same) {
+    return same ? nA * (cv * Math.log(TA) + R * Math.log(VA / nA)) + nB * (cv * Math.log(TB) + R * Math.log(VB / nB))
+                : nA * (cv * Math.log(TA) + R * Math.log(VA)) + nB * (cv * Math.log(TB) + R * Math.log(VB));
+  }
+
+  // Two lumped gases and a wall: m dv = [(pA − pB)A − c v] dt. Energy is conserved exactly: the drag's heat is the
+  // residual of the wall's energy balance and goes to the gases, half each; k is the conductance through the wall.
+  function wallRun(m, c, k, dt, every, vAct, tHold, gapStop, tmax) {
+    var x = x0, v = 0, UA = nA * cv * TA0, UB = nB * cv * TB0, t = 0, i = 0, last = 0;
+    var S0 = sepS(VA0, TA0, VB0, TB0, false), S0s = sepS(VA0, TA0, VB0, TB0, true);
+    var o = { t: [], x: [], TA: [], TB: [], pA: [], pB: [], S: [], Ss: [], v: [] };
+    while (t < tmax) {
+      var VA = AS * x, VB = V - VA, TA = UA / (nA * cv), TB = UB / (nB * cv);
+      var pA = nA * R * TA / VA, pB = nB * R * TB / VB;
+      if (i % every === 0) {
+        o.t.push(t); o.x.push(x); o.TA.push(TA); o.TB.push(TB); o.pA.push(pA); o.pB.push(pB); o.v.push(v);
+        o.S.push(sepS(VA, TA, VB, TB, false) - S0); o.Ss.push(sepS(VA, TA, VB, TB, true) - S0s);
+      }
+      var F = (pA - pB) * AS, v1 = v + (F - c * v) / m * dt, dx = v1 * dt;
+      var diss = F * dx - 0.5 * m * (v1 * v1 - v * v), q = k * (TB - TA) * dt;
+      UA += -pA * AS * dx + q + 0.5 * diss; UB += pB * AS * dx - q + 0.5 * diss;
+      if (Math.abs(v) > vAct) last = t;
+      v = v1; x += dx; t += dt; i++;
+      if (t > tHold && t > last + tHold && Math.abs(TA - TB) < gapStop) break;
+    }
+    o.xEnd = x; o.TAEnd = UA / (nA * cv); o.TBEnd = UB / (nB * cv); o.tEnd = t;
+    return o;
+  }
+  // Interdiffusion along the vessel in N cells, from A in [0, xs] at TA and B in [xs, L] at TB (xs on the grid).
+  // Species diffuse (D) carrying their internal energy; heat conducts (alpha). Moles and energy are conserved.
+  function diffuseRun(xs, TA, TB, same, every) {
+    var a = new Float64Array(N), b = new Float64Array(N), U = new Float64Array(N), T = new Float64Array(N), j;
+    var ja = Math.round(xs / dxc), cA = nA / (AS * xs), cB = nB / (AS * (L - xs));
+    for (j = 0; j < N; j++) { a[j] = j < ja ? cA * Vc : 0; b[j] = j < ja ? 0 : cB * Vc; U[j] = cv * (a[j] * TA + b[j] * TB); }
+    function entropy() {
+      var S = 0, n, Tj;
+      for (var j = 0; j < N; j++) {
+        n = a[j] + b[j]; if (n <= 0) continue; Tj = U[j] / (n * cv);
+        if (same) S += n * (cv * Math.log(Tj) + R * Math.log(Vc / n));
+        else { if (a[j] > 0) S += a[j] * (cv * Math.log(Tj) + R * Math.log(Vc / a[j])); if (b[j] > 0) S += b[j] * (cv * Math.log(Tj) + R * Math.log(Vc / b[j])); }
+      }
+      return S;
+    }
+    var S0 = entropy(), r = DIFF * DT2 / (dxc * dxc), ra = ALPHA * DT2 / (dxc * dxc), t = 0, i = 0;
+    var o = { t: [], S: [], a: [], b: [], T: [] };
+    function snap() { for (var j = 0; j < N; j++) T[j] = U[j] / ((a[j] + b[j]) * cv); o.t.push(t); o.S.push(entropy() - S0); o.a.push(Float64Array.from(a)); o.b.push(Float64Array.from(b)); o.T.push(Float64Array.from(T)); }
+    snap();
+    var na = new Float64Array(N), nb = new Float64Array(N), nU = new Float64Array(N);
+    while (t < T2MAX) {
+      for (j = 0; j < N; j++) { T[j] = U[j] / ((a[j] + b[j]) * cv); na[j] = a[j]; nb[j] = b[j]; nU[j] = U[j]; }
+      for (j = 0; j < N - 1; j++) {
+        var fa = r * (a[j] - a[j + 1]), fb = r * (b[j] - b[j + 1]);
+        na[j] -= fa; na[j + 1] += fa; nb[j] -= fb; nb[j + 1] += fb;
+        var e = cv * (fa > 0 ? T[j] : T[j + 1]) * fa + cv * (fb > 0 ? T[j] : T[j + 1]) * fb
+              + ra * cv * 0.5 * (a[j] + b[j] + a[j + 1] + b[j + 1]) * (T[j] - T[j + 1]);
+        nU[j] -= e; nU[j + 1] += e;
+      }
+      var sw = a; a = na; na = sw; sw = b; b = nb; nb = sw; sw = U; U = nU; nU = sw;
+      t += DT2; i++;
+      if (i % every === 0) snap();
+    }
+    return o;
+  }
+  function at(ts, t) {
+    var lo = 0, hi = ts.length - 1;
+    if (t <= ts[0]) return 0;
+    if (t >= ts[hi]) return hi;
+    while (hi - lo > 1) { var mid = (lo + hi) >> 1; if (ts[mid] < t) lo = mid; else hi = mid; }
+    return hi;
+  }
+
+  // ---- drawing scales ----
+  var X0 = 40, PXM = 1200;                                   // apparatus: px per metre
+  var PVx = function (Vl) { return 56 + Vl / 27 * 440; };      // 0..27 L
+  var PVy = function (Patm) { return 370 - Patm / 2.3 * 340; }; // 0..2.3 atm
+  var TLO = 260, THI = 340;
+  function tcol(T) { var u = Math.max(0, Math.min(1, (T - TLO) / (THI - TLO))); return "color-mix(in oklab, var(--hot) " + Math.round(u * 100) + "%, var(--cold))"; }
+  function gcol(fracA) { return same ? "var(--o2-fill)" : "color-mix(in oklab, var(--o2-fill) " + Math.round(fracA * 100) + "%, var(--n2-fill))"; }
+
+  // ---- cells of the vessel and of the temperature strip ----
+  var cellR = [], tcellR = [];
+  (function () {
+    for (var j = 0; j < N; j++) {
+      cellR.push(el("rect", { x: X0 + j * 6, y: 96, width: 6.4, height: 140, fill: "var(--o2-fill)" }, $("cells")));
+      tcellR.push(el("rect", { x: X0 + j * 6, y: 293, width: 6.4, height: 10, fill: tcol(TA0) }, $("tcells")));
+    }
+  })();
+
+  // ---- p–V plane: axes, isotherms, points ----
+  var same = false, caseSel = 1, afterOne = false;
+  function isoPath(n, T, V1, V2) {
+    var d = "";
+    for (var i = 0; i <= 60; i++) { var Vl = V1 + (V2 - V1) * i / 60; d += (i ? "L" : "M") + PVx(Vl).toFixed(1) + "," + PVy(n * R * T / (Vl * 1e-3) / ATM).toFixed(1); }
+    return d;
+  }
+  function arrowHead(g, x0, y0, x1, y1, fill) {
+    var ang = Math.atan2(y1 - y0, x1 - x0), Ln = 10, w = 5;
+    var bx = x1 - Ln * Math.cos(ang), by = y1 - Ln * Math.sin(ang), nx = -Math.sin(ang) * w, ny = Math.cos(ang) * w;
+    el("path", { d: "M" + x1 + "," + y1 + "L" + (bx + nx) + "," + (by + ny) + "L" + (bx - nx) + "," + (by - ny) + "Z", fill: fill }, g);
+  }
+  (function axes() {
+    var g0 = $("pvAxes"), v, P, x, y;
+    el("line", { x1: 56, y1: 370, x2: 496, y2: 370, stroke: "var(--ink-soft)" }, g0);
+    el("line", { x1: 56, y1: 30, x2: 56, y2: 370, stroke: "var(--ink-soft)" }, g0);
+    for (v = 0; v <= 25; v += 5) {
+      x = PVx(v);
+      el("line", { x1: x, y1: 370, x2: x, y2: 375, stroke: "var(--ink-soft)" }, g0);
+      el("text", { x: x, y: 391, "text-anchor": "middle", style: "font-size:12.5px", "class": "mono" }, g0, v);
+    }
+    for (P = 0; P <= 2; P += 0.5) {
+      y = PVy(P);
+      el("line", { x1: 51, y1: y, x2: 56, y2: y, stroke: "var(--ink-soft)" }, g0);
+      if (P) el("line", { x1: 56, y1: y, x2: 496, y2: y, stroke: "var(--line-soft)" }, g0);
+      el("text", { x: 46, y: y + 4, "text-anchor": "end", style: "font-size:12.5px", "class": "mono" }, g0, P.toFixed(1));
+    }
+    el("text", { x: 496, y: 412, "text-anchor": "end", style: "font-size:13px" }, g0, "V / L");
+    el("text", { x: 12, y: 22, style: "font-size:13px" }, g0, "p / atm");
+  })();
+  function drawPV() {
+    var gI = $("pvIso"), gR = $("pvRev"), gD = $("pvDot"), gP = $("pvPts");
+    [gI, gR, gD, gP].forEach(function (g) { while (g.firstChild) g.removeChild(g.firstChild); });
+    var cA = "var(--o2)", cB = same ? "var(--o2)" : "var(--n2)";
+    // isotherms: initial and final, faint
+    el("path", { d: isoPath(nA, TA0, 7, 26), fill: "none", stroke: cA, "stroke-opacity": 0.28, "stroke-width": 1.4 }, gI);
+    el("path", { d: isoPath(nA, Tf, 7, 26), fill: "none", stroke: cA, "stroke-opacity": 0.28, "stroke-width": 1.4, "stroke-dasharray": "6 4" }, gI);
+    el("path", { d: isoPath(nB, TB0, 5, 26), fill: "none", stroke: cB, "stroke-opacity": 0.28, "stroke-width": 1.4 }, gI);
+    el("path", { d: isoPath(nB, Tf, 5, 26), fill: "none", stroke: cB, "stroke-opacity": 0.28, "stroke-width": 1.4, "stroke-dasharray": "6 4" }, gI);
+    // final states of the selected case; with one gas, case 2 ends where case 1 does
+    var two = !same && caseSel === 2;
+    var fA = two ? [V * 1e3, nA * R * Tf / V / ATM] : [VAf * 1e3, pf / ATM];
+    var fB = two ? [V * 1e3, nB * R * Tf / V / ATM] : [VBf * 1e3, pf / ATM];
+    var iA = [VA0 * 1e3, pA0 / ATM], iB = [VB0 * 1e3, pB0 / ATM];
+    function route(n, i, f, col) {
+      var pm = n * R * Tf / (i[0] * 1e-3) / ATM;      // after the isochore
+      el("line", { x1: PVx(i[0]), y1: PVy(i[1]), x2: PVx(i[0]), y2: PVy(pm), stroke: col, "stroke-width": 2.2 }, gR);
+      arrowHead(gR, PVx(i[0]), PVy(i[1]), PVx(i[0]), PVy(0.5 * (i[1] + pm)), col);
+      el("path", { d: isoPath(n, Tf, i[0], f[0]), fill: "none", stroke: col, "stroke-width": 2.2 }, gR);
+      var Vm = 0.5 * (i[0] + f[0]), dv = 0.3 * (f[0] > i[0] ? 1 : -1);
+      arrowHead(gR, PVx(Vm - dv), PVy(n * R * Tf / ((Vm - dv) * 1e-3) / ATM), PVx(Vm + dv), PVy(n * R * Tf / ((Vm + dv) * 1e-3) / ATM), col);
+      el("line", { x1: PVx(i[0]), y1: PVy(i[1]), x2: PVx(f[0]), y2: PVy(f[1]), stroke: col, "stroke-width": 2.4, "stroke-dasharray": "1.5 6", "stroke-linecap": "round" }, gD);
+    }
+    route(nA, iA, fA, cA); route(nB, iB, fB, cB);
+    // the other case's end points, hollow
+    var oA = two ? [VAf * 1e3, pf / ATM] : [V * 1e3, nA * R * Tf / V / ATM], oB = two ? [VBf * 1e3, pf / ATM] : [V * 1e3, nB * R * Tf / V / ATM];
+    if (!same) [[oA, cA], [oB, cB]].forEach(function (s) { el("circle", { cx: PVx(s[0][0]), cy: PVy(s[0][1]), r: 4.5, fill: "var(--paper)", stroke: s[1], "stroke-width": 1.5, opacity: 0.6 }, gP); });
+    [[iA, cA, "i", -10, -8], [iB, cB, "i", 8, -8], [fA, cA, "f", 8, two ? -6 : 16], [fB, cB, "f", two ? 8 : -10, two ? 18 : -8]].forEach(function (s) {
+      el("circle", { cx: PVx(s[0][0]), cy: PVy(s[0][1]), r: 5.5, fill: s[1] }, gP);
+      el("text", { x: PVx(s[0][0]) + s[3], y: PVy(s[0][1]) + s[4], "text-anchor": s[3] < 0 ? "end" : "start", style: "font-size:16px;font-weight:700;fill:" + s[1] + ";font-family:var(--serif)" }, gP, s[2]);
+    });
+    el("text", { x: PVx(iA[0]) - 10, y: PVy(iA[1]) + 8, "text-anchor": "end", style: "font-size:11px", "class": "mono" }, gP, "10 L, 2 atm");
+    el("text", { x: PVx(iB[0]) + 8, y: PVy(iB[1]) + 8, style: "font-size:11px", "class": "mono" }, gP, "15 L, 1 atm");
+    if (two) {
+      el("text", { x: PVx(fA[0]) - 10, y: PVy(fA[1]) - 6, "text-anchor": "end", style: "font-size:11px", "class": "mono" }, gP, "25 L, " + f2(fA[1]) + " atm");
+      el("text", { x: PVx(fB[0]) - 10, y: PVy(fB[1]) + 18, "text-anchor": "end", style: "font-size:11px", "class": "mono" }, gP, "25 L, " + f2(fB[1]) + " atm");
+    } else {
+      el("text", { x: PVx(fA[0]) + 8, y: PVy(fA[1]) + 30, style: "font-size:11px", "class": "mono" }, gP, f2(fA[0]) + " L, 1.40 atm");
+      el("text", { x: PVx(fB[0]) - 10, y: PVy(fB[1]) - 20, "text-anchor": "end", style: "font-size:11px", "class": "mono" }, gP, f2(fB[0]) + " L");
+    }
+    put("pvNote", same && caseSel === 2 ? "one gas: the two portions share the final state of case 1" : "");
+    // run-time text in the SVG is typeset by the page's helpers when present
+    if (window.svgMath) window.svgMath($("pv"));
+  }
+  function markers(VA, pA, VB, pB, show) {
+    attr("mA", "cx", PVx(VA * 1e3)); attr("mA", "cy", PVy(pA / ATM)); attr("mA", "opacity", show ? 0.85 : 0);
+    attr("mB", "cx", PVx(VB * 1e3)); attr("mB", "cy", PVy(pB / ATM)); attr("mB", "opacity", show ? 0.85 : 0);
+  }
+
+  // ---- drawing of the apparatus ----
+  function drawSplit(x, TA, TB, wallOn, lockOn, condOn) {
+    var px = X0 + PXM * x;
+    $("cells").style.display = "none"; $("gasA").style.display = ""; $("gasB").style.display = "";
+    attr("gasA", "width", Math.max(0, px - X0)); attr("gasB", "x", px); attr("gasB", "width", Math.max(0, X0 + 600 - px));
+    $("gasA").style.fill = "var(--o2-fill)"; $("gasB").style.fill = same ? "var(--o2-fill)" : "var(--n2-fill)";
+    $("wall").setAttribute("transform", "translate(" + px + "," + (wallOn ? 0 : -170) + ")");
+    $("lockT").style.display = lockOn ? "" : "none"; $("lockB").style.display = lockOn ? "" : "none";
+    $("cond").setAttribute("opacity", condOn ? 1 : 0);
+    if (condOn) $("cond").setAttribute("transform", TB > TA ? "scale(-1,1)" : "");
+    for (var j = 0; j < N; j++) tcellR[j].style.fill = tcol((j + 0.5) * dxc < x ? TA : TB);
+    attr("lblA", "x", 52); attr("lblB", "x", 628);
+  }
+  function drawCells(aj, bj, Tj) {
+    $("cells").style.display = ""; $("gasA").style.display = "none"; $("gasB").style.display = "none";
+    for (var j = 0; j < N; j++) { cellR[j].style.fill = gcol(aj[j] / Math.max(1e-30, aj[j] + bj[j])); tcellR[j].style.fill = tcol(Tj[j]); }
+  }
+  function stateText(VA, TA, pA, VB, TB, pB) {
+    put("stA", f1(VA * 1e3) + " L · " + f1(TA) + " K · " + f2(pA / ATM) + " atm");
+    put("stB", f1(VB * 1e3) + " L · " + f1(TB) + " K · " + f2(pB / ATM) + " atm");
+  }
+  function readouts(a, b2, c, d, e, f) { put("r1", a); put("r2", b2); put("r3", c); put("r4", d); put("r5", e || ""); put("r6", f || ""); }
+  function nameA() { return same ? "gas, left" : "O₂"; }
+  function nameB() { return same ? "gas, right" : "N₂"; }
+
+  // ---- the entropy chart ----
+  var chart = { max: 1, pts: [] };
+  function chartSetup(target, label, x0lbl, x1lbl) {
+    chart.max = Math.max(target * 1.12, 1e-9); chart.pts = [];
+    attr("sTarget", "y1", 110 - 110 * target / chart.max); attr("sTarget", "y2", 110 - 110 * target / chart.max);
+    attr("sTarget", "opacity", target > 0 ? 1 : 0);
+    put("sTargetLbl", label); attr("sTargetLbl", "y", 110 - 110 * target / chart.max - 4); attr("sTargetLbl", "opacity", target > 0 ? 1 : 0);
+    put("sY", chart.max.toFixed(chart.max < 2 ? 2 : 1)); put("sX0", x0lbl); put("sX1", x1lbl);
+    $("sPath").setAttribute("d", ""); attr("sDot", "opacity", 0);
+  }
+  function chartPoint(u, S) {
+    var x = 210 * u, y = 110 - 110 * Math.max(0, S) / chart.max;
+    chart.pts.push([x, y]);
+    $("sPath").setAttribute("d", chart.pts.map(function (p, i) { return (i ? "L" : "M") + p[0].toFixed(1) + "," + p[1].toFixed(1); }).join(""));
+    attr("sDot", "cx", x); attr("sDot", "cy", y); attr("sDot", "opacity", 1);
+  }
+
+  // ---- ledger ----
+  function ledger() {
+    var two = !same;
+    $("hA").innerHTML = tex((same ? "gas, left, " : "O₂, ") + nA.toFixed(3) + " mol: final volume");
+    $("hB").innerHTML = tex((same ? "gas, right, " : "N₂, ") + nB.toFixed(3) + " mol: final volume");
+    $("vA1").innerHTML = tex(f2(VAf * 1e3) + " L"); $("vB1").innerHTML = tex(f2(VBf * 1e3) + " L");
+    $("vA2").innerHTML = tex(two ? "25 L" : f2(VAf * 1e3) + " L, its share"); $("vB2").innerHTML = tex(two ? "25 L" : f2(VBf * 1e3) + " L, its share");
+    $("tA1").innerHTML = tex(sgn(tA, 3) + " J/K"); $("tA2").innerHTML = tex(sgn(tA, 3) + " J/K");
+    $("tB1").innerHTML = tex(sgn(tB, 3) + " J/K"); $("tB2").innerHTML = tex(sgn(tB, 3) + " J/K");
+    $("wA1").innerHTML = tex(sgn(wA1, 3) + " J/K"); $("wA2").innerHTML = tex(sgn(two ? wA2 : wA1, 3) + " J/K");
+    $("wB1").innerHTML = tex(sgn(wB1, 3) + " J/K"); $("wB2").innerHTML = tex(sgn(two ? wB2 : wB1, 3) + " J/K");
+    $("u1").innerHTML = tex(sgn(dS1, 3) + " J/K"); $("u2").innerHTML = tex(sgn(two ? dS2 : dS1, 3) + " J/K");
+    $("x2").innerHTML = tex(two ? sgn(dSmix, 3) + " J/K" : "0 J/K");
+    $("verdict").innerHTML = tex(two
+      ? "Freeing the wall equalises temperature and pressure and generates <b>" + dS1.toFixed(2) + " J/K</b>. Removing it does the same and then lets each gas spread over the whole vessel: <b>" + dS2.toFixed(2) + " J/K</b>, of which " + dSmix.toFixed(2) + " J/K is the entropy of mixing. The vessel exchanges nothing with the outside, so these are the entropy changes of the universe, all of them generated inside."
+      : "With the same gas on both sides, freeing the wall still generates <b>" + dS1.toFixed(2) + " J/K</b>: the temperatures and the pressures were different. Removing the wall now gives the same <b>" + dS1.toFixed(2) + " J/K</b>: once T and p agree, the two portions of one gas are one gas, and nothing more happens. The mixing term is not small, it is absent (Gibbs).");
+    $("gDiff").setAttribute("aria-pressed", same ? "false" : "true"); $("gSame").setAttribute("aria-pressed", same ? "true" : "false");
+    put("lblA", same ? "gas" : "O₂"); put("lblB", same ? "gas" : "N₂");
+    $("lblB").style.fill = same ? "var(--o2)" : "var(--n2)"; $("r3").style.fill = same ? "var(--o2)" : "var(--n2)";
+  }
+
+  // ---- the states of the page ----
+  var phase = "i", raf = 0, speed = 1;
+  function atI() {
+    cancelAnimationFrame(raf); phase = "i"; afterOne = false; caseSel = 1;
+    drawSplit(x0, TA0, TB0, true, true, false); $("slot").style.display = "none";
+    stateText(VA0, TA0, pA0, VB0, TB0, pB0);
+    put("lockLbl", "locked, adiabatic"); attr("lockLbl", "x", X0 + PXM * x0);
+    markers(VA0, pA0, VB0, pB0, false); drawPV();
+    chartSetup(0, "", "", "");
+    readouts("state i · the wall locked", nameA() + ": V = 10.0 L · T = 288.0 K · p = 2.00 atm", nameB() + ": V = 15.0 L · T = 300.0 K · p = 1.00 atm", "ΔS = 0 J/K", "Press 1 to free the wall, or 2 to remove it.");
+    $("b1").disabled = false; $("b2").disabled = false; put("b2", "2 · Remove the wall"); $("gDiff").disabled = false; $("gSame").disabled = false;
+  }
+  function loop(step, done) {
+    var t0 = null;
+    function frame(ts) { if (t0 == null) t0 = ts; if (step((ts - t0) / 1000)) raf = requestAnimationFrame(frame); else done(); }
+    raf = requestAnimationFrame(frame);
+  }
+  // display time -> model time for process 1: slow motion only while the wall swings (the first second)
+  function t1of(el) { if (speed === 1) return el; var tw = 1.0; return el < tw / speed ? el * speed : tw + (el - tw / speed); }
+
+  function run1() {
+    if (phase !== "i") return;
+    phase = "p1"; caseSel = 1; $("b1").disabled = true; $("b2").disabled = true; $("gDiff").disabled = true; $("gSame").disabled = true;
+    var s = wallRun(MW, C1, K1, 2e-5, 50, 2e-3, 0.3, 0.02, 12), target = dS1;
+    var tTot = s.tEnd, Sarr = same ? s.Ss : s.S;
+    drawPV(); $("slot").style.display = "none";
+    chartSetup(target, "ΔS = " + target.toFixed(2) + " J/K", "0", f1(tTot) + " s");
+    put("lockLbl", "freed: diathermal, movable");
+    function end() {
+      phase = "f1"; afterOne = true;
+      drawSplit(xf, Tf, Tf, true, false, false); stateText(VAf, Tf, pf, VBf, Tf, pf);
+      markers(VAf, pf, VBf, pf, false); chartPoint(1, Sarr[Sarr.length - 1]);
+      readouts("state f · t = " + f1(tTot) + " s", nameA() + ": V = " + f2(VAf * 1e3) + " L · T = " + f1(Tf) + " K · p = " + f2(pf / ATM) + " atm",
+        nameB() + ": V = " + f2(VBf * 1e3) + " L · T = " + f1(Tf) + " K · p = " + f2(pf / ATM) + " atm", "ΔS = " + sgn(target, 3) + " J/K",
+        "At rest: equal pressures, equal temperatures.", same ? "Press 2 to remove the wall: nothing will happen." : "Press 2 to remove the wall from here: the mixing alone.");
+      $("b2").disabled = false; put("b2", "2 · Now remove the wall");
+    }
+    if (reduce) { end(); return; }
+    loop(function (el) {
+      var t = Math.min(t1of(el), tTot), k = at(s.t, t);
+      var x = s.x[k], TA = s.TA[k], TB = s.TB[k], pA = s.pA[k], pB = s.pB[k], VA = AS * x;
+      drawSplit(x, TA, TB, true, false, Math.abs(TA - TB) > 0.3);
+      attr("lockLbl", "x", X0 + PXM * x);
+      stateText(VA, TA, pA, V - VA, TB, pB);
+      markers(VA, pA, V - VA, pB, true);
+      chartPoint(t / tTot, Sarr[k]);
+      var swinging = t < 1.0, note = swinging ? "The wall overshoots and swings; the gas's drag damps it." : "Heat crosses the wall from the warmer gas; the wall drifts.";
+      readouts("process 1 · t = " + f2(t) + " s" + (speed < 1 && swinging ? " (slow motion ×1/10)" : ""),
+        nameA() + ": V = " + f2(VA * 1e3) + " L · T = " + f1(TA) + " K · p = " + f2(pA / ATM) + " atm",
+        nameB() + ": V = " + f2((V - VA) * 1e3) + " L · T = " + f1(TB) + " K · p = " + f2(pB / ATM) + " atm",
+        "ΔS = " + sgn(Sarr[k], 3) + " J/K", note, "Dots in the p–V plane: the model's lumped states.");
+      return t < tTot;
+    }, end);
+  }
+
+  function run2() {
+    if (phase !== "i" && phase !== "f1") return;
+    var fromF = phase === "f1";
+    phase = "p2"; caseSel = 2; $("b1").disabled = true; $("b2").disabled = true; $("gDiff").disabled = true; $("gSame").disabled = true;
+    drawPV();
+    var Si = fromF ? sepS(VAf, Tf, VBf, Tf, same) - sepS(VA0, TA0, VB0, TB0, same) : 0, rush = null, xs, TAr, TBr, Srush = Si;
+    if (!fromF) {
+      rush = wallRun(MI, C2, 0, 1e-6, 10, 0.02, 0.004, 1e9, 0.5);
+      xs = Math.round(rush.xEnd / dxc) * dxc; TAr = rush.TAEnd; TBr = rush.TBEnd;
+      Srush = sepS(AS * xs, TAr, AS * (L - xs), TBr, same) - sepS(VA0, TA0, VB0, TB0, same);
+    } else { xs = Math.round(xf / dxc) * dxc; TAr = Tf; TBr = Tf; }
+    var dif = diffuseRun(xs, TAr, TBr, same, 40);
+    var target = same ? dS1 : dS2, Send = Srush + dif.S[dif.S.length - 1];
+    var D_LIFT = 0.5, D_RUSH = fromF ? 0 : 1.0, D_DIF = 8.0, tRush = rush ? rush.tEnd : 0, rushRate = rush ? tRush / D_RUSH : 0;
+    var tot = D_LIFT + D_RUSH + D_DIF;
+    chartSetup(target, "ΔS = " + target.toFixed(2) + " J/K", fromF ? "0" : "0 · 10 ms", "2 h");
+    $("slot").style.display = ""; attr("slot", "x", X0 + PXM * (fromF ? xf : x0) - 12);
+    put("lockLbl", "");
+    var xStart = fromF ? xf : x0, TAs = fromF ? Tf : TA0, TBs = fromF ? Tf : TB0;
+    function cellsAt(k) { drawCells(dif.a[k], dif.b[k], dif.T[k]); }
+    function end() {
+      phase = "f2";
+      cellsAt(dif.a.length - 1);
+      var fA = same ? [VAf, pf] : [V, nA * R * Tf / V], fB = same ? [VBf, pf] : [V, nB * R * Tf / V];
+      markers(fA[0], fA[1], fB[0], fB[1], !same);
+      stateText(fA[0], Tf, fA[1], fB[0], Tf, fB[1]); attr("lblA", "x", 52); attr("lblB", "x", 628);
+      chartPoint(1, Send);
+      readouts("state f · after 2 h", same ? "one gas: V = 25.0 L · T = " + f1(Tf) + " K · p = " + f2(pf / ATM) + " atm" : nameA() + ": V = 25.0 L · T = " + f1(Tf) + " K · p = " + f2(fA[1] / ATM) + " atm (partial)",
+        same ? "" : nameB() + ": V = 25.0 L · T = " + f1(Tf) + " K · p = " + f2(fB[1] / ATM) + " atm (partial)",
+        "ΔS = " + sgn(Send, 3) + " J/K", same ? (fromF ? "Nothing happened: the entropy did not move." : "Uniform: the same end state and entropy as case 1.") : (fromF ? "Mixed. The mixing entropy alone: " + f2(Send - Si) + " J/K." : "Mixed and uniform, each gas at its partial pressure."), "Reset to run again.");
+    }
+    if (reduce) { end(); return; }
+    loop(function (el) {
+      var u = el / tot;
+      if (el < D_LIFT) {                                   // the wall is drawn out
+        var lift = el / D_LIFT;
+        drawSplit(xStart, TAs, TBs, true, false, false); stateText(AS * xStart, TAs, nA * R * TAs / (AS * xStart), V - AS * xStart, TBs, nB * R * TBs / (V - AS * xStart));
+        $("wall").setAttribute("transform", "translate(" + (X0 + PXM * xStart) + "," + (-170 * lift) + ")");
+        readouts("process 2 · the wall is drawn out", "", "", "ΔS = " + sgn(Si, 3) + " J/K", fromF ? "From the equalised state: equal T and p on both sides." : "Nothing holds the gases apart any more.");
+        chartPoint(u, Si);
+      } else if (el < D_LIFT + D_RUSH) {                   // the rush, in slow motion
+        var t = (el - D_LIFT) * rushRate, k = at(rush.t, t), x = rush.x[k], TA = rush.TA[k], TB = rush.TB[k], pA = rush.pA[k], pB = rush.pB[k];
+        drawSplit(x, TA, TB, false, false, false); $("wall").setAttribute("transform", "translate(" + (X0 + PXM * x0) + ",-170)");
+        stateText(AS * x, TA, pA, V - AS * x, TB, pB); markers(AS * x, pA, V - AS * x, pB, true);
+        var Sr = (same ? rush.Ss : rush.S)[k];
+        chartPoint(u, Sr);
+        readouts("process 2 · t = " + (t * 1e3).toFixed(1) + " ms (slow motion ×1/" + Math.round(1 / rushRate * 1) + ")", nameA() + ": T = " + f1(TA) + " K · p = " + f2(pA / ATM) + " atm", nameB() + ": T = " + f1(TB) + " K · p = " + f2(pB / ATM) + " atm",
+          "ΔS = " + sgn(Sr, 3) + " J/K", "The pressures equalise in milliseconds:", "O₂ expands and cools, N₂ is squeezed and warms.");
+      } else {                                             // interdiffusion, in time-lapse
+        var td = (el - D_LIFT - D_RUSH) / D_DIF * T2MAX, kd = at(dif.t, td);
+        cellsAt(kd); markers(0, 0, 0, 0, false);
+        var Tj = dif.T[kd], Tmin = Infinity, Tmax = -Infinity, aL = 0, j;
+        for (j = 0; j < N; j++) { if (Tj[j] < Tmin) Tmin = Tj[j]; if (Tj[j] > Tmax) Tmax = Tj[j]; if (j < N / 2) aL += dif.a[kd][j]; }
+        put("stA", ""); put("stB", "");
+        var Sd = Srush + dif.S[kd];
+        chartPoint(u, Sd);
+        readouts("process 2 · t = " + (td / 60).toFixed(0) + " min (time-lapse ×" + Math.round(T2MAX / D_DIF) + ")",
+          same ? "one gas, spreading evenly" : nameA() + " in the left half: " + (100 * aL / nA).toFixed(0) + " %",
+          "T along the vessel: " + f1(Tmin) + " K to " + f1(Tmax) + " K", "ΔS = " + sgn(Sd, 3) + " J/K",
+          same ? "Heat evens out; the gas was never two gases." : "Each gas diffuses into the other; heat evens out.", "Minutes become seconds here.");
+      }
+      return el < tot;
+    }, end);
+  }
+
+  $("b1").addEventListener("click", run1);
+  $("b2").addEventListener("click", run2);
+  $("b0").addEventListener("click", atI);
+  $("gDiff").addEventListener("click", function () { same = false; ledger(); atI(); });
+  $("gSame").addEventListener("click", function () { same = true; ledger(); atI(); });
+  function setSpeed(v) {
+    speed = v;
+    $("sReal").setAttribute("aria-pressed", v === 1 ? "true" : "false");
+    $("sSlow").setAttribute("aria-pressed", v === 1 ? "false" : "true");
+  }
+  $("sReal").addEventListener("click", function () { setSpeed(1); });
+  $("sSlow").addEventListener("click", function () { setSpeed(0.1); });
+
+  // ---- the ledger can be hidden ----
+  function showLedger(on) {
+    $("ledgerBody").hidden = !on; $("ledgerNote").hidden = on;
+    put("ledgerBtn", on ? "Hide" : "Show");
+    $("ledgerBtn").setAttribute("aria-expanded", on ? "true" : "false");
+    store("ex18-ledger", on ? "1" : "0");
+  }
+  $("ledgerBtn").addEventListener("click", function () { showLedger($("ledgerBody").hidden); });
+  showLedger(store("ex18-ledger") !== "0");
+
+  svgMath();
+  ledger(); atI();
+  // the models, reachable from the console and from the node check that compares them with tools/verify.py
+  window.ex18 = { wallRun: wallRun, diffuseRun: diffuseRun, sepS: sepS, dS1: dS1, dS2: dS2, Tf: Tf, pf: pf, xf: xf, dxc: dxc,
+    setSame: function (v) { same = v; }, params: { MW: MW, C1: C1, K1: K1, MI: MI, C2: C2, DIFF: DIFF, ALPHA: ALPHA, N: N, DT2: DT2, T2MAX: T2MAX } };
+})();
+}
+function runEU() {
+(function () {
+  "use strict";
+  // ---- the statement (checked in tools/verify.py) ----
+  var R = 8.314462618, ATM = 101325, cv = 2.5 * R;
+  var VA0 = 0.010, VB0 = 0.015, TA0 = 288, TB0 = 300, pA0 = 2 * ATM, pB0 = ATM;
+  var nA = pA0 * VA0 / (R * TA0), nB = pB0 * VB0 / (R * TB0), V = VA0 + VB0;
+  var Tf = (nA * TA0 + nB * TB0) / (nA + nB), pf = (nA + nB) * R * Tf / V, VAf = nA / (nA + nB) * V, VBf = V - VAf;
+  var AS = 0.05, L = V / AS, x0 = VA0 / AS, xf = VAf / AS;
+  // ---- the models ----
+  var MW = 40, C1 = 500, K1 = 12;          // the freed wall: mass, drag, conductance
+  var MI = 0.04, C2 = 90;                  // the rush after removal: interface mass and drag
+  var DIFF = 1.5e-5, ALPHA = 1.5e-5, N = 100, DT2 = 0.25, T2MAX = 7200;
+  var dxc = L / N, Vc = AS * dxc;
+  // ---- the results ----
+  var tA = nA * cv * Math.log(Tf / TA0), tB = nB * cv * Math.log(Tf / TB0);
+  var wA1 = nA * R * Math.log(VAf / VA0), wB1 = nB * R * Math.log(VBf / VB0);
+  var wA2 = nA * R * Math.log(V / VA0), wB2 = nB * R * Math.log(V / VB0);
+  var dS1 = tA + tB + wA1 + wB1, dS2 = tA + tB + wA2 + wB2, dSmix = dS2 - dS1;
+
+  var $ = function (id) { return document.getElementById(id); };
+  var put = window.put || function (id, s) { $(id).textContent = s; };
+  var attr = window.attr || function (id, k, v) { $(id).setAttribute(k, v); };
+  var tex = function (s) { return window.mathify ? window.mathify(s) : s; };
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var NS = "http://www.w3.org/2000/svg";
+  function el(tag, attrs, parent, text) {
+    var e = document.createElementNS(NS, tag);
+    for (var k in attrs) e.setAttribute(k, attrs[k]);
+    if (text != null) e.textContent = text;
+    parent.appendChild(e); return e;
+  }
+  function f1(x) { return x.toFixed(1); }
+  function f2(x) { return x.toFixed(2); }
+  function sgn(x, d) { var s = Math.abs(x) < 0.5 * Math.pow(10, -d) ? 0 : x; return (s > 0 ? "+" : s < 0 ? "−" : "") + Math.abs(s).toFixed(d); }
+  function store(k, v) { try { if (v === undefined) return localStorage.getItem(k); localStorage.setItem(k, v); } catch (e) { return null; } }
+  function sepS(VA, TA, VB, TB, same) {
+    return same ? nA * (cv * Math.log(TA) + R * Math.log(VA / nA)) + nB * (cv * Math.log(TB) + R * Math.log(VB / nB))
+                : nA * (cv * Math.log(TA) + R * Math.log(VA)) + nB * (cv * Math.log(TB) + R * Math.log(VB));
+  }
+
+  // Two lumped gases and a wall: m dv = [(pA − pB)A − c v] dt. Energy is conserved exactly: the drag's heat is the
+  // residual of the wall's energy balance and goes to the gases, half each; k is the conductance through the wall.
+  function wallRun(m, c, k, dt, every, vAct, tHold, gapStop, tmax) {
+    var x = x0, v = 0, UA = nA * cv * TA0, UB = nB * cv * TB0, t = 0, i = 0, last = 0;
+    var S0 = sepS(VA0, TA0, VB0, TB0, false), S0s = sepS(VA0, TA0, VB0, TB0, true);
+    var o = { t: [], x: [], TA: [], TB: [], pA: [], pB: [], S: [], Ss: [], v: [] };
+    while (t < tmax) {
+      var VA = AS * x, VB = V - VA, TA = UA / (nA * cv), TB = UB / (nB * cv);
+      var pA = nA * R * TA / VA, pB = nB * R * TB / VB;
+      if (i % every === 0) {
+        o.t.push(t); o.x.push(x); o.TA.push(TA); o.TB.push(TB); o.pA.push(pA); o.pB.push(pB); o.v.push(v);
+        o.S.push(sepS(VA, TA, VB, TB, false) - S0); o.Ss.push(sepS(VA, TA, VB, TB, true) - S0s);
+      }
+      var F = (pA - pB) * AS, v1 = v + (F - c * v) / m * dt, dx = v1 * dt;
+      var diss = F * dx - 0.5 * m * (v1 * v1 - v * v), q = k * (TB - TA) * dt;
+      UA += -pA * AS * dx + q + 0.5 * diss; UB += pB * AS * dx - q + 0.5 * diss;
+      if (Math.abs(v) > vAct) last = t;
+      v = v1; x += dx; t += dt; i++;
+      if (t > tHold && t > last + tHold && Math.abs(TA - TB) < gapStop) break;
+    }
+    o.xEnd = x; o.TAEnd = UA / (nA * cv); o.TBEnd = UB / (nB * cv); o.tEnd = t;
+    return o;
+  }
+  // Interdiffusion along the vessel in N cells, from A in [0, xs] at TA and B in [xs, L] at TB (xs on the grid).
+  // Species diffuse (D) carrying their internal energy; heat conducts (alpha). Moles and energy are conserved.
+  function diffuseRun(xs, TA, TB, same, every) {
+    var a = new Float64Array(N), b = new Float64Array(N), U = new Float64Array(N), T = new Float64Array(N), j;
+    var ja = Math.round(xs / dxc), cA = nA / (AS * xs), cB = nB / (AS * (L - xs));
+    for (j = 0; j < N; j++) { a[j] = j < ja ? cA * Vc : 0; b[j] = j < ja ? 0 : cB * Vc; U[j] = cv * (a[j] * TA + b[j] * TB); }
+    function entropy() {
+      var S = 0, n, Tj;
+      for (var j = 0; j < N; j++) {
+        n = a[j] + b[j]; if (n <= 0) continue; Tj = U[j] / (n * cv);
+        if (same) S += n * (cv * Math.log(Tj) + R * Math.log(Vc / n));
+        else { if (a[j] > 0) S += a[j] * (cv * Math.log(Tj) + R * Math.log(Vc / a[j])); if (b[j] > 0) S += b[j] * (cv * Math.log(Tj) + R * Math.log(Vc / b[j])); }
+      }
+      return S;
+    }
+    var S0 = entropy(), r = DIFF * DT2 / (dxc * dxc), ra = ALPHA * DT2 / (dxc * dxc), t = 0, i = 0;
+    var o = { t: [], S: [], a: [], b: [], T: [] };
+    function snap() { for (var j = 0; j < N; j++) T[j] = U[j] / ((a[j] + b[j]) * cv); o.t.push(t); o.S.push(entropy() - S0); o.a.push(Float64Array.from(a)); o.b.push(Float64Array.from(b)); o.T.push(Float64Array.from(T)); }
+    snap();
+    var na = new Float64Array(N), nb = new Float64Array(N), nU = new Float64Array(N);
+    while (t < T2MAX) {
+      for (j = 0; j < N; j++) { T[j] = U[j] / ((a[j] + b[j]) * cv); na[j] = a[j]; nb[j] = b[j]; nU[j] = U[j]; }
+      for (j = 0; j < N - 1; j++) {
+        var fa = r * (a[j] - a[j + 1]), fb = r * (b[j] - b[j + 1]);
+        na[j] -= fa; na[j + 1] += fa; nb[j] -= fb; nb[j + 1] += fb;
+        var e = cv * (fa > 0 ? T[j] : T[j + 1]) * fa + cv * (fb > 0 ? T[j] : T[j + 1]) * fb
+              + ra * cv * 0.5 * (a[j] + b[j] + a[j + 1] + b[j + 1]) * (T[j] - T[j + 1]);
+        nU[j] -= e; nU[j + 1] += e;
+      }
+      var sw = a; a = na; na = sw; sw = b; b = nb; nb = sw; sw = U; U = nU; nU = sw;
+      t += DT2; i++;
+      if (i % every === 0) snap();
+    }
+    return o;
+  }
+  function at(ts, t) {
+    var lo = 0, hi = ts.length - 1;
+    if (t <= ts[0]) return 0;
+    if (t >= ts[hi]) return hi;
+    while (hi - lo > 1) { var mid = (lo + hi) >> 1; if (ts[mid] < t) lo = mid; else hi = mid; }
+    return hi;
+  }
+
+  // ---- drawing scales ----
+  var X0 = 40, PXM = 1200;                                   // apparatus: px per metre
+  var PVx = function (Vl) { return 56 + Vl / 27 * 440; };      // 0..27 L
+  var PVy = function (Patm) { return 370 - Patm / 2.3 * 340; }; // 0..2.3 atm
+  var TLO = 260, THI = 340;
+  function tcol(T) { var u = Math.max(0, Math.min(1, (T - TLO) / (THI - TLO))); return "color-mix(in oklab, var(--hot) " + Math.round(u * 100) + "%, var(--cold))"; }
+  function gcol(fracA) { return same ? "var(--o2-fill)" : "color-mix(in oklab, var(--o2-fill) " + Math.round(fracA * 100) + "%, var(--n2-fill))"; }
+
+  // ---- cells of the vessel and of the temperature strip ----
+  var cellR = [], tcellR = [];
+  (function () {
+    for (var j = 0; j < N; j++) {
+      cellR.push(el("rect", { x: X0 + j * 6, y: 96, width: 6.4, height: 140, fill: "var(--o2-fill)" }, $("cells")));
+      tcellR.push(el("rect", { x: X0 + j * 6, y: 293, width: 6.4, height: 10, fill: tcol(TA0) }, $("tcells")));
+    }
+  })();
+
+  // ---- p–V plane: axes, isotherms, points ----
+  var same = false, caseSel = 1, afterOne = false;
+  function isoPath(n, T, V1, V2) {
+    var d = "";
+    for (var i = 0; i <= 60; i++) { var Vl = V1 + (V2 - V1) * i / 60; d += (i ? "L" : "M") + PVx(Vl).toFixed(1) + "," + PVy(n * R * T / (Vl * 1e-3) / ATM).toFixed(1); }
+    return d;
+  }
+  function arrowHead(g, x0, y0, x1, y1, fill) {
+    var ang = Math.atan2(y1 - y0, x1 - x0), Ln = 10, w = 5;
+    var bx = x1 - Ln * Math.cos(ang), by = y1 - Ln * Math.sin(ang), nx = -Math.sin(ang) * w, ny = Math.cos(ang) * w;
+    el("path", { d: "M" + x1 + "," + y1 + "L" + (bx + nx) + "," + (by + ny) + "L" + (bx - nx) + "," + (by - ny) + "Z", fill: fill }, g);
+  }
+  (function axes() {
+    var g0 = $("pvAxes"), v, P, x, y;
+    el("line", { x1: 56, y1: 370, x2: 496, y2: 370, stroke: "var(--ink-soft)" }, g0);
+    el("line", { x1: 56, y1: 30, x2: 56, y2: 370, stroke: "var(--ink-soft)" }, g0);
+    for (v = 0; v <= 25; v += 5) {
+      x = PVx(v);
+      el("line", { x1: x, y1: 370, x2: x, y2: 375, stroke: "var(--ink-soft)" }, g0);
+      el("text", { x: x, y: 391, "text-anchor": "middle", style: "font-size:12.5px", "class": "mono" }, g0, v);
+    }
+    for (P = 0; P <= 2; P += 0.5) {
+      y = PVy(P);
+      el("line", { x1: 51, y1: y, x2: 56, y2: y, stroke: "var(--ink-soft)" }, g0);
+      if (P) el("line", { x1: 56, y1: y, x2: 496, y2: y, stroke: "var(--line-soft)" }, g0);
+      el("text", { x: 46, y: y + 4, "text-anchor": "end", style: "font-size:12.5px", "class": "mono" }, g0, P.toFixed(1));
+    }
+    el("text", { x: 496, y: 412, "text-anchor": "end", style: "font-size:13px" }, g0, "V / L");
+    el("text", { x: 12, y: 22, style: "font-size:13px" }, g0, "p / atm");
+  })();
+  function drawPV() {
+    var gI = $("pvIso"), gR = $("pvRev"), gD = $("pvDot"), gP = $("pvPts");
+    [gI, gR, gD, gP].forEach(function (g) { while (g.firstChild) g.removeChild(g.firstChild); });
+    var cA = "var(--o2)", cB = same ? "var(--o2)" : "var(--n2)";
+    // isotherms: initial and final, faint
+    el("path", { d: isoPath(nA, TA0, 7, 26), fill: "none", stroke: cA, "stroke-opacity": 0.28, "stroke-width": 1.4 }, gI);
+    el("path", { d: isoPath(nA, Tf, 7, 26), fill: "none", stroke: cA, "stroke-opacity": 0.28, "stroke-width": 1.4, "stroke-dasharray": "6 4" }, gI);
+    el("path", { d: isoPath(nB, TB0, 5, 26), fill: "none", stroke: cB, "stroke-opacity": 0.28, "stroke-width": 1.4 }, gI);
+    el("path", { d: isoPath(nB, Tf, 5, 26), fill: "none", stroke: cB, "stroke-opacity": 0.28, "stroke-width": 1.4, "stroke-dasharray": "6 4" }, gI);
+    // final states of the selected case; with one gas, case 2 ends where case 1 does
+    var two = !same && caseSel === 2;
+    var fA = two ? [V * 1e3, nA * R * Tf / V / ATM] : [VAf * 1e3, pf / ATM];
+    var fB = two ? [V * 1e3, nB * R * Tf / V / ATM] : [VBf * 1e3, pf / ATM];
+    var iA = [VA0 * 1e3, pA0 / ATM], iB = [VB0 * 1e3, pB0 / ATM];
+    function route(n, i, f, col) {
+      var pm = n * R * Tf / (i[0] * 1e-3) / ATM;      // after the isochore
+      el("line", { x1: PVx(i[0]), y1: PVy(i[1]), x2: PVx(i[0]), y2: PVy(pm), stroke: col, "stroke-width": 2.2 }, gR);
+      arrowHead(gR, PVx(i[0]), PVy(i[1]), PVx(i[0]), PVy(0.5 * (i[1] + pm)), col);
+      el("path", { d: isoPath(n, Tf, i[0], f[0]), fill: "none", stroke: col, "stroke-width": 2.2 }, gR);
+      var Vm = 0.5 * (i[0] + f[0]), dv = 0.3 * (f[0] > i[0] ? 1 : -1);
+      arrowHead(gR, PVx(Vm - dv), PVy(n * R * Tf / ((Vm - dv) * 1e-3) / ATM), PVx(Vm + dv), PVy(n * R * Tf / ((Vm + dv) * 1e-3) / ATM), col);
+      el("line", { x1: PVx(i[0]), y1: PVy(i[1]), x2: PVx(f[0]), y2: PVy(f[1]), stroke: col, "stroke-width": 2.4, "stroke-dasharray": "1.5 6", "stroke-linecap": "round" }, gD);
+    }
+    route(nA, iA, fA, cA); route(nB, iB, fB, cB);
+    // the other case's end points, hollow
+    var oA = two ? [VAf * 1e3, pf / ATM] : [V * 1e3, nA * R * Tf / V / ATM], oB = two ? [VBf * 1e3, pf / ATM] : [V * 1e3, nB * R * Tf / V / ATM];
+    if (!same) [[oA, cA], [oB, cB]].forEach(function (s) { el("circle", { cx: PVx(s[0][0]), cy: PVy(s[0][1]), r: 4.5, fill: "var(--paper)", stroke: s[1], "stroke-width": 1.5, opacity: 0.6 }, gP); });
+    [[iA, cA, "i", -10, -8], [iB, cB, "i", 8, -8], [fA, cA, "f", 8, two ? -6 : 16], [fB, cB, "f", two ? 8 : -10, two ? 18 : -8]].forEach(function (s) {
+      el("circle", { cx: PVx(s[0][0]), cy: PVy(s[0][1]), r: 5.5, fill: s[1] }, gP);
+      el("text", { x: PVx(s[0][0]) + s[3], y: PVy(s[0][1]) + s[4], "text-anchor": s[3] < 0 ? "end" : "start", style: "font-size:16px;font-weight:700;fill:" + s[1] + ";font-family:var(--serif)" }, gP, s[2]);
+    });
+    el("text", { x: PVx(iA[0]) - 10, y: PVy(iA[1]) + 8, "text-anchor": "end", style: "font-size:11px", "class": "mono" }, gP, "10 L, 2 atm");
+    el("text", { x: PVx(iB[0]) + 8, y: PVy(iB[1]) + 8, style: "font-size:11px", "class": "mono" }, gP, "15 L, 1 atm");
+    if (two) {
+      el("text", { x: PVx(fA[0]) - 10, y: PVy(fA[1]) - 6, "text-anchor": "end", style: "font-size:11px", "class": "mono" }, gP, "25 L, " + f2(fA[1]) + " atm");
+      el("text", { x: PVx(fB[0]) - 10, y: PVy(fB[1]) + 18, "text-anchor": "end", style: "font-size:11px", "class": "mono" }, gP, "25 L, " + f2(fB[1]) + " atm");
+    } else {
+      el("text", { x: PVx(fA[0]) + 8, y: PVy(fA[1]) + 30, style: "font-size:11px", "class": "mono" }, gP, f2(fA[0]) + " L, 1.40 atm");
+      el("text", { x: PVx(fB[0]) - 10, y: PVy(fB[1]) - 20, "text-anchor": "end", style: "font-size:11px", "class": "mono" }, gP, f2(fB[0]) + " L");
+    }
+    put("pvNote", same && caseSel === 2 ? "gas bat: bi zatiek 1. kasuaren azken egoera partekatzen dute" : "");
+    // run-time text in the SVG is typeset by the page's helpers when present
+    if (window.svgMath) window.svgMath($("pv"));
+  }
+  function markers(VA, pA, VB, pB, show) {
+    attr("mA", "cx", PVx(VA * 1e3)); attr("mA", "cy", PVy(pA / ATM)); attr("mA", "opacity", show ? 0.85 : 0);
+    attr("mB", "cx", PVx(VB * 1e3)); attr("mB", "cy", PVy(pB / ATM)); attr("mB", "opacity", show ? 0.85 : 0);
+  }
+
+  // ---- drawing of the apparatus ----
+  function drawSplit(x, TA, TB, wallOn, lockOn, condOn) {
+    var px = X0 + PXM * x;
+    $("cells").style.display = "none"; $("gasA").style.display = ""; $("gasB").style.display = "";
+    attr("gasA", "width", Math.max(0, px - X0)); attr("gasB", "x", px); attr("gasB", "width", Math.max(0, X0 + 600 - px));
+    $("gasA").style.fill = "var(--o2-fill)"; $("gasB").style.fill = same ? "var(--o2-fill)" : "var(--n2-fill)";
+    $("wall").setAttribute("transform", "translate(" + px + "," + (wallOn ? 0 : -170) + ")");
+    $("lockT").style.display = lockOn ? "" : "none"; $("lockB").style.display = lockOn ? "" : "none";
+    $("cond").setAttribute("opacity", condOn ? 1 : 0);
+    if (condOn) $("cond").setAttribute("transform", TB > TA ? "scale(-1,1)" : "");
+    for (var j = 0; j < N; j++) tcellR[j].style.fill = tcol((j + 0.5) * dxc < x ? TA : TB);
+    attr("lblA", "x", 52); attr("lblB", "x", 628);
+  }
+  function drawCells(aj, bj, Tj) {
+    $("cells").style.display = ""; $("gasA").style.display = "none"; $("gasB").style.display = "none";
+    for (var j = 0; j < N; j++) { cellR[j].style.fill = gcol(aj[j] / Math.max(1e-30, aj[j] + bj[j])); tcellR[j].style.fill = tcol(Tj[j]); }
+  }
+  function stateText(VA, TA, pA, VB, TB, pB) {
+    put("stA", f1(VA * 1e3) + " L · " + f1(TA) + " K · " + f2(pA / ATM) + " atm");
+    put("stB", f1(VB * 1e3) + " L · " + f1(TB) + " K · " + f2(pB / ATM) + " atm");
+  }
+  function readouts(a, b2, c, d, e, f) { put("r1", a); put("r2", b2); put("r3", c); put("r4", d); put("r5", e || ""); put("r6", f || ""); }
+  function nameA() { return same ? "gasa, ezkerra" : "O₂"; }
+  function nameB() { return same ? "gasa, eskuina" : "N₂"; }
+
+  // ---- the entropy chart ----
+  var chart = { max: 1, pts: [] };
+  function chartSetup(target, label, x0lbl, x1lbl) {
+    chart.max = Math.max(target * 1.12, 1e-9); chart.pts = [];
+    attr("sTarget", "y1", 110 - 110 * target / chart.max); attr("sTarget", "y2", 110 - 110 * target / chart.max);
+    attr("sTarget", "opacity", target > 0 ? 1 : 0);
+    put("sTargetLbl", label); attr("sTargetLbl", "y", 110 - 110 * target / chart.max - 4); attr("sTargetLbl", "opacity", target > 0 ? 1 : 0);
+    put("sY", chart.max.toFixed(chart.max < 2 ? 2 : 1)); put("sX0", x0lbl); put("sX1", x1lbl);
+    $("sPath").setAttribute("d", ""); attr("sDot", "opacity", 0);
+  }
+  function chartPoint(u, S) {
+    var x = 210 * u, y = 110 - 110 * Math.max(0, S) / chart.max;
+    chart.pts.push([x, y]);
+    $("sPath").setAttribute("d", chart.pts.map(function (p, i) { return (i ? "L" : "M") + p[0].toFixed(1) + "," + p[1].toFixed(1); }).join(""));
+    attr("sDot", "cx", x); attr("sDot", "cy", y); attr("sDot", "opacity", 1);
+  }
+
+  // ---- ledger ----
+  function ledger() {
+    var two = !same;
+    $("hA").innerHTML = tex((same ? "gasa, ezkerra, " : "O₂, ") + nA.toFixed(3) + " mol: azken bolumena");
+    $("hB").innerHTML = tex((same ? "gasa, eskuina, " : "N₂, ") + nB.toFixed(3) + " mol: azken bolumena");
+    $("vA1").innerHTML = tex(f2(VAf * 1e3) + " L"); $("vB1").innerHTML = tex(f2(VBf * 1e3) + " L");
+    $("vA2").innerHTML = tex(two ? "25 L" : f2(VAf * 1e3) + " L, dagokion zatia"); $("vB2").innerHTML = tex(two ? "25 L" : f2(VBf * 1e3) + " L, dagokion zatia");
+    $("tA1").innerHTML = tex(sgn(tA, 3) + " J/K"); $("tA2").innerHTML = tex(sgn(tA, 3) + " J/K");
+    $("tB1").innerHTML = tex(sgn(tB, 3) + " J/K"); $("tB2").innerHTML = tex(sgn(tB, 3) + " J/K");
+    $("wA1").innerHTML = tex(sgn(wA1, 3) + " J/K"); $("wA2").innerHTML = tex(sgn(two ? wA2 : wA1, 3) + " J/K");
+    $("wB1").innerHTML = tex(sgn(wB1, 3) + " J/K"); $("wB2").innerHTML = tex(sgn(two ? wB2 : wB1, 3) + " J/K");
+    $("u1").innerHTML = tex(sgn(dS1, 3) + " J/K"); $("u2").innerHTML = tex(sgn(two ? dS2 : dS1, 3) + " J/K");
+    $("x2").innerHTML = tex(two ? sgn(dSmix, 3) + " J/K" : "0 J/K");
+    $("verdict").innerHTML = tex(two
+      ? "Horma askatzeak tenperatura eta presioa berdintzen ditu, eta <b>" + dS1.toFixed(2) + " J/K</b> sortzen ditu. Kentzeak gauza bera egiten du, eta gero gas bakoitzari ontzi osoan hedatzen uzten dio: <b>" + dS2.toFixed(2) + " J/K</b>, horietatik " + dSmix.toFixed(2) + " J/K nahaste-entropia. Ontziak ez du ezer trukatzen kanpoarekin; beraz, unibertsoaren entropia-aldaketak dira horiek, guztiak barruan sortuak."
+      : "Gas bera bi aldeetan dagoela ere, horma askatzeak <b>" + dS1.toFixed(2) + " J/K</b> sortzen ditu: tenperaturak eta presioak desberdinak ziren. Horma kentzeak orain <b>" + dS1.toFixed(2) + " J/K</b> berberak ematen ditu: T eta p berdindu ondoren, gas beraren bi zatiak gas bakarra dira, eta ez da ezer gehiago gertatzen. Nahaste-gaia ez da txikia: ez dago (Gibbs).");
+    $("gDiff").setAttribute("aria-pressed", same ? "false" : "true"); $("gSame").setAttribute("aria-pressed", same ? "true" : "false");
+    put("lblA", same ? "gasa" : "O₂"); put("lblB", same ? "gasa" : "N₂");
+    $("lblB").style.fill = same ? "var(--o2)" : "var(--n2)"; $("r3").style.fill = same ? "var(--o2)" : "var(--n2)";
+  }
+
+  // ---- the states of the page ----
+  var phase = "i", raf = 0, speed = 1;
+  function atI() {
+    cancelAnimationFrame(raf); phase = "i"; afterOne = false; caseSel = 1;
+    drawSplit(x0, TA0, TB0, true, true, false); $("slot").style.display = "none";
+    stateText(VA0, TA0, pA0, VB0, TB0, pB0);
+    put("lockLbl", "finkatuta, adiabatikoa"); attr("lockLbl", "x", X0 + PXM * x0);
+    markers(VA0, pA0, VB0, pB0, false); drawPV();
+    chartSetup(0, "", "", "");
+    readouts("i egoera · horma finkatuta", nameA() + ": V = 10.0 L · T = 288.0 K · p = 2.00 atm", nameB() + ": V = 15.0 L · T = 300.0 K · p = 1.00 atm", "ΔS = 0 J/K", "Sakatu 1 horma askatzeko, edo 2 kentzeko.");
+    $("b1").disabled = false; $("b2").disabled = false; put("b2", "2 · Kendu horma"); $("gDiff").disabled = false; $("gSame").disabled = false;
+  }
+  function loop(step, done) {
+    var t0 = null;
+    function frame(ts) { if (t0 == null) t0 = ts; if (step((ts - t0) / 1000)) raf = requestAnimationFrame(frame); else done(); }
+    raf = requestAnimationFrame(frame);
+  }
+  // display time -> model time for process 1: slow motion only while the wall swings (the first second)
+  function t1of(el) { if (speed === 1) return el; var tw = 1.0; return el < tw / speed ? el * speed : tw + (el - tw / speed); }
+
+  function run1() {
+    if (phase !== "i") return;
+    phase = "p1"; caseSel = 1; $("b1").disabled = true; $("b2").disabled = true; $("gDiff").disabled = true; $("gSame").disabled = true;
+    var s = wallRun(MW, C1, K1, 2e-5, 50, 2e-3, 0.3, 0.02, 12), target = dS1;
+    var tTot = s.tEnd, Sarr = same ? s.Ss : s.S;
+    drawPV(); $("slot").style.display = "none";
+    chartSetup(target, "ΔS = " + target.toFixed(2) + " J/K", "0", f1(tTot) + " s");
+    put("lockLbl", "askatuta: diatermanoa, higikorra");
+    function end() {
+      phase = "f1"; afterOne = true;
+      drawSplit(xf, Tf, Tf, true, false, false); stateText(VAf, Tf, pf, VBf, Tf, pf);
+      markers(VAf, pf, VBf, pf, false); chartPoint(1, Sarr[Sarr.length - 1]);
+      readouts("f egoera · t = " + f1(tTot) + " s", nameA() + ": V = " + f2(VAf * 1e3) + " L · T = " + f1(Tf) + " K · p = " + f2(pf / ATM) + " atm",
+        nameB() + ": V = " + f2(VBf * 1e3) + " L · T = " + f1(Tf) + " K · p = " + f2(pf / ATM) + " atm", "ΔS = " + sgn(target, 3) + " J/K",
+        "Geldirik: presio berdinak, tenperatura berdinak.", same ? "Sakatu 2 horma kentzeko: ez da ezer gertatuko." : "Sakatu 2 hemendik horma kentzeko: nahastea baino ez.");
+      $("b2").disabled = false; put("b2", "2 · Orain kendu horma");
+    }
+    if (reduce) { end(); return; }
+    loop(function (el) {
+      var t = Math.min(t1of(el), tTot), k = at(s.t, t);
+      var x = s.x[k], TA = s.TA[k], TB = s.TB[k], pA = s.pA[k], pB = s.pB[k], VA = AS * x;
+      drawSplit(x, TA, TB, true, false, Math.abs(TA - TB) > 0.3);
+      attr("lockLbl", "x", X0 + PXM * x);
+      stateText(VA, TA, pA, V - VA, TB, pB);
+      markers(VA, pA, V - VA, pB, true);
+      chartPoint(t / tTot, Sarr[k]);
+      var swinging = t < 1.0, note = swinging ? "Horma orekatik harago doa eta kulunkatzen da; gasak moteltzen du." : "Beroa gas beroagotik igarotzen da hormatik; horma lerratu egiten da.";
+      readouts("1. prozesua · t = " + f2(t) + " s" + (speed < 1 && swinging ? " (kamera geldoan ×1/10)" : ""),
+        nameA() + ": V = " + f2(VA * 1e3) + " L · T = " + f1(TA) + " K · p = " + f2(pA / ATM) + " atm",
+        nameB() + ": V = " + f2((V - VA) * 1e3) + " L · T = " + f1(TB) + " K · p = " + f2(pB / ATM) + " atm",
+        "ΔS = " + sgn(Sarr[k], 3) + " J/K", note, "Puntuak p–V planoan: ereduaren egoera bateratuak.");
+      return t < tTot;
+    }, end);
+  }
+
+  function run2() {
+    if (phase !== "i" && phase !== "f1") return;
+    var fromF = phase === "f1";
+    phase = "p2"; caseSel = 2; $("b1").disabled = true; $("b2").disabled = true; $("gDiff").disabled = true; $("gSame").disabled = true;
+    drawPV();
+    var Si = fromF ? sepS(VAf, Tf, VBf, Tf, same) - sepS(VA0, TA0, VB0, TB0, same) : 0, rush = null, xs, TAr, TBr, Srush = Si;
+    if (!fromF) {
+      rush = wallRun(MI, C2, 0, 1e-6, 10, 0.02, 0.004, 1e9, 0.5);
+      xs = Math.round(rush.xEnd / dxc) * dxc; TAr = rush.TAEnd; TBr = rush.TBEnd;
+      Srush = sepS(AS * xs, TAr, AS * (L - xs), TBr, same) - sepS(VA0, TA0, VB0, TB0, same);
+    } else { xs = Math.round(xf / dxc) * dxc; TAr = Tf; TBr = Tf; }
+    var dif = diffuseRun(xs, TAr, TBr, same, 40);
+    var target = same ? dS1 : dS2, Send = Srush + dif.S[dif.S.length - 1];
+    var D_LIFT = 0.5, D_RUSH = fromF ? 0 : 1.0, D_DIF = 8.0, tRush = rush ? rush.tEnd : 0, rushRate = rush ? tRush / D_RUSH : 0;
+    var tot = D_LIFT + D_RUSH + D_DIF;
+    chartSetup(target, "ΔS = " + target.toFixed(2) + " J/K", fromF ? "0" : "0 · 10 ms", "2 h");
+    $("slot").style.display = ""; attr("slot", "x", X0 + PXM * (fromF ? xf : x0) - 12);
+    put("lockLbl", "");
+    var xStart = fromF ? xf : x0, TAs = fromF ? Tf : TA0, TBs = fromF ? Tf : TB0;
+    function cellsAt(k) { drawCells(dif.a[k], dif.b[k], dif.T[k]); }
+    function end() {
+      phase = "f2";
+      cellsAt(dif.a.length - 1);
+      var fA = same ? [VAf, pf] : [V, nA * R * Tf / V], fB = same ? [VBf, pf] : [V, nB * R * Tf / V];
+      markers(fA[0], fA[1], fB[0], fB[1], !same);
+      stateText(fA[0], Tf, fA[1], fB[0], Tf, fB[1]); attr("lblA", "x", 52); attr("lblB", "x", 628);
+      chartPoint(1, Send);
+      readouts("f egoera · 2 h igarota", same ? "gas bat: V = 25.0 L · T = " + f1(Tf) + " K · p = " + f2(pf / ATM) + " atm" : nameA() + ": V = 25.0 L · T = " + f1(Tf) + " K · p = " + f2(fA[1] / ATM) + " atm (partziala)",
+        same ? "" : nameB() + ": V = 25.0 L · T = " + f1(Tf) + " K · p = " + f2(fB[1] / ATM) + " atm (partziala)",
+        "ΔS = " + sgn(Send, 3) + " J/K", same ? (fromF ? "Ez da ezer gertatu: entropia ez da mugitu." : "Uniformea: 1. kasuko azken egoera eta entropia berak.") : (fromF ? "Nahastuta. Nahaste-entropia bakarrik: " + f2(Send - Si) + " J/K." : "Nahastuta eta uniformea, gas bakoitza bere presio partzialean."), "Sakatu Berrabiarazi berriro hasteko.");
+    }
+    if (reduce) { end(); return; }
+    loop(function (el) {
+      var u = el / tot;
+      if (el < D_LIFT) {                                   // the wall is drawn out
+        var lift = el / D_LIFT;
+        drawSplit(xStart, TAs, TBs, true, false, false); stateText(AS * xStart, TAs, nA * R * TAs / (AS * xStart), V - AS * xStart, TBs, nB * R * TBs / (V - AS * xStart));
+        $("wall").setAttribute("transform", "translate(" + (X0 + PXM * xStart) + "," + (-170 * lift) + ")");
+        readouts("2. prozesua · horma atera egiten da", "", "", "ΔS = " + sgn(Si, 3) + " J/K", fromF ? "Berdindutako egoeratik: T eta p berdinak bi aldeetan." : "Ez dago jada gasak bereizita eusten dituen ezer.");
+        chartPoint(u, Si);
+      } else if (el < D_LIFT + D_RUSH) {                   // the rush, in slow motion
+        var t = (el - D_LIFT) * rushRate, k = at(rush.t, t), x = rush.x[k], TA = rush.TA[k], TB = rush.TB[k], pA = rush.pA[k], pB = rush.pB[k];
+        drawSplit(x, TA, TB, false, false, false); $("wall").setAttribute("transform", "translate(" + (X0 + PXM * x0) + ",-170)");
+        stateText(AS * x, TA, pA, V - AS * x, TB, pB); markers(AS * x, pA, V - AS * x, pB, true);
+        var Sr = (same ? rush.Ss : rush.S)[k];
+        chartPoint(u, Sr);
+        readouts("2. prozesua · t = " + (t * 1e3).toFixed(1) + " ms (kamera geldoan ×1/" + Math.round(1 / rushRate * 1) + ")", nameA() + ": T = " + f1(TA) + " K · p = " + f2(pA / ATM) + " atm", nameB() + ": T = " + f1(TB) + " K · p = " + f2(pB / ATM) + " atm",
+          "ΔS = " + sgn(Sr, 3) + " J/K", "Presioak milisegundotan berdintzen dira:", "O₂ hedatu eta hoztu egiten da, N₂ konprimitu eta berotu.");
+      } else {                                             // interdiffusion, in time-lapse
+        var td = (el - D_LIFT - D_RUSH) / D_DIF * T2MAX, kd = at(dif.t, td);
+        cellsAt(kd); markers(0, 0, 0, 0, false);
+        var Tj = dif.T[kd], Tmin = Infinity, Tmax = -Infinity, aL = 0, j;
+        for (j = 0; j < N; j++) { if (Tj[j] < Tmin) Tmin = Tj[j]; if (Tj[j] > Tmax) Tmax = Tj[j]; if (j < N / 2) aL += dif.a[kd][j]; }
+        put("stA", ""); put("stB", "");
+        var Sd = Srush + dif.S[kd];
+        chartPoint(u, Sd);
+        readouts("2. prozesua · t = " + (td / 60).toFixed(0) + " min (kamera azkarrean ×" + Math.round(T2MAX / D_DIF) + ")",
+          same ? "gas bat, uniformeki hedatzen" : nameA() + " ezkerreko erdian: " + (100 * aL / nA).toFixed(0) + " %",
+          "T ontzian zehar: " + f1(Tmin) + " K-etik " + f1(Tmax) + " K-era", "ΔS = " + sgn(Sd, 3) + " J/K",
+          same ? "Beroak berdintzen du; gasa ez zen inoiz bi gas izan." : "Gas bakoitza bestearengan difunditzen da; beroak berdintzen du.", "Minutuak segundo bihurtzen dira hemen.");
+      }
+      return el < tot;
+    }, end);
+  }
+
+  $("b1").addEventListener("click", run1);
+  $("b2").addEventListener("click", run2);
+  $("b0").addEventListener("click", atI);
+  $("gDiff").addEventListener("click", function () { same = false; ledger(); atI(); });
+  $("gSame").addEventListener("click", function () { same = true; ledger(); atI(); });
+  function setSpeed(v) {
+    speed = v;
+    $("sReal").setAttribute("aria-pressed", v === 1 ? "true" : "false");
+    $("sSlow").setAttribute("aria-pressed", v === 1 ? "false" : "true");
+  }
+  $("sReal").addEventListener("click", function () { setSpeed(1); });
+  $("sSlow").addEventListener("click", function () { setSpeed(0.1); });
+
+  // ---- the ledger can be hidden ----
+  function showLedger(on) {
+    $("ledgerBody").hidden = !on; $("ledgerNote").hidden = on;
+    put("ledgerBtn", on ? "Ezkutatu" : "Erakutsi");
+    $("ledgerBtn").setAttribute("aria-expanded", on ? "true" : "false");
+    store("ex18-eu-ledger", on ? "1" : "0");
+  }
+  $("ledgerBtn").addEventListener("click", function () { showLedger($("ledgerBody").hidden); });
+  showLedger(store("ex18-eu-ledger") !== "0");
+
+  svgMath();
+  ledger(); atI();
+  // the models, reachable from the console and from the node check that compares them with tools/verify.py
+  window.ex18 = { wallRun: wallRun, diffuseRun: diffuseRun, sepS: sepS, dS1: dS1, dS2: dS2, Tf: Tf, pf: pf, xf: xf, dxc: dxc,
+    setSame: function (v) { same = v; }, params: { MW: MW, C1: C1, K1: K1, MI: MI, C2: C2, DIFF: DIFF, ALPHA: ALPHA, N: N, DT2: DT2, T2MAX: T2MAX } };
+})();
+}
+(function () {
+  "use strict";
+  function setLang(l) {
+    var root = document.getElementById("root");
+    root.innerHTML = "";
+    root.appendChild(document.getElementById("tpl-" + l).content.cloneNode(true));
+    if (window.renderMathInElement) renderMathInElement(root, { delimiters: [{ left: "$", right: "$", display: false }], throwOnError: false });
+    glue(root);
+    document.documentElement.lang = l;
+    document.getElementById("langEN").setAttribute("aria-pressed", l === "en" ? "true" : "false");
+    document.getElementById("langEU").setAttribute("aria-pressed", l === "eu" ? "true" : "false");
+    try { localStorage.setItem("ex18-lang", l); } catch (e) {}
+    (l === "eu" ? runEU : runEN)();
+  }
+  document.getElementById("langEN").addEventListener("click", function () { setLang("en"); });
+  document.getElementById("langEU").addEventListener("click", function () { setLang("eu"); });
+  var start = "en";
+  try { start = localStorage.getItem("ex18-lang") || "en"; } catch (e) {}
+  if (location.hash === "#eu") start = "eu"; else if (location.hash === "#en") start = "en";
+  setLang(start === "eu" ? "eu" : "en");
+})();
+</script>
+</body></html>
